@@ -1,6 +1,4 @@
 const { generateToken } = require("../config/JwtToken");
-// Import the Twilio module
-const twilio = require('twilio');
 const {
   User,
   Customer,
