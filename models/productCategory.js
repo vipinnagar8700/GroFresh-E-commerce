@@ -12,6 +12,23 @@ var ProductCategorySchema = new mongoose.Schema({
         type:String,
         default:null,
     },
+    parent_id:{
+        type:Number,
+        default:0,
+    },
+    position:{
+        type:Number,
+        default:0,
+    },
+    priority:{
+        type:String,
+        default:null,
+    },
+    translations:[{
+        type:String,
+        default:null,
+    }],
+  
     status:{
         type:String,
         default:"pending",
