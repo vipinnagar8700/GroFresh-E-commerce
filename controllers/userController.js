@@ -123,27 +123,20 @@ const login = asyncHandler(async (req, res) => {
         maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    const response = {
-        _id: findUser._id,
-        firstname: findUser.firstname,
-        lastname: findUser.lastname,
-        email: findUser.email,
-        phone: findUser.phone,
-        token: token,
-        passwordResetToken: findUser.passwordResetToken,
-        permission: findUser.permission
-    };
-    if (findUser.role === "Customer") {
-        response.CustomerData = await Customer.findOne({ user_id: findUser._id });
-    } else if (findUser.role === "DeliveryMan") {
-        response.DeliveryManData = await DeliveryMan.findOne({ user_id: findUser._id });
-    }
+    // const response = {
+    //     token: token,
+    // };
+    // if (findUser.role === "Customer") {
+    //     response.CustomerData = await Customer.findOne({ user_id: findUser._id });
+    // } else if (findUser.role === "DeliveryMan") {
+    //     response.DeliveryManData = await DeliveryMan.findOne({ user_id: findUser._id });
+    // }
     // Send notification
-    sendNotification(findUser);
 
     res.status(200).json({
         message: "Successfully Login!",
-        data: response,
+        token: token,
+        success: true,
     });
 } else {
     res.status(401).json({
@@ -154,7 +147,24 @@ const login = asyncHandler(async (req, res) => {
 
 });
 
+const Userme =async(req,res)=>{
+try {
+   // Extract the user ID from the authenticated token
+   const userId = req.user.userId;
 
+   // Query the User table to find the user by ID
+   const user = await User.findById(userId);
+
+   if (!user) {
+       return res.status(404).json({ message: 'User not found' });
+   }
+
+   // If user is found, return the user data
+   res.json({ user });
+} catch (error) {
+  res.status(500).json({ message: error.message });
+}
+}
 
 
 const AllUsers_role = async (req, res) => {
@@ -469,5 +479,5 @@ module.exports = {
   editUser,
   UpdateUsers,
   deleteUser,
-  changePassword,ResetPassword,New_password,payment,AllUsers_role
+  changePassword,ResetPassword,New_password,payment,AllUsers_role,Userme
 };

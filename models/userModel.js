@@ -43,6 +43,10 @@ const userSchema = new mongoose.Schema(
       default: null,
       type: String,
     },
+    email_verification:{
+      default: 0,
+      type: Number,
+    }
   },
   {
     timestamps: true,
