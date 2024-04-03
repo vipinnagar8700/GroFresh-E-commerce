@@ -73,6 +73,11 @@ var ProductSchema = new mongoose.Schema({
     type: String,
     default: "pending",
   },
+},{
+  timestamps:{
+      type: Date,
+      default: Date.now
+  }
 });
 
 //Export the model

@@ -132,7 +132,7 @@ const login = asyncHandler(async (req, res) => {
     //     response.DeliveryManData = await DeliveryMan.findOne({ user_id: findUser._id });
     // }
     // Send notification
-
+    
     res.status(200).json({
         message: "Successfully Login!",
         token: token,

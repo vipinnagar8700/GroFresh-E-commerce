@@ -36,6 +36,9 @@ app.get("/", (req, res) => {
 app.use("/api", userRoutes);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Mr Vipin Your Server is Running on port ${port}`);
+const server = app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
+
+// Increase timeout duration
+server.timeout = 60000; // 60 seconds

@@ -9,6 +9,11 @@ var attributeSchema = new mongoose.Schema({
         index:true,
     },
  
+},{
+    timestamps:{
+        type: Date,
+        default: Date.now
+    }
 });
 
 //Export the model

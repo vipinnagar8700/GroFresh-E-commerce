@@ -129,59 +129,7 @@ const CustomerSchema = new mongoose.Schema(
   }
 );
 
-const pharmacySchema = new mongoose.Schema(
-  {
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    // Pharmacy-specific fields
-    firstname: String,
-    lastname: String,
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    mobile: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },permission: {
-      type: Boolean,
-      default: false,
-    },
-    status: {
-    type: String,
-    enum: ['pending', 'approved', 'blocked'],
-    default: 'pending',
-  },
-    dob: {
-      type: String,
-      default: null,
-    },
-    address: String,
-    city: String,
-    state: String,
-    Website_Name: {
-      type: String,
-      default: null,
-    },
-    Website_Logo: {
-      type: String,
-      default: null,
-    },
-    Favicon: {
-      type: String,
-      default: null,
-    },
-  
-  },
-  {
-    timestamps: true,
-  }
-);
+
 
 const DeliveryManSchema = new mongoose.Schema(
   {
@@ -233,16 +181,10 @@ const DeliveryManSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-   
-   
-    
     country: {
       type: String, 
       default: null,
     },
-
-    
-   
   },
   {
     timestamps: true,

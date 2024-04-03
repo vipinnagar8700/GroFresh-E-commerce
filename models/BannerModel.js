@@ -1,23 +1,32 @@
 const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var ProductCategorySchema = new mongoose.Schema({
-    Category_name:{
+var BannerSchema = new mongoose.Schema({
+    tittle:{
         type:String,
         required:true,
         unique:true,
-        index:true,
     },
-    image:{
+    Item_type:{
         type:String,
         default:null,
+    },
+    Product_name:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+    },
+    Category_name:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ProductCategory",
     },
     status:{
         type:String,
         default:"pending",
+    },image:{
+        type:String,
+        default:null,
     }
-}
-,{
+},{
     timestamps:{
         type: Date,
         default: Date.now
@@ -25,4 +34,4 @@ var ProductCategorySchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model('ProductCategory', ProductCategorySchema);
+module.exports = mongoose.model('Banner', BannerSchema);

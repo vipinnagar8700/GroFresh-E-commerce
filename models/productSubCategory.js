@@ -15,7 +15,10 @@ var ProductSubCategorySchema = new mongoose.Schema({
     }
 }
 ,{
-    
+    timestamps:{
+        type: Date,
+        default: Date.now
+    }
 });
 
 //Export the model
