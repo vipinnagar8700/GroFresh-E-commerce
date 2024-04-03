@@ -27,9 +27,9 @@ const router = express.Router();
 
 
 // User Auth 
-router.post('/register', register);
-router.post('/login', login);
-router.get('/configApi',configApi)
+router.post('/auth/register', register);
+router.post('/auth/login', login);
+router.get('/config',configApi)
 router.get('/Userme',authenticateToken,Userme)
 // router.get('/AllUsers_role',AllUsers_role)
 // router.post('/loginWithOTP',loginWithOTP)
@@ -42,7 +42,7 @@ router.post('/createProductCategory',upload.single('image'), createProductCatego
 router.get('/singleProductCategory/:id', singleProductCategory)
 router.put('/updateProductCategory/:id', upload.single('image'),authenticateToken, updateProductCategory)
 router.delete('/deleteProductCategory/:id',authenticateToken, deleteProductCategory)
-router.get('/allProductCategories',allProductCategories)
+router.get('/categories',allProductCategories)
 // Product Sub Category
 router.post('/createProductSubCategory',upload.single('image'), createProductSubCategory)
 router.get('/singleProductSubCategory/:id', singleProductSubCategory)
@@ -66,7 +66,7 @@ router.post('/createBanner', upload.single('image'),createBanner)
 router.get('/singleBanner/:id', singleBanner)
 router.put('/updateBanner/:id', upload.single('image'),authenticateToken, updateBanner)
 router.delete('/deleteBanner/:id',authenticateToken, deleteBanner)
-router.get('/allProductBanner',allProductBanner)
+router.get('/banners',allProductBanner)
 
 // // Doctor
 // router.get('/AllDoctors', AllDoctors)
