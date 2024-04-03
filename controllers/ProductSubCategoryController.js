@@ -1,4 +1,4 @@
-const ProductSubCategory = require('../models/ProductSubCategory');
+const ProductSubCategory = require('../models/productSubCategory');
 
 // Create a new product category
 const createProductSubCategory = async (req, res) => {
