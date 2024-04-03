@@ -25,8 +25,9 @@ app.set('view engine', 'ejs');
 app.set('Views', path.join(__dirname, 'Views'));
 
 app.get("/", (req, res) => {
-  res.render('index')
+  res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
 });
+
 
 
 
