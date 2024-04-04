@@ -7,7 +7,7 @@ const path = require('path');
 const multer = require('multer');
 const { createProductCategory, singleProductCategory, deleteProductCategory, updateProductCategory, allProductCategories } = require('../controllers/ProductCategoryController');
 const { createProductSubCategory, singleProductSubCategory, updateProductSubCategory, deleteProductSubCategory, allProductSubCategories } = require('../controllers/ProductSubCategoryController');
-const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct } = require('../controllers/ProductController');
+const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct, AllFeaturedProduct, AllDailyNeedProduct, ProductFilter } = require('../controllers/ProductController');
 const { createattribute, singleattribute, deleteattribute, updateattribute, allProductattribute } = require('../controllers/ProductCategoryController copy');
 const { createBanner, allProductBanner, singleBanner, updateBanner, deleteBanner } = require('../controllers/BannerController');
 const { configApi } = require('../controllers/adminController');
@@ -52,10 +52,14 @@ router.delete('/deleteProductSubCategory/:id',authenticateToken, deleteProductSu
 router.get('/allProductSubCategories',allProductSubCategories) 
 // Products
 router.post('/createProduct',upload.single('image'), createProduct)
-router.get('/singleProduct/:id', singleProduct)
+router.get('/products/details/:id', singleProduct)
 router.put('/updateProduct/:id', upload.single('image'),authenticateToken, updateProduct)
 router.delete('/deleteProduct/:id',authenticateToken, deleteProduct)
 router.get('/AllProduct',AllProduct) 
+router.get('/products/featured',AllFeaturedProduct)
+router.get('/products/daily-needs',AllDailyNeedProduct)
+router.get('/products/search',ProductFilter)
+
 // Product Attributes
 router.post('/createattribute', createattribute)
 router.get('/singleattribute/:id', singleattribute)

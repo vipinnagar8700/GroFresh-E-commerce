@@ -73,6 +73,39 @@ var ProductSchema = new mongoose.Schema({
     type: String,
     default: "pending",
   },
+  Daily_needs: {
+    type: Number,
+    default: 0
+  },
+  featured: {
+    type: Number,
+    default: 0
+  },
+  variations:[],
+  choice_options:[],
+  popularity_count:{
+    type: Number,
+    default: 0
+  },
+  view_count:{
+    type: Number,
+    default: 0
+  },
+  maximum_order_quantity:{
+    type: String,
+    default: null
+  },
+  rating:[],
+  active_reviews:[],
+  category_discount:{
+    type: Number,
+    default: 0
+  },
+  wishlist_count:{
+    type: Number,
+    default: 0
+  }
+
 },{
   timestamps:{
       type: Date,

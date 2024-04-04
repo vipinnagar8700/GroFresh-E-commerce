@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 
+
 // Create a new product category
 const createProduct = async (req, res) => {
   try {
@@ -40,6 +41,60 @@ const AllProduct = async (req, res) => {
     const ProductItem = await Product.find().populate('Category_name').populate('Sub_Category_Name').populate('attributes');
     const length = ProductItem.length;
     res.json({data:ProductItem,length:length,status:true});
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Filter Product Api
+const ProductFilter = async (req, res) => {
+  try {
+    // Extract the category name from the request query
+    const categoryName = req.query.categoryName;
+
+    // Construct the filter based on the category name
+    const filter = {};
+    if (categoryName) {
+      filter.Category_name = categoryName;
+    }
+
+    // Find products based on the filter and populate related fields
+    const ProductItem = await Product.find(filter)
+                                     .populate('Category_name')
+                                     .populate('Sub_Category_Name')
+                                     .populate('attributes');
+
+    const length = ProductItem.length;
+    res.json({ data: ProductItem, length: length, status: true });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get Featured all products
+const AllFeaturedProduct = async (req, res) => {
+  try {
+    const ProductItem = await Product.find({ featured: 1 })
+                                     .populate('Category_name')
+                                     .populate('Sub_Category_Name')
+                                     .populate('attributes');
+    const length = ProductItem.length;
+    res.json({ data: ProductItem, length: length, status: true });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// get Daily Need Product categories
+// Get Featured all products
+const AllDailyNeedProduct = async (req, res) => {
+  try {
+    const ProductItem = await Product.find({ Daily_needs: 1 })
+                                     .populate('Category_name')
+                                     .populate('Sub_Category_Name')
+                                     .populate('attributes');
+    const length = ProductItem.length;
+    res.json({ data: ProductItem, length: length, status: true });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -100,6 +155,6 @@ module.exports = {
     AllProduct,
     singleProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,AllFeaturedProduct,AllDailyNeedProduct,ProductFilter
   };
   
