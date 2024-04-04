@@ -4,15 +4,15 @@ const Product = require('../models/product');
 // Create a new product category
 const createProduct = async (req, res) => {
   try {
-    const { Product_name, Category_name } = req.body;
+    const { name, category_ids } = req.body;
 
     // Check if Product_name and Category_name fields are provided
-    if (!Product_name || !Category_name) {
-      return res.status(400).json({ message: 'Product_name and Category_name fields are required', status: false });
+    if (!name || !category_ids) {
+      return res.status(400).json({ message: 'Product name and Category_name fields are required', status: false });
     }
 
     // Check if a product with the same Product_name and Category_name already exists
-    const existingProduct = await Product.findOne({ Product_name, Category_name });
+    const existingProduct = await Product.findOne({ name, category_ids });
     if (existingProduct) {
       return res.status(400).json({ message: 'Product with the same name and category already exists', status: false });
     }
@@ -38,7 +38,7 @@ const createProduct = async (req, res) => {
 // Get all product categories
 const AllProduct = async (req, res) => {
   try {
-    const ProductItem = await Product.find().populate('Category_name').populate('Sub_Category_Name').populate('attributes');
+    const ProductItem = await Product.find().populate('category_ids').populate('Sub_Category_Name').populate('attributes');
     const length = ProductItem.length;
     res.json({data:ProductItem,length:length,status:true});
   } catch (err) {
@@ -60,7 +60,7 @@ const ProductFilter = async (req, res) => {
 
     // Find products based on the filter and populate related fields
     const ProductItem = await Product.find(filter)
-                                     .populate('Category_name')
+                                     .populate('category_ids')
                                      .populate('Sub_Category_Name')
                                      .populate('attributes');
 
@@ -74,8 +74,8 @@ const ProductFilter = async (req, res) => {
 // Get Featured all products
 const AllFeaturedProduct = async (req, res) => {
   try {
-    const ProductItem = await Product.find({ featured: 1 })
-                                     .populate('Category_name')
+    const ProductItem = await Product.find({ is_featured: 1 })
+                                     .populate('category_ids')
                                      .populate('Sub_Category_Name')
                                      .populate('attributes');
     const length = ProductItem.length;
@@ -89,8 +89,8 @@ const AllFeaturedProduct = async (req, res) => {
 // Get Featured all products
 const AllDailyNeedProduct = async (req, res) => {
   try {
-    const ProductItem = await Product.find({ Daily_needs: 1 })
-                                     .populate('Category_name')
+    const ProductItem = await Product.find({ daily_needs: 1 })
+                                     .populate('category_ids')
                                      .populate('Sub_Category_Name')
                                      .populate('attributes');
     const length = ProductItem.length;
@@ -112,6 +112,7 @@ const singleProduct = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 // Delete a single product category by ID
 const deleteProduct = async (req, res) => {
     try {

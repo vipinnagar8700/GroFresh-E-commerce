@@ -2,13 +2,13 @@ const mongoose = require("mongoose"); // Erase if already required
 
 // Declare the Schema of the Mongo model
 var ProductSchema = new mongoose.Schema({
-  Product_name: {
+  name: {
     type: String,
     required: true,
     unique: true,
     index: true,
   },
-  Category_name: {
+  category_ids: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "ProductCategory",
   },
@@ -16,16 +16,16 @@ var ProductSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "ProductSubCategory",
   },
-  Unit: {
+  unit: {
     type: String,
     default: null,
   },
-  Capacity: {
+  capacity: {
     type: String,
     required: true,
     unique: true,
   },
-  Description: {
+  description: {
     type: String,
     default: null,
   },
@@ -45,39 +45,39 @@ var ProductSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "attribute",
   },
-  Price: {
+  price: {
     type: String,
     default: null,
   },
-  Stock: {
+  total_stock: {
     type: String,
     default: null,
   },
-  Discount_Type: {
+  discount_type: {
     type: String,
     default: null,
   },
-  Discount_Percent: {
+  discount: {
     type: String,
     default: null,
   },
-  Tax_Type: {
+  tax_type: {
     type: String,
     default: null,
   },
-  Tax_Rate_per: {
+  tax: {
     type: String,
     default: null,
   },
   status: {
-    type: String,
-    default: "pending",
+    type: Number,
+    default: 0,
   },
-  Daily_needs: {
+  daily_needs: {
     type: Number,
     default: 0
   },
-  featured: {
+  is_featured: {
     type: Number,
     default: 0
   },

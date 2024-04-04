@@ -1,17 +1,8 @@
 
-const { generateToken } = require("../config/JwtToken");
 const {
   User,
-  Doctor,
-  Patient,
-  Pharmacy,
 } = require("../models/userModel");
-const asyncHandler = require("express-async-handler");
-const { generateRefreshToken } = require("../config/refreshToken");
-const jwt = require("jsonwebtoken");
 require("dotenv/config");
-const multer = require("multer");
-const path = require("path");
 
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({
