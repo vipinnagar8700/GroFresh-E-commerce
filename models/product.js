@@ -8,6 +8,7 @@ var ProductSchema = new mongoose.Schema({
     unique: true,
     index: true,
   },
+  
   category_ids: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "ProductCategory",
@@ -105,7 +106,6 @@ var ProductSchema = new mongoose.Schema({
     type: Number,
     default: 0
   }
-
 },{
   timestamps:{
       type: Date,

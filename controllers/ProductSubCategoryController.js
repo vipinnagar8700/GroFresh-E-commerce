@@ -13,7 +13,7 @@ const createProductSubCategory = async (req, res) => {
 // Get all product categories
 const allProductSubCategories = async (req, res) => {
   try {
-    const categories = (await ProductSubCategory.find().populate('Main_Category'));
+    const categories = await ProductSubCategory.find().populate('Main_Category');
     res.json(categories);
   } catch (err) {
     res.status(500).json({ message: err.message });

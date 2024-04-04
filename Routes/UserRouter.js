@@ -7,7 +7,7 @@ const path = require('path');
 const multer = require('multer');
 const { createProductCategory, singleProductCategory, deleteProductCategory, updateProductCategory, allProductCategories } = require('../controllers/ProductCategoryController');
 const { createProductSubCategory, singleProductSubCategory, updateProductSubCategory, deleteProductSubCategory, allProductSubCategories } = require('../controllers/ProductSubCategoryController');
-const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct, AllFeaturedProduct, AllDailyNeedProduct, ProductFilter } = require('../controllers/ProductController');
+const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct, AllFeaturedProduct, AllDailyNeedProduct, ProductFilter, AllCategoryClilds } = require('../controllers/ProductController');
 const { createattribute, singleattribute, deleteattribute, updateattribute, allProductattribute } = require('../controllers/ProductCategoryController copy');
 const { createBanner, allProductBanner, singleBanner, updateBanner, deleteBanner } = require('../controllers/BannerController');
 const { configApi } = require('../controllers/adminController');
@@ -66,7 +66,8 @@ router.get('/AllProduct',AllProduct)
 router.get('/products/featured',AllFeaturedProduct)
 router.get('/products/daily-needs',AllDailyNeedProduct)
 router.get('/products/search',ProductFilter)
-
+router.get('/categories/childes/:id',AllCategoryClilds)
+router.get('/categories/products/:id',AllCategoryClilds)
 // Product Attributes
 router.post('/createattribute', createattribute)
 router.get('/singleattribute/:id', singleattribute)

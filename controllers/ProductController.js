@@ -85,6 +85,22 @@ const AllFeaturedProduct = async (req, res) => {
   }
 };
 
+const AllCategoryClilds = async (req, res) => {
+  console.log(req.params.id,"id")
+  try {
+    // Assuming category_ids is an array field in the Product model
+    const ProductItems = await Product.find({ category_ids: req.params.id, is_featured: 1 })
+                                      .populate('category_ids')
+                                      .populate('Sub_Category_Name')
+                                      .populate('attributes');
+    const length = ProductItems.length;
+    res.json({ data: ProductItems, length: length, status: true });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
 // get Daily Need Product categories
 // Get Featured all products
 const AllDailyNeedProduct = async (req, res) => {
@@ -116,7 +132,7 @@ const singleProduct = async (req, res) => {
 // Delete a single product category by ID
 const deleteProduct = async (req, res) => {
     try {
-      const ProductItem = await Product.findById(req.params.id);
+      const ProductItem = await Product.findByIdAndDelete(req.params.id);
       if (!ProductItem) {
         return res.status(404).json({ message: 'ProductItem not found' });
       }
@@ -156,6 +172,6 @@ module.exports = {
     AllProduct,
     singleProduct,
     updateProduct,
-    deleteProduct,AllFeaturedProduct,AllDailyNeedProduct,ProductFilter
+    deleteProduct,AllFeaturedProduct,AllDailyNeedProduct,ProductFilter,AllCategoryClilds
   };
   
