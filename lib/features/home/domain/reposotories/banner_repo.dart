@@ -9,6 +9,7 @@ class BannerRepo {
   Future<ApiResponseModel> getBannerList() async {
     try {
       final response = await dioClient!.get(AppConstants.bannerUri);
+    
       return ApiResponseModel.withSuccess(response);
     } catch (e) {
       return ApiResponseModel.withError(ApiErrorHandler.getMessage(e));

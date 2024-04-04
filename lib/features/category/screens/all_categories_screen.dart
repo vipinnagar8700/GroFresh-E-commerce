@@ -79,7 +79,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                         categoryProvider.getSubCategoryList(context, category.id.toString());
                       },
                       child: CategoryItemWidget(
-                        title: category.name,
+                        title: category.categoryName,
                         icon: category.image,
                         isSelected: categoryProvider.categoryIndex == index,
                       ),
@@ -124,11 +124,11 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                         Navigator.of(context).pushNamed(
                           RouteHelper.getCategoryProductsRoute(
                             categoryId: '${categoryProvider.categoryList![categoryProvider.categoryIndex].id}',
-                            subCategory: categoryProvider.subCategoryList![index-1].name,
+                            subCategory: categoryProvider.subCategoryList![index-1].categoryName,
                           ),
                         );
                       },
-                      title: Text(categoryProvider.subCategoryList![index-1].name!,
+                      title: Text(categoryProvider.subCategoryList![index-1].categoryName!,
                         style: poppinsMedium.copyWith(fontSize: 13, color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6)),
                         overflow: TextOverflow.ellipsis,
                       ),

@@ -61,7 +61,7 @@ class CategoryWebWidget extends StatelessWidget {
                         SizedBox(
                           width: 110,
                           child: Text(
-                            categoryProvider.categoryList![index].name!,
+                            categoryProvider.categoryList![index].categoryName!,
                             style: poppinsMedium.copyWith(color: hovered ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6)),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,

@@ -1,63 +1,43 @@
+
 class BannerModel {
-  int? _id;
-  String? _title;
-  String? _image;
-  int? _productId;
-  int? _status;
-  String? _createdAt;
-  String? _updatedAt;
-  int? _categoryId;
+    String? id;
+    String? tittle;
+    String? itemType;
+    String? productName;
+    String? categoryName;
+    String? status;
+    String? image;
+    String? createdAt;
+    String? updatedAt;
+    int? v;
 
-  BannerModel(
-      {int? id,
-        String? title,
-        String? image,
-        int? productId,
-        int? status,
-        String? createdAt,
-        String? updatedAt,
-        int? categoryId}) {
-    _id = id;
-    _title = title;
-    _image = image;
-    _productId = productId;
-    _status = status;
-    _createdAt = createdAt;
-    _updatedAt = updatedAt;
-    _categoryId = categoryId;
-  }
+    BannerModel({this.id, this.tittle, this.itemType, this.productName, this.categoryName, this.status, this.image, this.createdAt, this.updatedAt, this.v});
 
-  int? get id => _id;
-  String? get title => _title;
-  String? get image => _image;
-  int? get productId => _productId;
-  int? get status => _status;
-  String? get createdAt => _createdAt;
-  String? get updatedAt => _updatedAt;
-  int? get categoryId => _categoryId;
+    BannerModel.fromJson(Map<String, dynamic> json) {
+        id = json["_id"];
+        tittle = json["tittle"];
+        itemType = json["Item_type"];
+        productName = json["Product_name"];
+        categoryName = json["Category_name"];
+        status = json["status"];
+        image = json["image"];
+        createdAt = json["createdAt"];
+        updatedAt = json["updatedAt"];
+        v = json["__v"];
+    }
 
-
-  BannerModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _title = json['title'];
-    _image = json['image'];
-    _productId = json['product_id'];
-    _status = json['status'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-    _categoryId = json['category_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = _id;
-    data['title'] = _title;
-    data['image'] = _image;
-    data['product_id'] = _productId;
-    data['status'] = _status;
-    data['created_at'] = _createdAt;
-    data['updated_at'] = _updatedAt;
-    data['category_id'] = _categoryId;
-    return data;
-  }
+    Map<String, dynamic> toJson() {
+        final Map<String, dynamic> _data = <String, dynamic>{};
+        _data["_id"] = id;
+        _data["tittle"] = tittle;
+        _data["Item_type"] = itemType;
+        _data["Product_name"] = productName;
+        _data["Category_name"] = categoryName;
+        _data["status"] = status;
+        _data["image"] = image;
+        _data["createdAt"] = createdAt;
+        _data["updatedAt"] = updatedAt;
+        _data["__v"] = v;
+        return _data;
+    }
 }

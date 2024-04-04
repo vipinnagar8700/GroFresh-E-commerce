@@ -47,10 +47,10 @@ class BannersWidget extends StatelessWidget {
                       return InkWell(
                         hoverColor: Colors.transparent,
                         onTap: () {
-                          if(bannerProvider.bannerList![index].productId != null) {
+                          if(bannerProvider.bannerList![index].createdAt != null) {
                             Product? product;
                             for(Product prod in bannerProvider.productList) {
-                              if(prod.id == bannerProvider.bannerList![index].productId) {
+                              if(prod.id == bannerProvider.bannerList![index].id) {
                                 product = prod;
                                 break;
                               }
@@ -61,10 +61,10 @@ class BannersWidget extends StatelessWidget {
                               );
                             }
 
-                          }else if(bannerProvider.bannerList![index].categoryId != null) {
+                          }else if(bannerProvider.bannerList![index].id != null) {
                             CategoryModel? category;
                             for(CategoryModel categoryModel in Provider.of<CategoryProvider>(context, listen: false).categoryList!) {
-                              if(categoryModel.id == bannerProvider.bannerList![index].categoryId) {
+                              if(categoryModel.id == bannerProvider.bannerList![index].id) {
                                 category = categoryModel;
                                 break;
                               }

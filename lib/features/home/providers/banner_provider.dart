@@ -25,8 +25,8 @@ class BannerProvider extends ChangeNotifier {
         _bannerList = [];
         apiResponse.response!.data.forEach((category) {
           BannerModel bannerModel = BannerModel.fromJson(category);
-          if(bannerModel.productId != null) {
-            getProductDetails(context, bannerModel.productId.toString());
+          if(bannerModel.id != null) {
+            getProductDetails(context, bannerModel.id.toString());
           }
           _bannerList!.add(bannerModel);
         });

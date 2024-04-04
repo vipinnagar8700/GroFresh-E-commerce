@@ -63,7 +63,7 @@ class _CategoryProductScreenState extends State<CategoryProductScreen> {
     if(widget.subCategoryName != null && widget.subCategoryName != 'null') {
       appBarText = widget.subCategoryName;
     }else{
-      appBarText =  categoryProvider.categoryModel?.name ?? 'name';
+      appBarText =  categoryProvider.categoryModel?.categoryName ?? 'name';
     }
     categoryProvider.initializeAllSortBy(context);
 
@@ -136,7 +136,7 @@ class _CategoryProductScreenState extends State<CategoryProductScreen> {
                                                 color: categoryProvider.selectedCategoryIndex == index ? Theme.of(context).primaryColor : ColorResources.getGreyColor(context),
                                                 borderRadius: BorderRadius.circular(7)),
                                             child: Text(
-                                              categoryProvider.subCategoryList?[index].name ?? '',
+                                              categoryProvider.subCategoryList?[index].categoryName ?? '',
                                               style: poppinsRegular.copyWith(
                                                 color:  categoryProvider.selectedCategoryIndex == index ? Theme.of(context).canvasColor : Colors.black,
                                               ),

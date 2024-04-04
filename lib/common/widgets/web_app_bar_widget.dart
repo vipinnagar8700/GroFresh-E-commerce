@@ -470,7 +470,7 @@ class _CategoryHoverWidgetState extends State<_CategoryHoverWidget> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(width: 200,child: Text(category.name ?? '', overflow: TextOverflow.ellipsis,maxLines: 1,)),
+                          SizedBox(width: 200,child: Text(category.categoryName ?? '', overflow: TextOverflow.ellipsis,maxLines: 1,)),
                         ],
                       ),
                     );
