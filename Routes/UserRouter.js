@@ -30,9 +30,16 @@ const router = express.Router();
 // User Auth 
 router.post('/auth/register', register);
 router.post('/auth/login', login);
-router.get('/config',configApi)
-router.get('/Userme',authenticateToken,Userme)
-// router.get('/AllUsers_role',AllUsers_role)
+router.get('/config',configApi);
+router.get('/Userme',authenticateToken,Userme);
+
+// Delivery
+router.post('/auth/delivery-man/register', register);
+router.post('/auth/delivery-man/login', login);
+router.get('/delivery-man/profile?token=',authenticateToken,Userme);
+
+router.get('/AllUsers_role',AllUsers_role)
+router.get('/AllUsers',AllUsers)
 // router.post('/loginWithOTP',loginWithOTP)
 // router.post('/generateAndSendOTP',generateAndSendOTP)
 // router.post('/login_fb',login_fb)

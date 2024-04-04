@@ -26,7 +26,6 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-  
     address: String,
     city: String,
     state: String,
@@ -36,7 +35,7 @@ const userSchema = new mongoose.Schema(
     passwordResetExpires: Date,
     role: {
       type: String,
-      enum: ["Customer", "DeliveryMan","admin","subadmin"],
+      enum: ["Customer", "DeliveryMan","admin","subadmin","Branch"],
       required: true,
     },
     image: {
@@ -46,6 +45,21 @@ const userSchema = new mongoose.Schema(
     email_verification:{
       default: 0,
       type: Number,
+    },
+    verification:{
+      default: 0,
+      type: Number,
+    },
+    coverage_distance:{
+      default: 0,
+      type: Number,
+    },
+    Branch_type:{
+      type: String,
+      default: null,
+    },Branch:{
+      type: mongoose.Schema.Types.ObjectId, ref: "Branch" ,
+      default: null,
     }
   },
   {
@@ -129,11 +143,55 @@ const CustomerSchema = new mongoose.Schema(
   }
 );
 
+const BranchSchema = new mongoose.Schema(
+  {
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    f_name: String,
+    l_name: String,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    address: String,
+    city: String,
+    state: String,
+    image: {
+      type: String,
+      default: null,
+    },
+    pincode: {
+      type: String,
+      default: null,
+    },
+    country: {
+      type: String,
+      default: null,
+    },
+    status: {
+      type: String,
+      default: "pending",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 
 const DeliveryManSchema = new mongoose.Schema(
   {
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    Branch: { type: mongoose.Schema.Types.ObjectId, ref: "Branch" },
     // Pharmacy-specific fields
     f_name: String,
     l_name: String,
@@ -176,7 +234,6 @@ const DeliveryManSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-   
     Pincode: {
       type: String,
       default: null,
@@ -194,5 +251,5 @@ const DeliveryManSchema = new mongoose.Schema(
 
 const Customer = mongoose.model("Customer", CustomerSchema);
 const DeliveryMan = mongoose.model("DeliveryMan", DeliveryManSchema);
-
-module.exports = { User, Customer, DeliveryMan };
+const Branch = mongoose.model("Branch", BranchSchema);
+module.exports = { User, Customer, DeliveryMan ,Branch};

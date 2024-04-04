@@ -2,28 +2,52 @@ const { generateToken } = require("../config/JwtToken");
 const {
   User,
   Customer,
-  DeliveryMan,
+  DeliveryMan,Branch
 } = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const asyncHandler = require("express-async-handler");
 const { generateRefreshToken } = require("../config/refreshToken");
-const jwt = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
 require("dotenv/config");
 
 
 // Register
 const register = asyncHandler(async (req, res) => {
-  const { f_name, l_name, email, mobile, phone, role, referral_code, password } = req.body;
+  const { f_name, l_name, email, phone, role, password ,Branch} = req.body;
+
+  // Check if email is provided
+  if (!email) {
+    return res.status(400).json({
+      message: "Email is a required field.",
+      success: false
+    });
+  }
+
+  // Check if phone is provided
+  if (!phone) {
+    return res.status(400).json({
+      message: "Phone is a required field.",
+      success: false
+    });
+  }
+
+  // Check if password is provided
+  if (!password) {
+    return res.status(400).json({
+      message: "Password is a required field.",
+      success: false
+    });
+  }
+
   // Check if a user with the given email or phone already exists
   const existingUser = await User.findOne({
-    $or: [{ email }, { mobile }],
+    $or: [{ email }, { phone }],
   });
 
   if (!existingUser) {
     // User does not exist, so create a new user
     const newUser = await User.create({
-      f_name, l_name, email, mobile, phone, role, password
+      f_name, l_name, email, phone, role, password,Branch
     });
 
     // Generate the password reset token
@@ -44,10 +68,20 @@ const register = asyncHandler(async (req, res) => {
         phone: newUser.phone,
         email: newUser.email,
         role: newUser.role,
-
+        Branch:newUser.Branch,
       });
-    } else if (role === "Customer") { // Corrected from else (role === "Customer")
+    } else if (role === "Customer") {
       roleData = await Customer.create({
+        user_id: newUser._id,
+        f_name: newUser.f_name,
+        l_name: newUser.l_name,
+        password: newUser.password, // Assuming this is the password from newUser
+        phone: newUser.phone,
+        email: newUser.email,
+        role: newUser.role,
+      });
+    } else if (role === "Branch") {
+      roleData = await Branch.create({
         user_id: newUser._id,
         f_name: newUser.f_name,
         l_name: newUser.l_name,
@@ -76,6 +110,7 @@ const register = asyncHandler(async (req, res) => {
   }
 });
 
+
 // Login
 const login = asyncHandler(async (req, res) => {
   const { email, phone, password, role } = req.body;
@@ -91,7 +126,6 @@ const login = asyncHandler(async (req, res) => {
       $or: [{ email }, { phone }],
     });
   }
-
 
   if (findUser && (await findUser.isPasswordMatched(password))) {
     const token = generateToken(findUser._id);
@@ -156,7 +190,12 @@ const Userme = async (req, res) => {
 // All Users 
 const AllUsers_role = async (req, res) => {
   try {
-    const patients = await User.find().select("-password").sort({ createdAt: -1 }); // Exclude the 'password' field;
+    const patients = await User.find().select("-password").populate({
+      path: "Branch",
+      populate: {
+        path: "user_id"
+      }
+    }).sort({ createdAt: -1 }); // Exclude the 'password' field;
     const length = patients.length;
     res.status(200).json([
       {
@@ -178,7 +217,7 @@ const AllUsers_role = async (req, res) => {
 // All Customer
 const AllUsers = async (req, res) => {
   try {
-    const patients = await Customer.find().select("-password").sort({ createdAt: -1 }); // Exclude the 'password' field;
+    const patients = await Customer.find().select("-password").populate('user_id').sort({ createdAt: -1 }); // Exclude the 'password' field;
     const length = patients.length;
     res.status(200).json([
       {
