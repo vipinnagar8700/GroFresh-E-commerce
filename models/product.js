@@ -37,7 +37,7 @@ var ProductSchema = new mongoose.Schema({
     type: String,
     default: "off",
   },
-  Image: {
+  image: {
     type: String,
     default: null,
   },

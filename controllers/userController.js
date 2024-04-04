@@ -9,23 +9,12 @@ const asyncHandler = require("express-async-handler");
 const { generateRefreshToken } = require("../config/refreshToken");
 const jwt = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
-const crypto = require('crypto');
 require("dotenv/config");
-const multer = require("multer");
-const path = require("path");
-const cloudinary = require("cloudinary").v2;
-const { v4: uuidv4 } = require('uuid');
-cloudinary.config({
-  cloud_name: "durzgbfjf",
-  api_key: "512412315723482",
-  api_secret: "e3kLlh_vO5XhMBCMoIjkbZHjazo",
-});
 
 
-
-
+// Register
 const register = asyncHandler(async (req, res) => {
-  const { f_name, l_name, email, mobile, phone, role, referral_code,password } = req.body;
+  const { f_name, l_name, email, mobile, phone, role, referral_code, password } = req.body;
   // Check if a user with the given email or phone already exists
   const existingUser = await User.findOne({
     $or: [{ email }, { mobile }],
@@ -34,7 +23,7 @@ const register = asyncHandler(async (req, res) => {
   if (!existingUser) {
     // User does not exist, so create a new user
     const newUser = await User.create({
-      f_name, l_name, email, mobile, phone, role,password
+      f_name, l_name, email, mobile, phone, role, password
     });
 
     // Generate the password reset token
@@ -87,12 +76,9 @@ const register = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-
-
+// Login
 const login = asyncHandler(async (req, res) => {
-  const { email, phone, password,role } = req.body;
+  const { email, phone, password, role } = req.body;
 
   let findUser;
   // Check if a user with the given email or mobile exists and matches the role
@@ -111,16 +97,16 @@ const login = asyncHandler(async (req, res) => {
     const token = generateToken(findUser._id);
     const refreshToken = generateRefreshToken(findUser._id);
     const updateUser = await User.findByIdAndUpdate(
-        findUser._id,
-        {
-            refreshToken: refreshToken,
-        },
-        { new: true }
+      findUser._id,
+      {
+        refreshToken: refreshToken,
+      },
+      { new: true }
     );
 
     res.cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     // const response = {
@@ -132,41 +118,42 @@ const login = asyncHandler(async (req, res) => {
     //     response.DeliveryManData = await DeliveryMan.findOne({ user_id: findUser._id });
     // }
     // Send notification
-    
+
     res.status(200).json({
-        message: "Successfully Login!",
-        token: token,
-        success: true,
+      message: "Successfully Login!",
+      token: token,
+      success: true,
     });
-} else {
+  } else {
     res.status(401).json({
-        message: "Invalid Credentials!",
-        success: false,
+      message: "Invalid Credentials!",
+      success: false,
     });
-}
+  }
 
 });
 
-const Userme =async(req,res)=>{
-try {
-   // Extract the user ID from the authenticated token
-   const userId = req.user.userId;
+// Me api data by token get
+const Userme = async (req, res) => {
+  try {
+    // Extract the user ID from the authenticated token
+    const userId = req.user.userId;
 
-   // Query the User table to find the user by ID
-   const user = await User.findById(userId);
+    // Query the User table to find the user by ID
+    const user = await User.findById(userId);
 
-   if (!user) {
-       return res.status(404).json({ message: 'User not found' });
-   }
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-   // If user is found, return the user data
-   res.json({ user });
-} catch (error) {
-  res.status(500).json({ message: error.message });
+    // If user is found, return the user data
+    res.json({ user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
-}
 
-
+// All Users 
 const AllUsers_role = async (req, res) => {
   try {
     const patients = await User.find().select("-password").sort({ createdAt: -1 }); // Exclude the 'password' field;
@@ -188,9 +175,10 @@ const AllUsers_role = async (req, res) => {
   }
 };
 
+// All Customer
 const AllUsers = async (req, res) => {
   try {
-    const patients = await Patient.find().select("-password").sort({ createdAt: -1 }); // Exclude the 'password' field;
+    const patients = await Customer.find().select("-password").sort({ createdAt: -1 }); // Exclude the 'password' field;
     const length = patients.length;
     res.status(200).json([
       {
@@ -209,15 +197,15 @@ const AllUsers = async (req, res) => {
   }
 };
 
-
+// Single USer data
 const editUser = async (req, res) => {
   const { id } = req.params;
   try {
-    const editUser = await Patient.findOne({ user_id: id }); // Exclude the 'password' field
+    const editUser = await Customer.findOne({ user_id: id }); // Exclude the 'password' field
     if (!editUser) {
       res.status(200).json({
         message: "User was not found!",
-        status:false
+        status: false
       });
     } else {
       res.status(201).json({
@@ -233,69 +221,52 @@ const editUser = async (req, res) => {
     });
   }
 };
-// Multer configuration
 
+// UpdateUsers data
 const UpdateUsers = async (req, res) => {
   const { id } = req.params;
   const updateData = req.body; // Assuming you send the updated data in the request body
   const file = req.file;
 
-if (file) {
+  if (file) {
     try {
-        const result = await cloudinary.uploader.upload(file.path, {
-            folder: 'LifeCareSolution', // Optional: You can specify a folder in your Cloudinary account
-            resource_type: 'auto', // Automatically detect the file type
-        });
-
-        updateData.image = result.secure_url;
+      // Store image locally in the public directory
+      const imageUrl = 'images/' + file.filename;
+      updateData.image = imageUrl;
     } catch (error) {
-        console.error('Error uploading image to Cloudinary:', error);
-        // Handle the error appropriately
+      console.error('Error storing image locally:', error);
+      // Handle the error appropriately
     }
-}
-
-const domain = 'https://viplifecaresolution.onrender.com';
-
-// Replace backslashes with forward slashes and remove leading './'
-const relativePath = file.path.replace(/\\/g, '/').replace(/^\.\//, '');
-
-// Construct the full image URL
-const imageUrl = `${domain}/${relativePath}`;
-
-console.log(imageUrl);
+  }
 
   delete updateData.role;
 
   try {
+    const finding = await Customer.findOne({ user_id: id });
+    if (!finding) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
 
-
-
-    const finding = await  Patient.findOne({user_id:id})
-    console.log(finding)
-
-    const editUser = await Patient.findByIdAndUpdate(finding._id, updateData, {
+    const editUser = await Customer.findByIdAndUpdate(finding._id, updateData, {
       new: true,
     }).select("-password");
 
-    if (!editUser) {
-      res.status(200).json({
-        message: "User was not found!",
-      });
-    } else {
-      res.status(201).json({
-        message: "Data successfully updated!",
-        success: true,
-        data: editUser,
-      });
-    }
+    res.status(200).json({
+      message: "Data successfully updated",
+      success: true,
+      data: editUser,
+    });
   } catch (error) {
     res.status(500).json({
-      message: "Failed to update data!",
+      message: "Failed to update data",
       status: false,
     });
   }
 };
 
+// DeleteUsers Data
 const deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
@@ -320,7 +291,7 @@ const deleteUser = async (req, res) => {
 
     if (!deletedUser) {
       return res.status(200).json({
-        message: "User was not found!",      success: false,
+        message: "User was not found!", success: false,
       });
     } else {
       return res.status(201).json({
@@ -336,35 +307,33 @@ const deleteUser = async (req, res) => {
   }
 };
 
-
-
-
+// Change Password
 const changePassword = asyncHandler(async (req, res) => {
   const resetToken = req.params.resetToken;
-  console.log(resetToken,"AAA")
+  console.log(resetToken, "AAA")
   const { oldPassword, newPassword, confirmPassword } = req.body;
-  console.log( oldPassword, newPassword, confirmPassword ,"AAA")
+  console.log(oldPassword, newPassword, confirmPassword, "AAA")
   try {
     // Find the user by the reset token
     const user = await User.findOne({
       passwordResetToken: resetToken,
       passwordResetExpires: { $gt: Date.now() }, // Check if the token is still valid
     });
-console.log(resetToken,"AAA")
+    console.log(resetToken, "AAA")
     if (!user) {
-      return res.status(400).json({ message: "Invalid or expired reset token",status:false });
+      return res.status(400).json({ message: "Invalid or expired reset token", status: false });
     }
 
     // Check if the old password is correct
     const isOldPasswordCorrect = await user.isPasswordMatched(oldPassword);
 
     if (!isOldPasswordCorrect) {
-      return res.status(400).json({ message: "Old password is incorrect",status:false });
+      return res.status(400).json({ message: "Old password is incorrect", status: false });
     }
 
     // Check if the new password and confirmation match
     if (newPassword !== confirmPassword) {
-      return res.status(400).json({ message: "New password and confirmation do not match",status:false });
+      return res.status(400).json({ message: "New password and confirmation do not match", status: false });
     }
 
     // Update the user's password
@@ -373,25 +342,25 @@ console.log(resetToken,"AAA")
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     // Save the updated user
-await user.createPasswordResetToken();
+    await user.createPasswordResetToken();
 
     // Save the updated user
     await user.save();
-    res.json({ message: "Password reset successful",status:true });
+    res.json({ message: "Password reset successful", status: true });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
-
-const ResetPassword = asyncHandler(async(req,res)=>{
+// ResetPassword
+const ResetPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
   try {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found',     success: false });
+      return res.status(404).json({ message: 'User not found', success: false });
     }
 
     // Create and save password reset token
@@ -405,7 +374,7 @@ const ResetPassword = asyncHandler(async(req,res)=>{
       auth: {
         user: 'bonnie.olson0@ethereal.email',
         pass: 'Nu9vPVh1wmyvuMzzpM'
-    }
+      }
     });
 
     // Compose the email message
@@ -419,15 +388,15 @@ const ResetPassword = asyncHandler(async(req,res)=>{
     // Send the email
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ message: 'Password reset email sent successfully' ,status:true});
+    res.status(200).json({ message: 'Password reset email sent successfully', status: true });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error',status:false });
+    res.status(500).json({ message: 'Internal server error', status: false });
   }
 })
 
-
-const New_password = asyncHandler(async(req,res)=>{
+// New Password
+const New_password = asyncHandler(async (req, res) => {
   const { token } = req.params;
   const { newPassword, confirmPassword } = req.body;
 
@@ -455,22 +424,15 @@ const New_password = asyncHandler(async(req,res)=>{
 
     await user.save();
 
-    res.status(200).json({ message: 'Password reset successful',status:true });
+    res.status(200).json({ message: 'Password reset successful', status: true });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error',status:true });
+    res.status(500).json({ message: 'Internal server error', status: true });
   }
 })
 
-const payment = asyncHandler(async(req,res)=>{
-  try {
-    
-  
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error',status:true });
-  }
-})
+
+
 
 module.exports = {
   register,
@@ -479,5 +441,5 @@ module.exports = {
   editUser,
   UpdateUsers,
   deleteUser,
-  changePassword,ResetPassword,New_password,payment,AllUsers_role,Userme
+  changePassword, ResetPassword, New_password, AllUsers_role, Userme
 };

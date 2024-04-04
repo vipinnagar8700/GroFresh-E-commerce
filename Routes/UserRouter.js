@@ -1,6 +1,6 @@
 const express = require('express')
 const { authenticateToken } = require('../config/JwtToken');
-const { register, login, AllUsers, editUser, UpdateUsers, deleteUser, Accept_User, changePassword, register_admin, ResetPassword, New_password, payment, AllUsers_role, loginWithOTP, generateAndSendOTP, login_fb, login_google, SendEmail, Userme } = require('../controllers/userController');
+const { register, login, AllUsers, editUser, UpdateUsers, deleteUser, Accept_User, changePassword, register_admin, ResetPassword, New_password, AllUsers_role, loginWithOTP, generateAndSendOTP, login_fb, login_google, SendEmail, Userme } = require('../controllers/userController');
 const { editDoctor, UpdateDoctor, deleteDoctor, AllDoctors, UpdateDoctorSocail_Media, UpdateDoctorBankDetails, deleteDoctorAwards, deleteDoctorEducation, deleteDoctorExperience, deleteClinicImage, FilterDoctors, search_specialities, AllDoctorPermitted, AllDoctorApproved, AllDoctorBlocked, AllDoctorPending, deleteDoctorBlock } = require('../controllers/doctorController');
 // Multer configuration
 const path = require('path');
@@ -11,6 +11,7 @@ const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct }
 const { createattribute, singleattribute, deleteattribute, updateattribute, allProductattribute } = require('../controllers/ProductCategoryController copy');
 const { createBanner, allProductBanner, singleBanner, updateBanner, deleteBanner } = require('../controllers/BannerController');
 const { configApi } = require('../controllers/adminController');
+
 const storage = multer.diskStorage({
     destination: './public/images', // Specify the destination folder
     filename: function (req, file, cb) {
@@ -19,7 +20,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 15 * 1024 * 1024 }, // Set file size limit (optional)
+    limits: { fileSize: 5 * 1024 * 1024 }, // Set file size limit (optional)
 });
 
 
