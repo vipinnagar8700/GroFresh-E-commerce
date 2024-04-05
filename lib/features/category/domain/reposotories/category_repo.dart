@@ -19,6 +19,7 @@ class CategoryRepo {
   Future<ApiResponseModel> getSubCategoryList(String parentID) async {
     try {
       final response = await dioClient.get('${AppConstants.subCategoryUri}$parentID');
+      print(response);
       return ApiResponseModel.withSuccess(response);
     } catch (e) {
       return ApiResponseModel.withError(ApiErrorHandler.getMessage(e));
