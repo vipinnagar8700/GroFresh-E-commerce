@@ -79,7 +79,7 @@ const AllFeaturedProduct = async (req, res) => {
                                      .populate('Sub_Category_Name')
                                      .populate('attributes');
     const length = ProductItem.length;
-    res.json({ data: ProductItem, length: length, status: true });
+    res.json({ products: ProductItem, total_size: length, status: true,limit:10,offset:null });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -99,9 +99,6 @@ const AllCategoryClilds = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-
-// get Daily Need Product categories
 // Get Featured all products
 const AllDailyNeedProduct = async (req, res) => {
   try {
@@ -110,7 +107,7 @@ const AllDailyNeedProduct = async (req, res) => {
                                      .populate('Sub_Category_Name')
                                      .populate('attributes');
     const length = ProductItem.length;
-    res.json({ data: ProductItem, length: length, status: true });
+    res.json({ products: ProductItem, total_size: length, status: true,limit:10,offset:null });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
