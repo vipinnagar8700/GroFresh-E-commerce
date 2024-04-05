@@ -40,7 +40,7 @@ const AllProduct = async (req, res) => {
   try {
     const ProductItem = await Product.find().populate('category_ids').populate('Sub_Category_Name').populate('attributes');
     const length = ProductItem.length;
-    res.json({data:ProductItem,length:length,status:true});
+    res.json({products: ProductItem, total_size: length, status: true,limit:10,offset:null});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
