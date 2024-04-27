@@ -38,7 +38,27 @@ const createProduct = async (req, res) => {
 // Get all product categories
 const AllProduct = async (req, res) => {
   try {
-    const ProductItem = await Product.find().populate('category_ids').populate('Sub_Category_Name').populate('attributes');
+    const ProductItem = await Product.find()
+    .populate('category_ids')
+    .populate('Sub_Category_Name')
+    .populate('attributes')
+    .populate({
+      path: 'active_reviews',
+      model: 'ProductReview' // Assuming 'ProductReview' is the name of the review model
+      , populate: {
+        path: 'customer_id', // Assuming 'customer_id' is the reference field for the customer
+        model: 'Customer' // Assuming 'Customer' is the name of the customer model
+      }
+    })
+    .populate({
+      path: 'rating',
+      model: 'ProductReview' // Assuming 'ProductReview' is the name of the review model
+      , populate: {
+        path: 'customer_id', // Assuming 'customer_id' is the reference field for the customer
+        model: 'Customer' // Assuming 'Customer' is the name of the customer model
+      }
+    });
+  
     const length = ProductItem.length;
     res.json({products: ProductItem, total_size: length, status: true,limit:10,offset:null});
   } catch (err) {

@@ -4193,7 +4193,7 @@ aside .navbar-nav > .nav-item.mt-0 {
 .auth-wrapper-left {
   width: 0;
   flex-grow: 1;
-  background: url(./img/auth-bg.png) no-repeat center center/cover;
+  background: url(https://grofresh-admin.6amtech.com/public/assets/admin/css/img/auth-bg.png) no-repeat center center/cover;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

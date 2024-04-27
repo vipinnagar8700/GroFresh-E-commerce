@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema(
     passwordResetExpires: Date,
     role: {
       type: String,
-      enum: ["Customer", "DeliveryMan","admin","subadmin","Branch"],
+      enum: ["Customer", "DeliveryMan","admin","subadmin","Branch","Agent"],
       required: true,
     },
     image: {
@@ -248,8 +248,32 @@ const DeliveryManSchema = new mongoose.Schema(
   }
 );
 
+const AgentSchema = new mongoose.Schema(
+  {
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    name: String,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const Customer = mongoose.model("Customer", CustomerSchema);
 const DeliveryMan = mongoose.model("DeliveryMan", DeliveryManSchema);
 const Branch = mongoose.model("Branch", BranchSchema);
-module.exports = { User, Customer, DeliveryMan ,Branch};
+const Agent = mongoose.model("Agent", AgentSchema);
+module.exports = { User, Customer, DeliveryMan ,Branch,Agent};

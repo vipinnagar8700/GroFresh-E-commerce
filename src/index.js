@@ -26,12 +26,8 @@ app.set('Views', path.join(__dirname, 'Views'));
 
 app.get("/", (req, res) => {
   res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
+  // res.render('index')
 });
-
-
-
-
-
 
 app.use("/api/v1", userRoutes);
 

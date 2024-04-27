@@ -2,7 +2,7 @@ const { generateToken } = require("../config/JwtToken");
 const {
   User,
   Customer,
-  DeliveryMan,Branch
+  DeliveryMan,Branch,Agent
 } = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const asyncHandler = require("express-async-handler");
@@ -13,7 +13,7 @@ require("dotenv/config");
 
 // Register
 const register = asyncHandler(async (req, res) => {
-  const { f_name, l_name, email, phone, role, password ,Branch} = req.body;
+  const { f_name, l_name, email, phone, role, password, Branch } = req.body;
 
   // Check if email is provided
   if (!email) {
@@ -47,14 +47,14 @@ const register = asyncHandler(async (req, res) => {
   if (!existingUser) {
     // User does not exist, so create a new user
     const newUser = await User.create({
-      f_name, l_name, email, phone, role, password,Branch
+      f_name,
+      l_name,
+      email,
+      phone,
+      role,
+      password,
+      Branch
     });
-
-    // Generate the password reset token
-    await newUser.createPasswordResetToken();
-
-    // Save the user with the generated token
-    await newUser.save();
 
     // Add role-specific data based on the role
     let roleData;
@@ -64,18 +64,18 @@ const register = asyncHandler(async (req, res) => {
         user_id: newUser._id,
         f_name: newUser.f_name,
         l_name: newUser.l_name,
-        password: newUser.password, // Assuming this is the password from newUser
+        password: newUser.password,
         phone: newUser.phone,
         email: newUser.email,
         role: newUser.role,
-        Branch:newUser.Branch,
+        Branch: newUser.Branch,
       });
     } else if (role === "Customer") {
       roleData = await Customer.create({
         user_id: newUser._id,
         f_name: newUser.f_name,
         l_name: newUser.l_name,
-        password: newUser.password, // Assuming this is the password from newUser
+        password: newUser.password,
         phone: newUser.phone,
         email: newUser.email,
         role: newUser.role,
@@ -85,7 +85,16 @@ const register = asyncHandler(async (req, res) => {
         user_id: newUser._id,
         f_name: newUser.f_name,
         l_name: newUser.l_name,
-        password: newUser.password, // Assuming this is the password from newUser
+        password: newUser.password,
+        phone: newUser.phone,
+        email: newUser.email,
+        role: newUser.role,
+      });
+    } else if (role === "Agent") {
+      roleData = await Agent.create({
+        user_id: newUser._id,
+        name: newUser.f_name + " " + newUser.l_name,
+        password: newUser.password,
         phone: newUser.phone,
         email: newUser.email,
         role: newUser.role,
@@ -93,9 +102,8 @@ const register = asyncHandler(async (req, res) => {
     }
 
     res.status(201).json({
-      message: "Successfully Registered!",
+      message: "Agent  created successfully",
       success: true,
-      data: newUser
     });
   } else {
     // User with the same email or phone already exists
@@ -111,61 +119,58 @@ const register = asyncHandler(async (req, res) => {
 });
 
 
+
 // Login
 const login = asyncHandler(async (req, res) => {
-  const { email, phone, password, role } = req.body;
+  const { email, phone, password } = req.body;
 
   let findUser;
-  // Check if a user with the given email or mobile exists and matches the role
-  if (role) {
-    findUser = await User.findOne({
-      $and: [{ $or: [{ email }, { phone }] }],
-    });
-  } else {
+  // Check if either email or phone is provided
+  if (email || phone) {
     findUser = await User.findOne({
       $or: [{ email }, { phone }],
     });
+  } else {
+    return res.status(400).json({
+      message: "Email or phone is required!",
+      success: false,
+    });
   }
 
+  // Check if a user is found and password matches
   if (findUser && (await findUser.isPasswordMatched(password))) {
+    // Generate token and refresh token
     const token = generateToken(findUser._id);
     const refreshToken = generateRefreshToken(findUser._id);
+
+    // Update user's refresh token
     const updateUser = await User.findByIdAndUpdate(
       findUser._id,
-      {
-        refreshToken: refreshToken,
-      },
+      { refreshToken: refreshToken },
       { new: true }
     );
 
+    // Set refresh token in cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    // const response = {
-    //     token: token,
-    // };
-    // if (findUser.role === "Customer") {
-    //     response.CustomerData = await Customer.findOne({ user_id: findUser._id });
-    // } else if (findUser.role === "DeliveryMan") {
-    //     response.DeliveryManData = await DeliveryMan.findOne({ user_id: findUser._id });
-    // }
-    // Send notification
-
+    // Send success response
     res.status(200).json({
       message: "Successfully Login!",
       token: token,
       success: true,
     });
   } else {
+    // Send failure response if user not found or password does not match
     res.status(401).json({
       message: "Invalid Credentials!",
       success: false,
     });
   }
-
 });
+
 
 // Me api data by token get
 const Userme = async (req, res) => {
@@ -214,7 +219,28 @@ const AllUsers_role = async (req, res) => {
   }
 };
 
-// All Customer
+// All DeliveryMan
+const AllDeliveryMan = async (req, res) => {
+  try {
+    const patients = await DeliveryMan.find().select("-password").populate('user_id').sort({ createdAt: -1 }); // Exclude the 'password' field;
+    const length = patients.length;
+    res.status(200).json([
+      {
+        message: "All Users data retrieved successfully!",
+        data: patients,
+        status: true,
+        length,
+      },
+    ]);
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message,
+      status: false,
+    });
+  }
+};
+
 const AllUsers = async (req, res) => {
   try {
     const patients = await Customer.find().select("-password").populate('user_id').sort({ createdAt: -1 }); // Exclude the 'password' field;
@@ -480,5 +506,5 @@ module.exports = {
   editUser,
   UpdateUsers,
   deleteUser,
-  changePassword, ResetPassword, New_password, AllUsers_role, Userme
+  changePassword, ResetPassword, New_password, AllUsers_role, Userme,AllDeliveryMan
 };
