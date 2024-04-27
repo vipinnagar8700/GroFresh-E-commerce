@@ -180,17 +180,29 @@ const Userme = async (req, res) => {
 
     // Query the User table to find the user by ID
     const user = await User.findById(userId);
-
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // If user is found, return the user data
+    // Check if the user's role is "Agent"
+    if (user.role === 'Agent') {
+      // If user is an agent, query the Agent model to get the agent's details
+      const agent = await Agent.findOne({ user_id: userId }); // Assuming there's a field named "user" in the Agent model that stores the user's ID
+      if (!agent) {
+        return res.status(404).json({ message: 'Agent not found' });
+      }
+
+      // Return the agent's data
+      return res.json({ agent });
+    }
+
+    // If user is not an agent, return the user data
     res.json({ user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
+
 
 // All Users 
 const AllUsers_role = async (req, res) => {
