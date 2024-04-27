@@ -1,8 +1,7 @@
 // Import the AgentUser model without destructuring
-const AgentUser = require("../models/AgentUserModel").AgentUser;
+const AgentUser = require("../models/AgentUserModel");
 
-// Import the Agent model
-const Agent = require("../models/userModel").Agent;
+const {Agent} = require("../models/userModel");
 
 const AllAgents = async (req, res) => {
     try {
@@ -15,7 +14,7 @@ const AllAgents = async (req, res) => {
 
 const createUserByAgent = async (req, res) => {
     const { name, email, phone, agentId } = req.body;
-  
+ 
     try {
       // Check if the agent exists
       const agent = await Agent.findById(agentId);
@@ -38,11 +37,11 @@ const createUserByAgent = async (req, res) => {
 };
   
 const getAllUsersByAgent = async (req, res) => {
-    const { agentId } = req.params;
-  
+    const {id} =req.params;
+    console.log(id,"agentId")
     try {
       // Find all users associated with the agent
-      const users = await AgentUser.find({ agent_id: agentId });
+      const users = await AgentUser.find({agent_id:id} );
   
       res.json(users);
     } catch (err) {

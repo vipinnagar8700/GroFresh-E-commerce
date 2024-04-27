@@ -134,8 +134,8 @@ router.get('/getDeliveryTimeSlotById/:id',getDeliveryTimeSlotById);
 router.put('/updateDeliveryTimeSlotById/:id', updateDeliveryTimeSlotById);
 router.delete('/deleteDeliveryTimeSlotById/:id', deleteDeliveryTimeSlotById);
 router.get('/AllAgents',AllAgents)
-router.get('/getAllUsersByAgent/:id',getAllUsersByAgent)
-router.post('/createUserByAgent',createUserByAgent)
+router.get('/getAllUsersByAgent/:id',authenticateToken,getAllUsersByAgent)
+router.post('/createUserByAgent',authenticateToken,createUserByAgent)
 // // Doctor
 // router.get('/AllDoctors', AllDoctors)
 // router.get('/editDoctor/:id', editDoctor)

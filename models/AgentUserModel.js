@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 // Declare the Schema of the Mongo model
 const AgentUserSchema = new mongoose.Schema({
-    name: {
+    name: { 
         type: String,
         required: true,
         unique: true,
