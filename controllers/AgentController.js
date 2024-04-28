@@ -41,7 +41,7 @@ const getAllUsersByAgent = async (req, res) => {
     console.log(id,"agentId")
     try {
       // Find all users associated with the agent
-      const users = await AgentUser.find({agent_id:id} );
+      const users = await AgentUser.find({agent_id:id} ).sort({ _id: -1 });
   
       res.json(users);
     } catch (err) {
