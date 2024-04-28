@@ -13,24 +13,24 @@ const AllAgents = async (req, res) => {
 };
 
 const createUserByAgent = async (req, res) => {
-    const { name, email, phone, agentId } = req.body;
+    const { name, email, phone, agentId,IEMI1,IEMI2 } = req.body;
  
     try {
       // Check if the agent exists
       const agent = await Agent.findById(agentId);
       if (!agent) {
-        return res.status(404).json({ message: "Agent not found" });
+        return res.status(404).json({ message: "Agent was  not found" });
       }
   
       // Create the user
       const newUser = await AgentUser.create({
         name,
         email,
-        phone,
+        phone,IEMI1,IEMI2 ,
         agent_id: agentId,
       });
   
-      res.status(201).json(newUser);
+      res.status(201).json({newUser,message:"User Added Successfully!"});
     } catch (err) {
       res.status(500).json({ message: err.message });
     }

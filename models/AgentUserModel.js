@@ -17,6 +17,14 @@ const AgentUserSchema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    IEMI1: {
+        type: String,
+        default: null,
+    },
+    IEMI2: {
+        type: String,
+        default: null,
+    },
     agent_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Agent',
