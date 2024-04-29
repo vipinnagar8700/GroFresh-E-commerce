@@ -160,6 +160,7 @@ const login = asyncHandler(async (req, res) => {
     res.status(200).json({
       message: "Successfully Login!",
       token: token,
+      data:updateUser,
       success: true,
     });
   } else {
