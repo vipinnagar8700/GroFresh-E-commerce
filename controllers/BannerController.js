@@ -43,11 +43,14 @@ const createBanner = asyncHandler(async (req, res) => {
     const file = req.file;
 
     if (file) {
-      // Store image locally in the public/images directory
-      imageUrl = 'images/' + file.filename;
+      // Upload image to Cloudinary
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'banners', // Optional: specify a folder in Cloudinary
+      });
+      imageUrl = result.secure_url;
     }
 
-    // Create a new banner with image URL
+    // Create a new banner with the Cloudinary image URL
     const newBanner = await Banner.create({ tittle, Item_type, Product_name, Category_name, image: imageUrl });
     console.log('Banner created successfully:', newBanner);
 
@@ -88,6 +91,7 @@ const singleBanner = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 // Delete a single product category by ID
 const deleteBanner = async (req, res) => {
     try {
@@ -105,16 +109,19 @@ const deleteBanner = async (req, res) => {
 const updateBanner = async (req, res) => {
   try {
     const { id } = req.params;
-
     let updatedData = req.body;
     let imageUrl;
     const file = req.file;
 
     if (file) {
-      // Store image locally in the public/images directory
-      imageUrl = 'images/' + file.filename;
-      updatedData.image = imageUrl; 
+      // Upload image to Cloudinary
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'banners', // Optional: specify a folder in Cloudinary
+      });
+      imageUrl = result.secure_url;
+      updatedData.image = imageUrl;
     }
+
     const updatedBanner = await Banner.findByIdAndUpdate(id, updatedData, { new: true });
     if (!updatedBanner) {
       return res.status(404).json({ message: 'Banner not found' });
@@ -124,6 +131,7 @@ const updateBanner = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 
 module.exports = {
