@@ -142,7 +142,20 @@ const AllCategoryClilds = asyncHandler(async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
+const AllSubCategoryClilds = asyncHandler(async (req, res) => {
+  console.log(req.params.id, "id");
+  try {
+    // Assuming category_ids is an array field in the Product model
+    const ProductItems = await Product.find({ Sub_Category_Name: req.params.id, is_featured: 1 })
+      .populate('category_ids')
+      .populate('Sub_Category_Name')
+      .populate('attributes');
+    const length = ProductItems.length;
+    res.json({ data: ProductItems, length: length, status: true });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 // Get Daily Need products
 const AllDailyNeedProduct = asyncHandler(async (req, res) => {
   try {
@@ -219,5 +232,5 @@ module.exports = {
   AllFeaturedProduct,
   AllDailyNeedProduct,
   ProductFilter,
-  AllCategoryClilds
+  AllCategoryClilds,AllSubCategoryClilds
 };
