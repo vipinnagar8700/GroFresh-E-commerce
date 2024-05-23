@@ -1,0 +1,1903 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="csrf-token" content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Order List</title>
+        <link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+        <link rel="shortcut icon" href>
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+        <style>
+        table{
+            width: 100%;
+        }
+    </style>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
+    </head>
+    <body class="footer-offset" id="demo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-none" id="loading">
+                        <div class="loader-image">
+                            <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../Layout/Header') %>
+        <div id="headerFluid" class="d-none"></div>
+        <div id="headerDouble" class="d-none"></div>
+        <%- include('../Layout/Sidebar') %>
+        <main id="content" role="main" class="main pointer-event">
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <h1 class="mb-0 page-header-title">
+                        <span class="page-header-icon">
+                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/all_orders.png" class="w--20" alt>
+                        </span>
+                        <span class>
+                            All Orders
+                            <span class="badge badge-pill badge-soft-secondary ml-2">75</span>
+                        </span>
+                    </h1>
+                </div>
+                <div class="card">
+                    <div class="card-header shadow flex-wrap p-20px border-0">
+                        <h5 class="form-bold w-100 mb-3">Select Date Range</h5>
+                        <form class="w-100">
+                            <div class="row g-3 g-sm-4 g-md-3 g-lg-4">
+                                <div class="col-sm-6 col-md-4 col-lg-2">
+                                    <select class="custom-select custom-select-sm text-capitalize min-h-45px" name="branch_id">
+                                        <option disabled>--- Select Branch ---</option>
+                                        <option value="all">All Branch</option>
+                                        <option value="1">Main</option>
+                                        <option value="10">Second Branch</option>
+                                        <option value="11">Third Branch</option>
+                                        <option value="12">Dhaka</option>
+                                        <option value="13">Farmgate</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="input-date-group">
+                                        <label class="input-label" for="start_date">Start Date</label>
+                                        <label class="input-date">
+                                            <input type="text" id="start_date" name="start_date" value class="js-flatpickr form-control flatpickr-custom min-h-45px" placeholder="yy-mm-dd"
+                                                data-hs-flatpickr-options="{ &quot;dateFormat&quot;: &quot;Y-m-d&quot;}">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="input-date-group">
+                                        <label class="input-label" for="end_date">End Date</label>
+                                        <label class="input-date">
+                                            <input type="text" id="end_date" name="end_date" value class="js-flatpickr form-control flatpickr-custom min-h-45px" placeholder="yy-mm-dd"
+                                                data-hs-flatpickr-options="{ &quot;dateFormat&quot;: &quot;Y-m-d&quot;}">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-12 col-lg-4 __btn-row">
+                                    <a href="https://grofresh-admin.6amtech.com/admin/orders/list/all" class="btn w-100 btn--reset min-h-45px">Clear</a>
+                                    <button type="submit" id="show_filter_data" class="btn w-100 btn--primary min-h-45px">Show data</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="p-20px pb-0 mt-4">
+                        <div class="row g-3 g-sm-4 g-md-3 g-lg-4">
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/pending">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/pending.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Pending</span>
+                                        </h6>
+                                        <span class="card-title text-0661CB">
+                                            22
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/confirmed">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/confirmed.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Confirmed</span>
+                                        </h6>
+                                        <span class="card-title text-107980">
+                                            14
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/processing">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/processing.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Packaging</span>
+                                        </h6>
+                                        <span class="card-title text-danger">
+                                            3
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/out_for_delivery">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/out-for-delivery.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Out for delivery</span>
+                                        </h6>
+                                        <span class="card-title text-00B2BE">
+                                            2
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/delivered">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/1.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Delivered</span>
+                                        </h6>
+                                        <span class="card-title text-success">
+                                            23
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/all">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/2.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Canceled</span>
+                                        </h6>
+                                        <span class="card-title text-danger">
+                                            8
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/returned">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/3.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Returned</span>
+                                        </h6>
+                                        <span class="card-title text-warning">
+                                            1
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <a class="order--card h-100" href="https://grofresh-admin.6amtech.com/admin/orders/list/failed">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
+                                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/delivery/4.png" alt="Dashboard" class="oder--card-icon">
+                                            <span>Failed to deliver</span>
+                                        </h6>
+                                        <span class="card-title text-danger">
+                                            2
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-20px">
+                        <div class="order-top">
+                            <div class="card--header">
+                                <form action="https://grofresh-admin.6amtech.com/admin/orders/list/all" method="GET">
+                                    <div class="input-group">
+                                        <input id="datatableSearch_" type="search" name="search" class="form-control" placeholder="Ex : Search by ID  order or payment status" aria-label="Search" value
+                                            required autocomplete="off">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="input-group-text">
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="hs-unfold mr-2">
+                                    <a class="js-hs-unfold-invoker btn btn-sm btn-outline-primary-2 dropdown-toggle min-height-40" href="javascript:;" data-hs-unfold-options="{
+                                        &quot;target&quot;: &quot;#usersExportDropdown&quot;,
+                                        &quot;type&quot;: &quot;css-animation&quot;
+                                    }">
+                                        <i class="tio-download-to mr-1"></i> Export
+                                    </a>
+                                    <div id="usersExportDropdown" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right">
+                                        <span class="dropdown-header">Download
+                                            Options</span>
+                                        <a id="export-excel" class="dropdown-item" href="https://grofresh-admin.6amtech.com/admin/orders/export/all">
+                                            <img class="avatar avatar-xss avatar-4by3 mr-2" src="https://grofresh-admin.6amtech.com/public/assets/admin/svg/components/excel.svg"
+                                                alt="Image Description">
+                                            Excel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive datatable-custom">
+                            <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            SL
+                                        </th>
+                                        <th class="table-column-pl-0">Order ID</th>
+                                        <th>Delivery Date</th>
+                                        <th>Time Slot</th>
+                                        <th>Customer</th>
+                                        <th>Branch</th>
+                                        <th>Total amount</th>
+                                        <th>
+                                            <div class="text-center">
+                                                Order Status
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="text-center">
+                                                Order Type
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="text-center">
+                                                Action
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="set-rows">
+                                    <tr class="status-confirmed class-all">
+                                        <td class>
+                                            1
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100089">100089</a>
+                                        </td>
+                                        <td>09 Mar 2024</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/9">Eleanor Pena</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+74455568337">+74455568337</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Dhaka</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    1,914.49$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100089"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100089">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            2
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100088">100088</a>
+                                        </td>
+                                        <td>09 Mar 2024</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/9">Eleanor Pena</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+74455568337">+74455568337</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Dhaka</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    5,135.66$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100088"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100088">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            3
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100087">100087</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/20">Jane Cooper</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+79039410227">+79039410227</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    1,520.00$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Self pickup
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100087"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100087">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            4
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100086">100086</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/20">Jane Cooper</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+79039410227">+79039410227</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    131.91$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100086"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100086">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            5
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100085">100085</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/20">Jane Cooper</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+79039410227">+79039410227</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    3,824.41$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100085"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100085">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            6
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100084">100084</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <label class="text-success">Guest Customer
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    1,281.60$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Self pickup
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100084"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100084">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            7
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100083">100083</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    1,466.50$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100083"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100083">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-canceled class-all">
+                                        <td class>
+                                            8
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100082">100082</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    307.60$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-danger">
+                                                Canceled
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100082"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100082">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-confirmed class-all">
+                                        <td class>
+                                            9
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100081">100081</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    240.08$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100081"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100081">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-confirmed class-all">
+                                        <td class>
+                                            10
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100080">100080</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    1,530.08$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100080"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100080">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            11
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100079">100079</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    770.08$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100079"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100079">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-confirmed class-all">
+                                        <td class>
+                                            12
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100078">100078</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    2,455.08$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100078"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100078">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-canceled class-all">
+                                        <td class>
+                                            13
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100077">100077</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    170.00$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-danger">
+                                                Canceled
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100077"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100077">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-canceled class-all">
+                                        <td class>
+                                            14
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100076">100076</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    178.50$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-danger">
+                                                Canceled
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100076"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100076">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            15
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100075">100075</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    210.08$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100075"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100075">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            16
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100074">100074</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    42,399.58$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100074"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100074">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            17
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100073">100073</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    3,736.98$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100073"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100073">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            18
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100069">100069</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>05:30:00 PM - 06:30:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    15,210.08$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100069"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100069">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-delivered class-all">
+                                        <td class>
+                                            19
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100068">100068</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>12:30:00 PM - 02:00:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    770.08$
+                                                </div>
+                                                <span class="text-success">
+                                                    Paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivered
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100068"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100068">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-processing class-all">
+                                        <td class>
+                                            20
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100067">100067</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>12:30:00 PM - 02:00:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    451.61$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-warning">
+                                                Packaging
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100067"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100067">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-confirmed class-all">
+                                        <td class>
+                                            21
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100065">100065</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>10:30:00 AM - 11:30:00 AM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    799.81$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100065"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100065">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            22
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100064">100064</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>12:30:00 PM - 02:00:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    305.39$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100064"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100064">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            23
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100063">100063</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>12:30:00 PM - 02:00:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    331.89$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Partially paid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100063"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100063">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            24
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100062">100062</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>12:30:00 PM - 02:00:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    305.39$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Delivery
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100062"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100062">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="status-pending class-all">
+                                        <td class>
+                                            25
+                                        </td>
+                                        <td class="table-column-pl-0">
+                                            <a href="https://grofresh-admin.6amtech.com/admin/orders/details/100061">100061</a>
+                                        </td>
+                                        <td>21 Oct 2023</td>
+                                        <td>
+                                            <span>12:30:00 PM - 02:00:00 PM</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/19">John Doe</a>
+                                            </div>
+                                            <div class="text-sm">
+                                                <a href="Tel:+880170000000">+880170000000</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-soft-primary">Main</label>
+                                        </td>
+                                        <td>
+                                            <div class="mw-90">
+                                                <div>
+                                                    1,640.45$
+                                                </div>
+                                                <span class="text-danger">
+                                                    Unpaid
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-info">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td class="text-capitalize text-center">
+                                            <span class="badge badge-soft-success">
+                                                Self pickup
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn--container justify-content-center">
+                                                <a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100061"><i
+                                                        class="tio-invisible"></i></a>
+                                                <a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100061">
+                                                    <i class="tio-print"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer border-0">
+                        <div class="d-flex justify-content-center justify-content-sm-end">
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                                        <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                                    </li>
+                                    <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                    <li class="page-item"><a class="page-link" href="https://grofresh-admin.6amtech.com/admin/orders/list/all?page=2">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="https://grofresh-admin.6amtech.com/admin/orders/list/all?page=3">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="https://grofresh-admin.6amtech.com/admin/orders/list/all?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col">
+                        <p class="font-size-sm mb-0">
+                            <span class="d-none d-sm-inline-block">Copyright © 2023, groFresh</span>
+                        </p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="d-flex justify-content-end">
+                            <ul class="list-inline list-separator">
+                                <li class="list-inline-item">
+                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/business-settings/store/ecom-setup">Store Settings</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/settings">Profile</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="hs-unfold">
+                                        <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="https://grofresh-admin.6amtech.com/admin">
+                                            <i class="tio-home-outlined"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <label class="badge badge-success text-capitalize">
+                                        Software Version 7.4
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="popup-modal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h2 class="order-check-colour">
+                                            <i class="tio-shopping-cart-outlined"></i> You have new order Check Please.
+                                        </h2>
+                                        <hr>
+                                        <button id="check-order" class="btn btn-primary">Ok let me check</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
+            src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+        <script type="text/javascript"></script>
+        <script>
+    $(document).on('ready', function () {
+        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                return false;
+            }
+        });
+
+        $('.js-hs-unfold-invoker').each(function () {
+            var unfold = new HSUnfold($(this)).init();
+        });
+
+        $('.js-form-search').each(function () {
+            new HSFormSearch($(this)).init()
+        });
+
+        $('.js-select2-custom').each(function () {
+            var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+        $('.js-daterangepicker').daterangepicker();
+
+        $('.js-daterangepicker-times').daterangepicker({
+            timePicker: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'M/DD hh:mm A'
+            }
+        });
+    });
+</script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/flatpicker.js"></script>
+        <script>
+        $(window).on('load', function () {
+            if ($(".navbar-vertical-content li.active").length) {
+                $('.navbar-vertical-content').animate({
+                    scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
+                }, 10);
+            }
+        });
+
+        var $rows = $('#navbar-vertical-content .navbar-nav > li');
+        $('#search-sidebar-menu').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+        <audio id="myAudio">
+            <source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+    var audio = document.getElementById("myAudio");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+</script>
+        <script>
+    $('#check-order').on('click', function(){
+        location.href = 'https://grofresh-admin.6amtech.com/admin/order/list/all';
+    })
+
+            setInterval(function () {
+            $.get({
+                url: 'https://grofresh-admin.6amtech.com/admin/get-restaurant-data',
+                dataType: 'json',
+                success: function (response) {
+                    let data = response.data;
+                    if (data.new_order > 0) {
+                        playAudio();
+                        $('#popup-modal').appendTo("body").modal('show');
+                    }
+                },
+            });
+        }, 10000);
+    
+    function route_alert(route, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = route;
+            }
+        })
+    }
+
+    $('.form-alert').on('click', function (){
+        let id = $(this).data('id');
+        let message = $(this).data('message');
+        form_alert(id, message)
+    });
+
+    function form_alert(id, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                $('#'+id).submit()
+            }
+        })
+    }
+
+    function call_demo(){
+        toastr.info('Disabled for demo version!')
+    }
+
+    $('.call-demo').click(function() {
+        if ('demo' === 'demo') {
+            call_demo();
+        }
+    });
+</script>
+        <script>
+
+    $('.status-change-alert').on('click', function (){
+        let url = $(this).data('route');
+        let message = $(this).data('message');
+        status_change_alert(url, message, event)
+    });
+
+    function status_change_alert(url, message, e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#107980',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = url;
+            }
+        })
+    }
+</script>
+        <script>
+    var initialImages = [];
+    $(window).on('load', function() {
+        $("form").find('img').each(function (index, value) {
+            initialImages.push(value.src);
+        })
+    })
+
+    $(document).ready(function() {
+        $('form').on('reset', function(e) {
+            $("form").find('img').each(function (index, value) {
+                $(value).attr('src', initialImages[index]);
+            })
+        });
+    });
+</script>
+        <script>
+    $(function(){
+        var owl = $('.single-item-slider');
+        owl.owlCarousel({
+            autoplay: false,
+            items:1,
+            onInitialized  : counter,
+            onTranslated : counter,
+            autoHeight: true,
+            dots: true,
+        });
+
+        function counter(event) {
+            var element   = event.target;         // DOM element, in this example .owl-carousel
+            var items     = event.item.count;     // Number of items
+            var item      = event.item.index + 1;     // Position of the current item
+
+            if(item > items) {
+                item = item - items
+            }
+            $('.slide-counter').html(+item+"/"+items)
+        }
+    });
+</script>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
+
+        // Disable mailto links
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+        // Disable tel links
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+    });
+
+    function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
+        if (element.nodeType === 3) { // Text node
+            // Use regular expressions to match email and phone number patterns
+            element.nodeValue = element.nodeValue
+                .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
+                    var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
+                    return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
+                })
+                .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
+                    if (match.length >= 8) {
+                        var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
+                        var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
+                        return firstChar + remainingAsterisks;
+                    } else {
+                        return match;  // Don't replace if the length is less than 10
+                    }
+                });
+        } else if (element.nodeType === 1) { // Element node
+            for (var i = 0; i < element.childNodes.length; i++) {
+                replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
+            }
+        }
+    }
+</script>
+
+        <script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+    </body>
+</html>

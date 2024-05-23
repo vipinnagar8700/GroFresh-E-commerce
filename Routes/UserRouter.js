@@ -11,7 +11,7 @@ const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct, 
 const { createattribute, singleattribute, deleteattribute, updateattribute, allProductattribute } = require('../controllers/ProductCategoryController copy');
 const { createBanner, allProductBanner, singleBanner, updateBanner, deleteBanner } = require('../controllers/BannerController');
 const { configApi } = require('../controllers/adminController');
-const { addProductToWishlist, listWishlistProducts, removeProductFromWishlist } = require('../controllers/WishlistController');
+const { addProductToWishlist, listWishlistProducts, removeProductFromWishlist, listWishlistProducts_all } = require('../controllers/WishlistController');
 const { addToCart, listCartProducts, deleteFromCart, decreaseProductQuantity } = require('../controllers/CartController');
 const { createOrderFromCart, allOrder, CustomerOrder } = require('../controllers/OrderController');
 const { addCoupon, getCoupons, getSingleCoupon, updateCoupon, deleteCoupon } = require('../controllers/CoupenController');
@@ -56,30 +56,30 @@ router.get('/AllDeliveryMan',AllDeliveryMan)
 // router.post('/login_google',login_google)
 
 //  Product Category
-router.post('/createProductCategory',upload.single('image'), createProductCategory)
-router.get('/singleProductCategory/:id', singleProductCategory)
-router.put('/updateProductCategory/:id', upload.single('image'),authenticateToken, updateProductCategory)
-router.delete('/deleteProductCategory/:id',authenticateToken, deleteProductCategory)
-router.get('/categories',allProductCategories)
+router.post('/createProductCategory',upload.single('image'), createProductCategory);
+router.get('/singleProductCategory/:id', singleProductCategory);
+router.put('/updateProductCategory/:id', upload.single('image'),authenticateToken, updateProductCategory);
+router.delete('/deleteProductCategory/:id',authenticateToken, deleteProductCategory);
+router.get('/categories',allProductCategories);
 
 // Product Sub Category
-router.post('/createProductSubCategory',upload.single('image'), createProductSubCategory)
-router.get('/singleProductSubCategory/:id', singleProductSubCategory)
-router.put('/updateProductSubCategory/:id', upload.single('image'),authenticateToken, updateProductSubCategory)
-router.delete('/deleteProductSubCategory/:id',authenticateToken, deleteProductSubCategory)
-router.get('/allProductSubCategories',allProductSubCategories) 
+router.post('/createProductSubCategory',upload.single('image'), createProductSubCategory);
+router.get('/singleProductSubCategory/:id', singleProductSubCategory);
+router.put('/updateProductSubCategory/:id', upload.single('image'),authenticateToken, updateProductSubCategory);
+router.delete('/deleteProductSubCategory/:id',authenticateToken, deleteProductSubCategory);
+router.get('/allProductSubCategories',allProductSubCategories) ;
 
-// Products
-router.post('/createProduct',upload.single('image'), createProduct)
-router.get('/products/details/:id', singleProduct)
-router.put('/updateProduct/:id', upload.single('image'),authenticateToken, updateProduct)
-router.delete('/deleteProduct/:id',authenticateToken, deleteProduct)
-router.get('/AllProduct',AllProduct) 
-router.get('/products/featured',AllFeaturedProduct)
-router.get('/products/daily-needs',AllDailyNeedProduct)
-router.get('/products/search',ProductFilter)
-router.get('/categories/childes/:id',AllCategoryClilds)
-router.get('/categories/products/:id',AllSubCategoryClilds)
+// Products;
+router.post('/createProduct',upload.single('image'), createProduct);
+router.get('/products/details/:id', singleProduct);
+router.put('/updateProduct/:id', upload.single('image'),authenticateToken, updateProduct);
+router.delete('/deleteProduct/:id',authenticateToken, deleteProduct);
+router.get('/AllProduct',AllProduct) ;
+router.get('/products/featured',AllFeaturedProduct);
+router.get('/products/daily-needs',AllDailyNeedProduct);
+router.get('/products/search',ProductFilter);
+router.get('/categories/childes/:id',AllCategoryClilds);
+router.get('/categories/products/:id',AllSubCategoryClilds);
 
 // Product Attributes
 router.post('/createattribute', createattribute)
@@ -96,9 +96,10 @@ router.delete('/deleteBanner/:id',authenticateToken, deleteBanner)
 router.get('/banners',allProductBanner)
 
 // Wishlist
-router.post('/addProductToWishlist',addProductToWishlist)
-router.get('/products/favorite',authenticateToken,listWishlistProducts)
-router.get('/products/favorite/delete/:id',authenticateToken,removeProductFromWishlist)
+router.post('/products/favorite',authenticateToken,addProductToWishlist);
+router.get('/products/favorite',authenticateToken,listWishlistProducts);
+router.get('/products/favorite/:id',authenticateToken,removeProductFromWishlist);
+router.get('/products/favorite-all',listWishlistProducts_all);
 
 // Cart
 router.post('/addToCart',authenticateToken,addToCart)

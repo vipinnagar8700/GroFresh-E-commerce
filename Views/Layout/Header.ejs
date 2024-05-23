@@ -1,0 +1,118 @@
+<div id="headerMain" class="d-none">
+    <header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
+        <div class="navbar-nav-wrap">
+            <div class="navbar-nav-wrap-content-left d-xl-none">
+                <button type="button" class="js-navbar-vertical-aside-toggle-invoker close mr-3">
+                    <i class="tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip" data-placement="right" title="Collapse"></i>
+                    <i class="tio-last-page navbar-vertical-aside-toggle-full-align"
+                        data-template="<div class=&quot;tooltip d-none d-sm-block&quot; role=&quot;tooltip&quot;><div class=&quot;arrow&quot;></div><div class=&quot;tooltip-inner&quot;></div></div>"
+                        data-toggle="tooltip" data-placement="right" title="Expand"></i>
+                </button>
+            </div>
+            <div class="navbar-nav-wrap-content-right">
+                <ul class="navbar-nav align-items-center flex-row">
+                    <li class="nav-item mr-0">
+                        <div class="hs-unfold">
+                            <div class="p-2">
+                                <div class="topbar-text dropdown disable-autohide text-capitalize">
+                                    <a class="topbar-link dropdown-toggle lang-country-flag" href="#" data-toggle="dropdown">
+                                        <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/google_translate_logo.png" alt> <span>en</span>
+                                    </a>
+                                    <ul class="dropdown-menu absolute">
+                                        <li>
+                                            <a class="dropdown-item pb-1 lang-country-flag" href="https://grofresh-admin.6amtech.com/admin/lang/en">
+                                                <span>English</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <div class="hs-unfold">
+                            <a class="js-hs-unfold-invoker btn btn-icon notify--icon" href="https://grofresh-admin.6amtech.com/admin/message/list">
+                                <i class="tio-messages-outlined"></i>
+                                <span class="amount">
+                                    0
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="hs-unfold">
+                            <a class="js-hs-unfold-invoker btn btn-icon notify--icon" href="https://grofresh-admin.6amtech.com/admin/orders/list/pending">
+                                <i class="tio-shopping-cart-outlined"></i>
+                                <span class="amount">
+                                    0
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <div class="hs-unfold">
+                            <a class="js-hs-unfold-invoker navbar-dropdown-account-wrapper" href="javascript:;" data-hs-unfold-options="{
+                             &quot;target&quot;: &quot;#accountNavbarDropdown&quot;,
+                             &quot;type&quot;: &quot;css-animation&quot;
+                           }">
+                                <div class="cmn--media right-dropdown-icon d-flex align-items-center">
+                                    <div class="media-body pl-0 pr-2">
+                                        <span class="card-title h5 text-right">
+                                            Vipin Nagar
+                                        </span>
+                                        <span class="card-text">Master Admin</span>
+                                    </div>
+                                    <div class="avatar avatar-sm avatar-circle">
+                                        <img class="avatar-img" src="https://grofresh-admin.6amtech.com/storage/app/public/admin/2023-10-21-65335c1bd07bd.png" alt="Logo">
+                                        <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div id="accountNavbarDropdown" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu navbar-dropdown-account w-16rem">
+                                <div class="dropdown-item-text">
+                                    <div class="media align-items-center">
+                                        <div class="avatar avatar-sm avatar-circle mr-2">
+                                            <img class="avatar-img" onerror="this.src='https://grofresh-admin.6amtech.com/public/assets/admin/img/160x160/img1.jpg'"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/admin/2023-10-21-65335c1bd07bd.png" alt="Admin">
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="card-title h5">Vipin Nagar</span>
+                                            <span class="card-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                    data-cfemail="2c4d484145426c4d48414542024f4341">[email&#160;protected]</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="https://grofresh-admin.6amtech.com/admin/settings">
+                                    <span class="text-truncate pr-2" title="Settings">Settings</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:" onclick="Swal.fire({
+                            title: 'Do you want to logout ',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonColor: '#01684b',
+                            cancelButtonColor: '#363636',
+                            confirmButtonText: 'Yes',
+                            cancelButtonText: 'No',
+                            }).then((result) => {
+                            if (result.value) {
+                            location.href='https://grofresh-admin.6amtech.com/admin/auth/logout';
+                            } else{
+                                Swal.fire({
+                                title: 'Canceled',
+                                confirmButtonText: 'Okay',
+                                })
+                            }
+
+                            })">
+                                    <span class="text-truncate pr-2" title="Sign out">Sign out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+</div>

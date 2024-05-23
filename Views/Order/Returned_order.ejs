@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="csrf-token" content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Order List</title>
+<link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+<link rel="shortcut icon" href>
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+<style>
+        table{
+            width: 100%;
+        }
+    </style>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
+</head>
+<body class="footer-offset" id="demo">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="d-none" id="loading">
+<div class="loader-image">
+<img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
+</div>
+</div>
+</div>
+</div>
+</div>
+<%- include('../Layout/Header') %>
+<div id="headerFluid" class="d-none"></div>
+<div id="headerDouble" class="d-none"></div>
+<%- include('../Layout/Sidebar') %>
+<main id="content" role="main" class="main pointer-event">
+<div class="content container-fluid">
+<div class="page-header">
+<h1 class="mb-0 page-header-title">
+<span class="page-header-icon">
+<img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/all_orders.png" class="w--20" alt>
+</span>
+<span class>
+Returned Orders
+<span class="badge badge-pill badge-soft-secondary ml-2">1</span>
+</span>
+</h1>
+</div>
+<div class="card">
+<div class="card-header shadow flex-wrap p-20px border-0">
+<h5 class="form-bold w-100 mb-3">Select Date Range</h5>
+<form class="w-100">
+<div class="row g-3 g-sm-4 g-md-3 g-lg-4">
+<div class="col-sm-6 col-md-4 col-lg-2">
+<select class="custom-select custom-select-sm text-capitalize min-h-45px" name="branch_id">
+<option disabled>--- Select Branch ---</option>
+<option value="all">All Branch</option>
+<option value="1">Main</option>
+<option value="10">Second Branch</option>
+<option value="11">Third Branch</option>
+<option value="12">Dhaka</option>
+<option value="13">Farmgate</option>
+</select>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3">
+<div class="input-date-group">
+<label class="input-label" for="start_date">Start Date</label>
+<label class="input-date">
+<input type="text" id="start_date" name="start_date" value class="js-flatpickr form-control flatpickr-custom min-h-45px" placeholder="yy-mm-dd" data-hs-flatpickr-options="{ &quot;dateFormat&quot;: &quot;Y-m-d&quot;}">
+</label>
+</div>
+</div>
+<div class="col-sm-6 col-md-4 col-lg-3">
+<div class="input-date-group">
+<label class="input-label" for="end_date">End Date</label>
+<label class="input-date">
+<input type="text" id="end_date" name="end_date" value class="js-flatpickr form-control flatpickr-custom min-h-45px" placeholder="yy-mm-dd" data-hs-flatpickr-options="{ &quot;dateFormat&quot;: &quot;Y-m-d&quot;}">
+</label>
+</div>
+</div>
+<div class="col-sm-6 col-md-12 col-lg-4 __btn-row">
+<a href="https://grofresh-admin.6amtech.com/admin/orders/list/all" class="btn w-100 btn--reset min-h-45px">Clear</a>
+<button type="submit" id="show_filter_data" class="btn w-100 btn--primary min-h-45px">Show data</button>
+</div>
+</div>
+</form>
+</div>
+<div class="card-body p-20px">
+<div class="order-top">
+<div class="card--header">
+<form action="https://grofresh-admin.6amtech.com/admin/orders/list/returned" method="GET">
+<div class="input-group">
+<input id="datatableSearch_" type="search" name="search" class="form-control" placeholder="Ex : Search by ID  order or payment status" aria-label="Search" value required autocomplete="off">
+<div class="input-group-append">
+<button type="submit" class="input-group-text">
+Search
+</button>
+</div>
+</div>
+</form>
+<div class="hs-unfold mr-2">
+<a class="js-hs-unfold-invoker btn btn-sm btn-outline-primary-2 dropdown-toggle min-height-40" href="javascript:;" data-hs-unfold-options="{
+                                        &quot;target&quot;: &quot;#usersExportDropdown&quot;,
+                                        &quot;type&quot;: &quot;css-animation&quot;
+                                    }">
+<i class="tio-download-to mr-1"></i> Export
+</a>
+<div id="usersExportDropdown" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right">
+<span class="dropdown-header">Download
+Options</span>
+<a id="export-excel" class="dropdown-item" href="https://grofresh-admin.6amtech.com/admin/orders/export/returned">
+<img class="avatar avatar-xss avatar-4by3 mr-2" src="https://grofresh-admin.6amtech.com/public/assets/admin/svg/components/excel.svg" alt="Image Description">
+Excel
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="table-responsive datatable-custom">
+<table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+<thead class="thead-light">
+<tr>
+<th>
+SL
+</th>
+<th class="table-column-pl-0">Order ID</th>
+<th>Delivery Date</th>
+<th>Time Slot</th>
+<th>Customer</th>
+<th>Branch</th>
+<th>Total amount</th>
+<th>
+<div class="text-center">
+Order Status
+</div>
+</th>
+<th>
+<div class="text-center">
+Order Type
+</div>
+</th>
+<th>
+<div class="text-center">
+Action
+</div>
+</th>
+</tr>
+</thead>
+<tbody id="set-rows">
+<tr class="status-returned class-all">
+<td class>
+1
+</td>
+<td class="table-column-pl-0">
+<a href="https://grofresh-admin.6amtech.com/admin/orders/details/100028">100028</a>
+</td>
+<td>12 Dec 2022</td>
+<td>
+<span>05:30:00 PM - 06:30:00 PM</span>
+</td>
+<td>
+<div>
+<a class="text-body text-capitalize font-medium" href="https://grofresh-admin.6amtech.com/admin/customer/view/13">Marvin McKinney</a>
+</div>
+<div class="text-sm">
+<a href="Tel:+33655565633">+33655565633</a>
+</div>
+</td>
+<td>
+<label class="badge badge-soft-primary">Main</label>
+</td>
+<td>
+<div class="mw-90">
+<div>
+115.00$
+</div>
+<span class="text-danger">
+Unpaid
+</span>
+</div>
+</td>
+<td class="text-capitalize text-center">
+<span class="badge badge-soft-danger">
+Returned
+</span>
+</td>
+<td class="text-capitalize text-center">
+<span class="badge badge-soft-success">
+Self pickup
+</span>
+</td>
+<td>
+<div class="btn--container justify-content-center">
+<a class="action-btn btn--primary btn-outline-primary" href="https://grofresh-admin.6amtech.com/admin/orders/details/100028"><i class="tio-invisible"></i></a>
+<a class="action-btn btn-outline-primary-2" target="_blank" href="https://grofresh-admin.6amtech.com/admin/orders/generate-invoice/100028">
+<i class="tio-print"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="card-footer border-0">
+<div class="d-flex justify-content-center justify-content-sm-end">
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="row justify-content-between align-items-center">
+<div class="col">
+<p class="font-size-sm mb-0">
+<span class="d-none d-sm-inline-block">Copyright © 2023, groFresh</span>
+</p>
+</div>
+<div class="col-auto">
+<div class="d-flex justify-content-end">
+<ul class="list-inline list-separator">
+<li class="list-inline-item">
+<a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/business-settings/store/ecom-setup">Store Settings</a>
+</li>
+<li class="list-inline-item">
+<a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/settings">Profile</a>
+</li>
+<li class="list-inline-item">
+<div class="hs-unfold">
+<a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="https://grofresh-admin.6amtech.com/admin">
+<i class="tio-home-outlined"></i>
+</a>
+</div>
+</li>
+<li class="list-inline-item">
+<label class="badge badge-success text-capitalize">
+Software Version 7.4
+</label>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="popup-modal">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-body">
+<div class="row">
+<div class="col-12">
+<div class="text-center">
+<h2 class="order-check-colour">
+<i class="tio-shopping-cart-outlined"></i> You have new order Check Please.
+</h2>
+<hr>
+<button id="check-order" class="btn btn-primary">Ok let me check</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+<script type="text/javascript"></script>
+<script>
+    $(document).on('ready', function () {
+        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                return false;
+            }
+        });
+
+        $('.js-hs-unfold-invoker').each(function () {
+            var unfold = new HSUnfold($(this)).init();
+        });
+
+        $('.js-form-search').each(function () {
+            new HSFormSearch($(this)).init()
+        });
+
+        $('.js-select2-custom').each(function () {
+            var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+        $('.js-daterangepicker').daterangepicker();
+
+        $('.js-daterangepicker-times').daterangepicker({
+            timePicker: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'M/DD hh:mm A'
+            }
+        });
+    });
+</script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/flatpicker.js"></script>
+<script>
+        $(window).on('load', function () {
+            if ($(".navbar-vertical-content li.active").length) {
+                $('.navbar-vertical-content').animate({
+                    scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
+                }, 10);
+            }
+        });
+
+        var $rows = $('#navbar-vertical-content .navbar-nav > li');
+        $('#search-sidebar-menu').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+<audio id="myAudio">
+<source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3" type="audio/mpeg">
+</audio>
+<script>
+    var audio = document.getElementById("myAudio");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+</script>
+<script>
+    $('#check-order').on('click', function(){
+        location.href = 'https://grofresh-admin.6amtech.com/admin/order/list/all';
+    })
+
+            setInterval(function () {
+            $.get({
+                url: 'https://grofresh-admin.6amtech.com/admin/get-restaurant-data',
+                dataType: 'json',
+                success: function (response) {
+                    let data = response.data;
+                    if (data.new_order > 0) {
+                        playAudio();
+                        $('#popup-modal').appendTo("body").modal('show');
+                    }
+                },
+            });
+        }, 10000);
+    
+    function route_alert(route, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = route;
+            }
+        })
+    }
+
+    $('.form-alert').on('click', function (){
+        let id = $(this).data('id');
+        let message = $(this).data('message');
+        form_alert(id, message)
+    });
+
+    function form_alert(id, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                $('#'+id).submit()
+            }
+        })
+    }
+
+    function call_demo(){
+        toastr.info('Disabled for demo version!')
+    }
+
+    $('.call-demo').click(function() {
+        if ('demo' === 'demo') {
+            call_demo();
+        }
+    });
+</script>
+<script>
+
+    $('.status-change-alert').on('click', function (){
+        let url = $(this).data('route');
+        let message = $(this).data('message');
+        status_change_alert(url, message, event)
+    });
+
+    function status_change_alert(url, message, e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#107980',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = url;
+            }
+        })
+    }
+</script>
+<script>
+    var initialImages = [];
+    $(window).on('load', function() {
+        $("form").find('img').each(function (index, value) {
+            initialImages.push(value.src);
+        })
+    })
+
+    $(document).ready(function() {
+        $('form').on('reset', function(e) {
+            $("form").find('img').each(function (index, value) {
+                $(value).attr('src', initialImages[index]);
+            })
+        });
+    });
+</script>
+<script>
+    $(function(){
+        var owl = $('.single-item-slider');
+        owl.owlCarousel({
+            autoplay: false,
+            items:1,
+            onInitialized  : counter,
+            onTranslated : counter,
+            autoHeight: true,
+            dots: true,
+        });
+
+        function counter(event) {
+            var element   = event.target;         // DOM element, in this example .owl-carousel
+            var items     = event.item.count;     // Number of items
+            var item      = event.item.index + 1;     // Position of the current item
+
+            if(item > items) {
+                item = item - items
+            }
+            $('.slide-counter').html(+item+"/"+items)
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
+
+        // Disable mailto links
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+        // Disable tel links
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+    });
+
+    function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
+        if (element.nodeType === 3) { // Text node
+            // Use regular expressions to match email and phone number patterns
+            element.nodeValue = element.nodeValue
+                .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
+                    var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
+                    return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
+                })
+                .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
+                    if (match.length >= 8) {
+                        var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
+                        var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
+                        return firstChar + remainingAsterisks;
+                    } else {
+                        return match;  // Don't replace if the length is less than 10
+                    }
+                });
+        } else if (element.nodeType === 1) { // Element node
+            for (var i = 0; i < element.childNodes.length; i++) {
+                replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
+            }
+        }
+    }
+</script>
+
+<script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+</body>
+</html>

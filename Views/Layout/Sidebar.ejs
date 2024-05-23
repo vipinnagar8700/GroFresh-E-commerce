@@ -1,0 +1,600 @@
+<div id="sidebarMain" class="d-none">
+    <aside class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered  ">
+        <div class="navbar-vertical-container text-capitalize">
+            <div class="navbar-vertical-footer-offset">
+                <div class="navbar-brand-wrapper justify-content-between">
+                    <a class="navbar-brand" href="/admin" aria-label="Front">
+                        <img class="w-100 side-logo" src="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c755267e93.png" alt="Logo">
+                    </a>
+                    <button type="button" class="js-navbar-vertical-aside-toggle-invoker navbar-vertical-aside-toggle btn btn-icon btn-xs btn-ghost-dark">
+                        <i class="tio-clear tio-lg"></i>
+                    </button>
+                    <div class="navbar-nav-wrap-content-left d-none d-xl-block">
+                        <button type="button" class="js-navbar-vertical-aside-toggle-invoker close">
+                            <i class="tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip" data-placement="right" title="Collapse"></i>
+                            <i class="tio-last-page navbar-vertical-aside-toggle-full-align"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="navbar-vertical-content" id="navbar-vertical-content">
+                    <form class="sidebar--search-form">
+                        <div class="search--form-group">
+                            <button type="button" class="btn"><i class="tio-search"></i></button>
+                            <input type="text" class="form-control form--control" placeholder="Search Menu..." id="search-sidebar-menu">
+                        </div>
+                    </form>
+                    <ul class="navbar-nav navbar-nav-lg nav-tabs">
+                        <li class="navbar-vertical-aside-has-menu show active">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin" title="Dashboard">
+                                <i class="tio-home-vs-1-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Dashboard
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="POS">
+                                <i class="tio-shopping nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">POS</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/pos" title="New Sale">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">New Sale</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/pos/orders" title="Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate sidebar--badge-container">
+                                            <span>Orders</span>
+                                            <span class="badge badge-soft-info badge-pill ml-1">
+                                                14
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle">Order management</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/verify-offline-payment/pending"
+                                title="Verify Offline Payment">
+                                <i class="tio-shopping-basket nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Verify Offline Payment
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Orders">
+                                <i class="tio-shopping-cart nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Orders
+                                </span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/orders/list/all" title="All Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate sidebar--badge-container">
+                                            <span>All</span>
+                                            <span class="badge badge-info badge-pill ml-1">
+                                                75
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/pending" title="Pending Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate sidebar--badge-container">
+                                            <span>Pending</span>
+                                            <span class="badge badge-soft-info badge-pill ml-1">
+                                                22
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/confirmed" title="Confirmed Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate sidebar--badge-container">
+                                            <span>Confirmed</span>
+                                            <span class="badge badge-soft-success badge-pill ml-1">
+                                                14
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/processing" title="Processing Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate  sidebar--badge-container">
+                                            <span>Packaging</span>
+                                            <span class="badge badge-soft-warning badge-pill ml-1">
+                                                3
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/out_for_delivery" title="Out for delivery Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate  sidebar--badge-container">
+                                            <span>Out for delivery</span>
+                                            <span class="badge badge-soft-warning badge-pill ml-1">
+                                                2
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/delivered" title="Delivered Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate  sidebar--badge-container">
+                                            <span>Delivered</span>
+                                            <span class="badge badge-soft-success badge-pill ml-1">
+                                                23
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/returned" title="Returned Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate  sidebar--badge-container">
+                                            <span>Returned</span>
+                                            <span class="badge badge-soft-danger badge-pill ml-1">
+                                                1
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/failed" title="Failed Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate  sidebar--badge-container">
+                                            <span>Failed</span>
+                                            <span class="badge badge-soft-danger badge-pill ml-1">
+                                                2
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/orders/list/canceled" title="Canceled Orders">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate  sidebar--badge-container">
+                                            <span>Canceled</span>
+                                            <span class="badge badge-soft-light badge-pill ml-1">
+                                                8
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle">Product management </small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Category setup">
+                                <i class="tio-category nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Category setup</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/category/add" title="Categories">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Categories</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/category/add-sub-category" title="Sub Categories">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Sub Categories</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Product setup">
+                                <i class="tio-premium-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Product setup</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/attribute/add-new" title="Product attribute">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Product attribute</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a class="nav-link " href="/admin/product/list" title="List">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Product list</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/product/bulk-import" title="Bulk import">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Bulk import</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/product/bulk-export-index" title="Bulk export">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Bulk export</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/product/limited-stock" title="Limited Stocks">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Limited Stocks</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle">Promotion management </small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/banner/add-new" title="Banner">
+                                <i class="tio-image nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Banner</span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/coupon/add-new" title="Coupons">
+                                <i class="tio-gift nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Coupons</span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/notification/add-new" title="Send notifications">
+                                <i class="tio-notifications nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Send Notifications
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/offer/flash-index" title="Flash sale">
+                                <i class="tio-alarm-alert nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Flash sale
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/discount/add-new" title="Category discount">
+                                <i class="tio-layers-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Category discount</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">Help &amp; Support Section</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/message/list" title="Messages">
+                                <i class="tio-messages nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Messages
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Documentation">Report and analytics</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="nav-link " href="/admin/report/sale-report" title="Sale Report">
+                                <span class="tio-chart-bar-1 nav-icon"></span>
+                                <span class="text-truncate">Sales Report</span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="nav-link " href="/admin/report/order" title="Order Report">
+                                <span class="tio-chart-bar-2 nav-icon"></span>
+                                <span class="text-truncate">Order Report</span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="nav-link " href="/admin/report/earning" title="Earning Report">
+                                <span class="tio-chart-pie-1 nav-icon"></span>
+                                <span class="text-truncate">Earning Report</span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="nav-link " href="/admin/report/expense" title="Expense Report">
+                                <span class="tio-chart-bar-4 nav-icon"></span>
+                                <span class="text-truncate">Expense Report</span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Analytics">
+                                <i class="tio-chart-donut-2 nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Analytics</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/analytics/keyword-search?date_range=today&amp;date_range_2=today"
+                                        title="Keyword-search">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Keyword Search</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/analytics/customer-search?date_range=today&amp;date_range_2=today"
+                                        title="Customer-search">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Customer search</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Documentation">User management</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/customer/list" title="Customer List">
+                                <i class="tio-poi-user nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Customer List
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Customer Wallet">
+                                <i class="tio-wallet-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Customer Wallet
+                                </span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/customer/wallet/add-fund" title="Add fund">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Add fund
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/customer/wallet/report" title="Report">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Report
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/customer/wallet/bonus/index" title="Wallet bonus setup">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Wallet bonus setup
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Customer Loyalty Point">
+                                <i class="tio-medal nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Customer Loyalty Point
+                                </span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/customer/loyalty-point/report" title="Report">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Report
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/reviews/list" title="Product Reviews">
+                                <i class="tio-star nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Product Reviews
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/customer/subscribed-emails" title="Subscribed Emails">
+                                <i class="tio-email-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Subscribed Emails
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Deliveryman">
+                                <i class="tio-user nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Deliveryman
+                                </span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/delivery-man/list" title="List">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Delivery Man List
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/delivery-man/add" title="Register">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Add New Delivery Man
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/delivery-man/pending/list" title="Joining request">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            New Joining Request
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/delivery-man/reviews/list" title="Reviews">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Delivery Man Reviews
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu   ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Employees">
+                                <i class="tio-incognito nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Employees
+                                </span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/custom-role/create" title="Employee Role Setup">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Employee Role Setup</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/admin/employee/list" title="List">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Employee List</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/employee/add-new" title="Add new">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Add New Employee</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle" title="Layouts">System setting</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/business-settings/store/ecom-setup" title="Business Setup">
+                                <i class="tio-settings nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    Business Setup
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Branch Setup">
+                                <i class="tio-shop nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Branch Setup</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/branch/add-new" title="Add New">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Add New</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/branch/list" title="List">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">List</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Branch Setup">
+                                <i class="tio-website nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">3rd Party</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: none">
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/business-settings/web-app/payment-method" title="3rd party configuration">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">3rd party configuration</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/business-settings/web-app/third-party/fcm-index" title="Push Notification">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Push Notification</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/business-settings/web-app/third-party/offline-payment/list" title="Offline Payment">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Offline Payment</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Pages &amp; Media">
+                                <i class="tio-pages-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Pages &amp; Media</span>
+                            </a>
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display:  ">
+                                <li class="nav-item mt-0 ">
+                                    <a class="nav-link" href="/admin/business-settings/page-setup/about-us" title="Page Setup">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Page Setup</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link " href="/admin/business-settings/web-app/third-party/social-media" title="Social Media">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Social Media</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mt-0
+                        ">
+                            <a class="nav-link" href="/admin/business-settings/web-app/system-setup/language" title="system settings">
+                                <i class="tio-security-on-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">System setup</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <small class="nav-subtitle">System Addon</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/admin/system-addon" title="System Addons">
+                                <i class="tio-add-circle-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    System Addons
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>

@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="nofollow, noindex, max-snippet:1, max-video-preview:1, max-image-preview:standard">
+
+<title>Admin | Login</title>
+<link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+</head>
+<body>
+<main id="content" role="main" class="main">
+<div class="auth-wrapper">
+<div class="auth-wrapper-left">
+<div class="auth-left-cont">
+<img src="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c755267e93.png" alt="Logo">
+<h2 class="title">Your <span class="d-block">All Fresh Food</span> <strong class="text--039D55">In one Place....</strong></h2>
+</div>
+</div>
+<div class="auth-wrapper-right">
+<div class="auth-wrapper-form">
+<form id="form-id" action="https://grofresh-admin.6amtech.com/admin/auth/login" method="post">
+<input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <div class="auth-header">
+<div class="mb-5">
+<div class="auth-wrapper-right-logo">
+<img src="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c755267e93.png" alt="Logo">
+</div>
+<h2 class="title">Sign in</h2>
+<div>Welcome back</div>
+<p class="mb-0">Want to login your branches?
+<a href="https://grofresh-admin.6amtech.com/branch/auth/login">
+Branch Login
+</a>
+</p>
+<span class="badge badge-soft-info mt-2">( Admin or employee signin )</span>
+</div>
+</div>
+<div class="js-form-message form-group">
+<label class="input-label text-capitalize" for="signinSrEmail">Your email</label>
+<input type="email" class="form-control form-control-lg" name="email" id="signinSrEmail" tabindex="1" placeholder="Email@address.com" aria-label="email@address.com" required data-msg="Please enter a valid email address.">
+</div>
+<div class="js-form-message form-group">
+<label class="input-label" for="signupSrPassword" tabindex="0">
+<span class="d-flex justify-content-between align-items-center">
+Password
+</span>
+</label>
+<div class="input-group input-group-merge">
+<input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupSrPassword" placeholder="8+ characters required" aria-label="8+ characters required" required data-msg="Your password is invalid. Please try again." data-hs-toggle-password-options="{
+                                            &quot;target&quot;: &quot;#changePassTarget&quot;,
+                                    &quot;defaultClass&quot;: &quot;tio-hidden-outlined&quot;,
+                                    &quot;showClass&quot;: &quot;tio-visible-outlined&quot;,
+                                    &quot;classChangeTarget&quot;: &quot;#changePassIcon&quot;
+                                    }">
+<div id="changePassTarget" class="input-group-append">
+<a class="input-group-text" href="javascript:">
+<i id="changePassIcon" class="tio-visible-outlined"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="custom-control custom-checkbox d-flex align-items-center">
+<input type="checkbox" class="custom-control-input" id="termsCheckbox" name="remember">
+<label class="custom-control-label text-muted m-0" for="termsCheckbox">
+Remember Me
+</label>
+</div>
+</div>
+<div id="recaptcha_element" class="w-100" data-type="image"></div>
+<br/>
+<button type="submit" class="btn btn-block btn--primary">Login</button>
+</form>
+<div class="auto-fill-data-copy">
+<div class="d-flex flex-wrap align-items-center justify-content-between">
+<div>
+<span class="d-block"><strong>Email</strong> : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f6e6b6266614f6e6b626661216c6062">[email&#160;protected]</a></span>
+<span class="d-block"><strong>Password</strong> : 12345678</span>
+</div>
+<div>
+<button class="btn action-btn btn--primary m-0" id="copyButton"><i class="tio-copy"></i></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+<script type="text/javascript"></script>
+<script>
+    $(document).on('ready', function () {
+        $('.js-toggle-password').each(function () {
+            new HSTogglePassword(this).init()
+        });
+
+        $('.js-validate').each(function () {
+            $.HSCore.components.HSValidation.init($(this));
+        });
+    });
+
+    $.getJSON('https://api.ipify.org?format=json', function(data) {
+        var ipAddress = data.ip;
+        console.log('User IP address: ' + ipAddress);
+        console.log(data);
+    });
+</script>
+<script type="text/javascript">
+        var onloadCallback = function () {
+            grecaptcha.render('recaptcha_element', {
+                'sitekey': '6LcDeeslAAAAADP9N8Vxw_uQ_u68qCwae19dFlmn'
+            });
+        };
+    </script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script>
+        $("#form-id").on('submit',function(e) {
+            var response = grecaptcha.getResponse();
+
+            if (response.length === 0) {
+                e.preventDefault();
+                toastr.error("Please check the recaptcha");
+            }
+        });
+    </script>
+<script>
+        $('#copyButton').on('click', function() {
+            copyCredentials();
+        });
+
+        function copyCredentials() {
+            $('#signinSrEmail').val('admin@admin.com');
+            $('#signupSrPassword').val('12345678');
+            toastr.success('Copied successfully!', 'Success!', {
+                CloseButton: true,
+                ProgressBar: true
+            });
+        }
+    </script>
+<script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+</body>
+</html>

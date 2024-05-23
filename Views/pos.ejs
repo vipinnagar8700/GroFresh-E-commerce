@@ -1,0 +1,1831 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="csrf-token" content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>New sale</title>
+        <link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+        <link rel="shortcut icon" href>
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+        <meta name="csrf-token" content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd">
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
+    </head>
+    <body class="footer-offset" id="demo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-none" id="loading">
+                        <div class="loader-image">
+                            <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('Layout/Header') %>
+        <div id="headerFluid" class="d-none"></div>
+        <div id="headerDouble" class="d-none"></div>
+        <%- include('Layout/Sidebar') %>
+        <main id="content" role="main" class="main pointer-event">
+            <div class="content container-fluid">
+                <div class="d-flex flex-wrap">
+                    <div class="order--pos-left">
+                        <div class="card">
+                            <div class="card-header m-1 bg-light border-0">
+                                <h5 class="card-title">
+                                    <span>
+                                        Product section
+                                    </span>
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-4 g-3">
+                                    <div class="col-sm-6">
+                                        <div class="input-group header-item">
+                                            <select name="category" id="category" class="form-control js-select2-custom mx-1" title="Select category">
+                                                <option value>All Categories</option>
+                                                <option value="1">Fruits and Vegetables</option>
+                                                <option value="2">Meat and Fish</option>
+                                                <option value="3">Cooking</option>
+                                                <option value="4">Beverages</option>
+                                                <option value="5">Cleaning</option>
+                                                <option value="7">Personal Care</option>
+                                                <option value="8">Health Care</option>
+                                                <option value="15">Breakfast</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <form id="search-form">
+                                            <div class="input-group input-group-merge input-group-flush">
+                                                <div class="input-group-prepend w--30 justify-content-center">
+                                                    <div class="input-group-text">
+                                                        <i class="tio-search"></i>
+                                                    </div>
+                                                </div>
+                                                <input id="datatableSearch" type="search" value name="search" class="form-control rounded border" placeholder="Search by product name"
+                                                    aria-label="Search here">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div id="items">
+                                    <div class="row g-1">
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="51">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65335b64e8ee5.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Premium Qual...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            423.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="50">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65335919ae8c9.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Glass cleane...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            162.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="49">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65335854d5cbd.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Rok Cleaner...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            200.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="48">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-653356f8bd1dd.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        78% Alcohol...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            115.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="47">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-6533564faaaef.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Natural Bio...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            160.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="46">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-653355ae3092a.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Pure Mixed F...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            218.50$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="45">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65335514b39da.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Honey Lime J...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            389.50$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="44">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-6533547776a51.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Fresh White...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            45.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="43">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-653353f46cb4b.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Sunrise Milk...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            288.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="42">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-6533537f6aab0.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Dairy Fresh...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            403.75$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="41">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-653352eab0a7b.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Margarine Bu...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            351.50$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="40">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65335247d9c07.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Cloves
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            95.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="39">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-653351e8646dd.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Chili Powder
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            165.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="38">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-6533515cadd4c.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Cinnamon Who...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            60.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="37">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-653350d7c62ba.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Organic Almo...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            190.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="36">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-6533504b8d5bc.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Thai Jasmine...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            360.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="35">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334f92495ab.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Thai Jasmine...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            160.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="34">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334e8315d23.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Red Tilapia
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            270.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="33">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334de3b4d00.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Shrimps Larg...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            1,125.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="32">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334ce051b29.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Beef Steak
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            931.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="31">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334c4991bcd.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Beef Salted...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            1,332.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="30">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334bd412622.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Salmon Fish...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            551.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="29">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334b04bdb68.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Chicken Thig...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            408.50$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="28">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-653348fdc3b29.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Carrot Impor...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            114.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order--item-box item-box">
+                                            <div class="product-card card quick-view-trigger" data-product-id="27">
+                                                <div class="card-header inline_product clickable p-0">
+                                                    <img src="https://grofresh-admin.6amtech.com/storage/app/public/product/2023-10-21-65334845b79c6.png"
+                                                        class="w-100 h-100 object-cover aspect-ratio-80">
+                                                </div>
+                                                <div class="card-body inline_product text-center p-1 clickable">
+                                                    <div class="product-title1 text-dark font-weight-bold">
+                                                        Red tomato (...
+                                                    </div>
+                                                    <div class="justify-content-between text-center">
+                                                        <div class="product-price text-center">
+                                                            100.00$
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-4">
+                                    <nav>
+                                        <ul class="pagination">
+                                            <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                                                <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                                            </li>
+                                            <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                            <li class="page-item"><a class="page-link" href="https://grofresh-admin.6amtech.com/admin/pos?page=2">2</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="https://grofresh-admin.6amtech.com/admin/pos?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order--pos-right">
+                        <div class="card">
+                            <div class="card-header bg-light border-0 m-1">
+                                <h5 class="card-title">
+                                    <span>
+                                        Billing section
+                                    </span>
+                                </h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="px-4">
+                                    <div class="w-100">
+                                        <div class="d-flex flex-wrap flex-row py-2 add--customer-btn">
+                                            <select id="customer" name="customer_id" data-placeholder="Walk In Customer" class="js-data-example-ajax form-control m-1">
+                                                <option value selected disabled>Select customer</option>
+                                                <option value="4">Jane Doe</option>
+                                                <option value="5">Annette Black</option>
+                                                <option value="6">Robert Fox</option>
+                                                <option value="8">Esther Howard</option>
+                                                <option value="9">Eleanor Pena</option>
+                                                <option value="12">Brooklyn Simmons</option>
+                                                <option value="13">Marvin McKinney</option>
+                                                <option value="15">Ronald Richards</option>
+                                                <option value="16">Guy Hawkins</option>
+                                                <option value="19">John Doe</option>
+                                                <option value="20">Jane Cooper</option>
+                                            </select>
+                                            <button class="btn btn--primary rounded font-regular" data-toggle="modal" data-target="#add-customer" type="button">Add New Customer</button>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 py-2">
+                                        <h5>Select Branch</h5>
+                                        <select id="branch" name="branch_id" class="js-data-example-ajax-2 form-control">
+                                            <option value="1">Main</option>
+                                            <option value="10">Second Branch</option>
+                                            <option value="11">Third Branch</option>
+                                            <option value="12">Dhaka</option>
+                                            <option value="13">Farmgate</option>
+                                        </select>
+                                    </div>
+                                    <div class="w-100 py-2">
+                                        <div class="form-group">
+                                            <label class="input-label font-weight-semibold fz-16 text-dark">Select Order Type</label>
+                                            <div>
+                                                <div class="form-control d-flex flex-column-3">
+                                                    <label class="custom-radio d-flex gap-2 align-items-center m-0">
+                                                        <input type="radio" class="order-type-radio" name="order_type" value="take_away" checked>
+                                                        <span class="media align-items-center mb-0">
+                                                            <span class="media-body ml-1">Take Away</span>
+                                                        </span>
+                                                    </label>
+                                                    <label class="custom-radio d-flex gap-2 align-items-center m-0 ml-3">
+                                                        <input type="radio" class="order-type-radio" name="order_type" value="home_delivery">
+                                                        <span class="media align-items-center mb-0">
+                                                            <span class="media-body ml-1">Home Delivery</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 py-2">
+                                        <div class="form-group d-none" id="home_delivery_section">
+                                            <div class="d-flex justify-content-between">
+                                                <label for class="font-weight-semibold fz-16 text-dark">Delivery Information
+                                                    <small>(Home Delivery)</small>
+                                                </label>
+                                                <span class="edit-btn cursor-pointer" id="delivery_address" data-toggle="modal" data-target="#AddressModal"><i class="tio-edit"></i>
+                                                </span>
+                                            </div>
+                                            <div class="pos--delivery-options-info d-flex flex-wrap" id="del-add">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100" id="cart">
+                                        <div class="d-flex flex-row cart--table-scroll">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered border-left-0 border-right-0 middle-align">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col">Item</th>
+                                                            <th scope="col" class="text-center">Qty</th>
+                                                            <th scope="col">Price</th>
+                                                            <th scope="col">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="box p-3">
+                                            <dl class="row">
+                                                <dt class="col-sm-6">Sub total :</dt>
+                                                <dd class="col-sm-6 text-right">0.00$</dd>
+                                                <dt class="col-sm-6">Product Discount:
+                                                </dt>
+                                                <dd class="col-sm-6 text-right"> - 0.00$</dd>
+                                                <dt class="col-sm-6">Extra Discount:
+                                                </dt>
+                                                <dd class="col-sm-6 text-right">
+                                                    <button class="btn btn-sm" type="button" data-toggle="modal" data-target="#add-discount"><i class="tio-edit"></i>
+                                                    </button> - 0.00$</dd>
+                                                <dt class="col-sm-6">Tax :</dt>
+                                                <dd class="col-sm-6 text-right">0.00$</dd>
+                                                <dt class="col-sm-6">Delivery Charge :</dt>
+                                                <dd class="col-sm-6 text-right">0.00$</dd>
+                                                <dt class="col-12">
+                                                    <hr class="mt-0">
+                                                </dt>
+                                                <dt class="col-sm-6">Total :</dt>
+                                                <dd class="col-sm-6 text-right h4 b">0.00$</dd>
+                                            </dl>
+                                            <div>
+                                                <form action="https://grofresh-admin.6amtech.com/admin/pos/order" id="order_place" method="post">
+                                                    <input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <div class="pos--payment-options mt-3 mb-3">
+                                                        <h5 class="mb-3">Payment Method</h5>
+                                                        <ul>
+                                                            <li style="display: block">
+                                                                <label>
+                                                                    <input type="radio" name="type" value="cash" hidden checked>
+                                                                    <span>Cash</span>
+                                                                </label>
+                                                            </li>
+                                                            <li style="display: block">
+                                                                <label>
+                                                                    <input type="radio" name="type" value="card" hidden>
+                                                                    <span>Card</span>
+                                                                </label>
+                                                            </li>
+                                                            <li style="display: none">
+                                                                <label>
+                                                                    <input type="radio" name="type" value="cash_on_delivery" hidden>
+                                                                    <span>Cash on delivery</span>
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="row button--bottom-fixed g-1 bg-white ">
+                                                        <div class="col-sm-6">
+                                                            <a class="btn btn-outline-danger btn--danger btn-sm btn-block cancel-order-button"><i class="fa fa-times-circle "></i> Cancel Order </a>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button type="submit" class="btn  btn--primary btn-sm btn-block"><i class="fa fa-shopping-bag"></i>
+                                                                Place Order
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="add-discount" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Update discount</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="https://grofresh-admin.6amtech.com/admin/pos/discount" method="post" class="row">
+                                                            <input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <div class="form-group col-sm-6">
+                                                                <label for>Discount</label>
+                                                                <input type="number" min="0" max value="0" id="extra_discount_input" class="form-control" name="discount" step="any"
+                                                                    placeholder="Ex: 45">
+                                                            </div>
+                                                            <div class="form-group col-sm-6">
+                                                                <label for>Type</label>
+                                                                <select name="type" class="form-control" id="discount_type_select">
+                                                                    <option value="amount" selected>Amount
+                                                                        ($)
+                                                                    </option>
+                                                                    <option value="percent">Percent(%)
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="btn--container justify-content-end">
+                                                                    <button class="btn btn-sm btn--reset" type="reset">Reset</button>
+                                                                    <button class="btn btn-sm btn--primary" type="submit">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="add-tax" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Update tax</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="https://grofresh-admin.6amtech.com/admin/pos/tax" method="POST" class="row">
+                                                            <input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <div class="form-group col-12">
+                                                                <label for>Tax (%)</label>
+                                                                <input type="number" class="form-control" name="tax" min="0">
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="btn--container">
+                                                                    <button class="btn btn-sm btn--reset" type="reset">Reset</button>
+                                                                    <button class="btn btn-sm btn--primary" type="submit">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="coupon-discount" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Coupon discount</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body pb-2 pt-3">
+                                                        <form class="row">
+                                                            <input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <div class="form-group col-sm-12">
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="btn--container justify-content-end">
+                                                                    <button class="btn btn-sm btn--reset" type="reset">Reset</button>
+                                                                    <button class="btn btn-sm btn--primary" type="submit">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    "use strict";
+        $('.cancel-order-button').on('click', function(event) {
+            event.preventDefault();
+            emptyCart();
+        });
+</script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="quick-view" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content" id="quick-view-modal">
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade add-customer" id="add-customer">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add new customer</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="https://grofresh-admin.6amtech.com/admin/pos/customer/store" method="post">
+                                <input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="input-label">First name <span class="input-label-secondary text-danger">*</span></label>
+                                            <input type="text" name="f_name" class="form-control" value placeholder="First name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="input-label">Last name <span class="input-label-secondary text-danger">*</span></label>
+                                            <input type="text" name="l_name" class="form-control" value placeholder="Last name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="input-label">Email<span class="input-label-secondary text-danger">*</span></label>
+                                            <input type="email" name="email" class="form-control" value placeholder="Ex : ex@example.com" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="input-label">Phone (With country code)<span class="input-label-secondary text-danger">*</span></label>
+                                            <input type="text" name="phone" class="form-control" value placeholder="Phone" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn--container justify-content-end">
+                                    <button type="reset" class="btn btn--reset">Reset</button>
+                                    <button type="submit" id="submit_new_customer" class="btn btn--primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="AddressModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light border-bottom py-3">
+                            <h5 class="modal-title flex-grow-1 text-center">Delivery Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="delivery_address_store">
+                                <input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off">
+                                <div class="row g-2" id="delivery_address">
+                                    <div class="col-md-6">
+                                        <label class="input-label" for>Contact person name
+                                            <span class="input-label-secondary text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="contact_person_name" value placeholder="Ex : Jhon" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-label" for>Contact Number
+                                            <span class="input-label-secondary text-danger">*</span></label>
+                                        <input type="tel" class="form-control" name="contact_person_number" value placeholder="Ex : +3264124565" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="input-label" for>Road</label>
+                                        <input type="text" class="form-control" name="road" value placeholder="Ex : 4th">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="input-label" for>House</label>
+                                        <input type="text" class="form-control" name="house" value placeholder="Ex : 45/C">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="input-label" for>Floor</label>
+                                        <input type="text" class="form-control" name="floor" value placeholder="Ex : 1A">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-label" for>Longitude<span class="input-label-secondary text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="longitude" name="longitude" value readonly required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-label" for>Latitude<span class="input-label-secondary text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="latitude" name="latitude" value readonly required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="input-label">Address</label>
+                                        <textarea name="address" id="address" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="text-primary">
+                                                * pin the address in the map to calculate delivery fee
+                                            </span>
+                                        </div>
+                                        <div id="location_map_div">
+                                            <input id="pac-input" class="controls rounded initial-8" title="Search your location here" type="text" placeholder="Search here" />
+                                            <div id="location_map_canvas" class="overflow-hidden rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <div class="btn--container justify-content-end">
+                                        <button class="btn btn-sm btn--primary w-100 delivery-address-update-button" type="button" data-dismiss="modal">
+                                            Update Delivery address
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col">
+                        <p class="font-size-sm mb-0">
+                            <span class="d-none d-sm-inline-block">Copyright © 2023, groFresh</span>
+                        </p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="d-flex justify-content-end">
+                            <ul class="list-inline list-separator">
+                                <li class="list-inline-item">
+                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/business-settings/store/ecom-setup">Store Settings</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/settings">Profile</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="hs-unfold">
+                                        <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="https://grofresh-admin.6amtech.com/admin">
+                                            <i class="tio-home-outlined"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <label class="badge badge-success text-capitalize">
+                                        Software Version 7.4
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="popup-modal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h2 class="order-check-colour">
+                                            <i class="tio-shopping-cart-outlined"></i> You have new order Check Please.
+                                        </h2>
+                                        <hr>
+                                        <button id="check-order" class="btn btn-primary">Ok let me check</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+        <script type="text/javascript"></script>
+        <script>
+    $(document).on('ready', function () {
+        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                return false;
+            }
+        });
+
+        $('.js-hs-unfold-invoker').each(function () {
+            var unfold = new HSUnfold($(this)).init();
+        });
+
+        $('.js-form-search').each(function () {
+            new HSFormSearch($(this)).init()
+        });
+
+        $('.js-select2-custom').each(function () {
+            var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+        $('.js-daterangepicker').daterangepicker();
+
+        $('.js-daterangepicker-times').daterangepicker({
+            timePicker: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'M/DD hh:mm A'
+            }
+        });
+    });
+</script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0RWOWDiPKltQrwHZOEvi_Jjz7Sok5zqE&libraries=places&v=3.51"></script>
+        <script>
+
+        $('#category').on('change', function() {
+            var selectedCategoryId = $(this).val();
+            set_category_filter(selectedCategoryId);
+        });
+
+        $('#customer').on('change', function() {
+            var selectedCustomerId = $(this).val();
+            store_key('customer_id', selectedCustomerId);
+        });
+
+        $('#branch').on('change', function() {
+            var selectedBranchId = $(this).val();
+            store_key('branch_id', selectedBranchId);
+        });
+
+        $('.order-type-radio').on('change', function() {
+            var orderType = $(this).val();
+            select_order_type(orderType);
+        });
+
+        $('.delivery-address-update-button').on('click', function() {
+            deliveryAddressStore();
+        });
+
+        $('.quick-view-trigger').on('click', function() {
+            var productId = $(this).data('product-id');
+            quickView(productId);
+        });
+
+        $(document).on('ready', function () {
+                    });
+
+        $('.print-button').on('click', function() {
+            printDiv('printableArea');
+        });
+
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+
+        function set_category_filter(id) {
+            var nurl = new URL('https://grofresh-admin.6amtech.com/admin/pos');
+            nurl.searchParams.set('category_id', id);
+            location.href = nurl;
+        }
+
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            var keyword = $('#datatableSearch').val();
+            var nurl = new URL('https://grofresh-admin.6amtech.com/admin/pos');
+            nurl.searchParams.set('keyword', keyword);
+            location.href = nurl;
+        });
+
+        function quickView(product_id) {
+            $.ajax({
+                url: 'https://grofresh-admin.6amtech.com/admin/pos/quick-view',
+                type: 'GET',
+                data: {
+                    product_id: product_id
+                },
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#loading').show();
+                },
+                success: function (data) {
+                    $('#quick-view').modal('show');
+                    $('#quick-view-modal').empty().html(data.view);
+                },
+                complete: function () {
+                    $('#loading').hide();
+                },
+            });
+        }
+
+        function checkAddToCartValidity() {
+            return true;
+        }
+
+        function cartQuantityInitialize() {
+            $('.btn-number').click(function (e) {
+            e.preventDefault();
+
+            var fieldName = $(this).attr('data-field');
+            var type = $(this).attr('data-type');
+            var input = $("input[name='" + fieldName + "']");
+            var currentVal = parseInt(input.val());
+
+            if (!isNaN(currentVal)) {
+                if (type == 'minus') {
+
+                    if (currentVal > input.attr('min')) {
+                        input.val(currentVal - 1).change();
+                    }
+                    if (parseInt(input.val()) == input.attr('min')) {
+                        $(this).attr('disabled', true);
+                    }
+
+                } else if (type == 'plus') {
+
+                    if (currentVal < input.attr('max')) {
+                        input.val(currentVal + 1).change();
+                    }
+
+                    var qty_max_val = parseInt($('#check_max_qty').val());
+                    var qty_max_val = qty_max_val + 1;
+                    if (parseInt(input.val()) >= qty_max_val) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Cart',
+                            text: 'Stock limit exceeded.',
+                            confirmButtonText: 'Yes',
+                        });
+                        input.val(qty_max_val-1);
+                    }
+
+                }
+            } else {
+                input.val(0);
+            }
+        });
+
+        $('.input-number').focusin(function () {
+            $(this).data('oldValue', $(this).val());
+        });
+
+        $('.input-number').change(function () {
+
+            minValue = parseInt($(this).attr('min'));
+            maxValue = parseInt($(this).attr('max'));
+            valueCurrent = parseInt($(this).val());
+
+            var input_qty_max_val = parseInt($('#check_max_qty').val());
+            var input_qty_max_val = input_qty_max_val + 1;
+
+
+            var name = $(this).attr('name');
+            if (valueCurrent >= minValue) {
+                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled');
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cart',
+                    text: 'Sorry  the minimum value was reached',
+                    confirmButtonText: 'Yes',
+                });
+                $(this).val($(this).data('oldValue'));
+            }
+
+            if(valueCurrent >= input_qty_max_val){
+                console.log(input_qty_max_val);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cart',
+                    text: 'The maximum value was reached',
+                    confirmButtonText: 'Yes',
+                });
+                $(this).val(input_qty_max_val-1)
+            } else if (valueCurrent <= maxValue) {
+                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cart',
+                    text: 'Sorry  stock limit exceeded.',
+                    confirmButtonText: 'Yes',
+                });
+                $(this).val(1)
+            }
+        });
+        $(".input-number").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    function getVariantPrice() {
+        if (1) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: 'https://grofresh-admin.6amtech.com/admin/pos/variant_price',
+                data: $('#add-to-cart-form').serializeArray(),
+                success: function (data) {
+                    $('#add-to-cart-form #chosen_price_div').removeClass('d-none');
+                    $('#add-to-cart-form #chosen_price_div #chosen_price').html(data.price);
+                }
+            });
+        }
+    }
+
+    function addToCart(form_id = 'add-to-cart-form') {
+        if (checkAddToCartValidity()) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.post({
+                url: 'https://grofresh-admin.6amtech.com/admin/pos/add-to-cart',
+                data: $('#' + form_id).serializeArray(),
+                beforeSend: function () {
+                    $('#loading').show();
+                },
+                success: function (data) {
+                    if (data.data == 1) {
+                        Swal.fire({
+                            icon: 'info',
+                            title: "Cart",
+                            text: "Product already added in cart",
+                            confirmButtonText: 'Yes',
+                        });
+                        return false;
+                    } else if (data.quantity <= 0) {
+                        Swal.fire({
+                            icon: 'info',
+                            title: "Cart",
+                            text: "Product is out of stock",
+                            confirmButtonText: 'Yes',
+                        });
+                        return false;
+
+                    }   else if (data.data == 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: "Cart",
+                            text: 'Product out of stock.',
+                            confirmButtonText: 'Yes',
+                        });
+                        return false;
+                    }
+                    $('.call-when-done').click();
+
+                    toastr.success('Item has been added in your cart!', {
+                        CloseButton: true,
+                        ProgressBar: true
+                    });
+
+                    updateCart();
+                },
+                complete: function () {
+                    $('#loading').hide();
+                }
+            });
+        } else {
+            Swal.fire({
+                type: 'info',
+                title: "Cart",
+                text: 'Please choose all the options',
+                confirmButtonText: 'Yes',
+            });
+        }
+    }
+
+    function removeFromCart(key) {
+        $.post('https://grofresh-admin.6amtech.com/admin/pos/remove-from-cart', {_token: 'j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd', key: key}, function (data) {
+            if (data.errors) {
+                for (var i = 0; i < data.errors.length; i++) {
+                    toastr.error(data.errors[i].message, {
+                        CloseButton: true,
+                        ProgressBar: true
+                    });
+                }
+            } else {
+                updateCart();
+                toastr.info('Item has been removed from cart', {
+                    CloseButton: true,
+                    ProgressBar: true
+                });
+            }
+
+        });
+    }
+
+    function emptyCart() {
+        $.post('https://grofresh-admin.6amtech.com/admin/pos/empty-cart', {_token: 'j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd'}, function (data) {
+            updateCart();
+            location.reload();
+            toastr.info('Item has been removed from cart', {
+                CloseButton: true,
+                ProgressBar: true
+            });
+        });
+    }
+
+    function updateCart() {
+        $.post('https://grofresh-admin.6amtech.com/admin/pos/cart-items', {_token: 'j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd'}, function (data) {
+            $('#cart').empty().html(data);
+        });
+    }
+
+    function store_key(key, value) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd"
+            }
+        });
+        $.post({
+            url: 'https://grofresh-admin.6amtech.com/admin/pos/store-keys',
+            data: {
+                key:key,
+                value:value,
+            },
+            success: function (data) {
+                key = key=='customer_id' ? "Customer id" : (key=='branch_id' ? "Branch id":'');
+                toastr.success(key+' '+'Selected!', {
+                    CloseButton: true,
+                    ProgressBar: true
+                });
+            },
+        });
+    }
+
+    $(function () {
+        $(document).on('click', 'input[type=number]', function () {
+            this.select();
+        });
+    });
+
+    function updateQuantity(e) {
+        var element = $(e.target);
+        var minValue = parseInt(element.attr('min'));
+        var maxValue = parseInt(element.attr('max'));
+        var valueCurrent = parseInt(element.val());
+
+        var key = element.data('key');
+        var product_id = element.attr("id");
+        if (valueCurrent >= minValue && valueCurrent <= maxValue) {
+            $.post('https://grofresh-admin.6amtech.com/admin/pos/update-quantity', {
+                _token: 'j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd',
+                key: key,
+                quantity: valueCurrent
+            }, function (data) {
+                updateCart();
+            });
+        } else if(valueCurrent >= maxValue) {Swal.fire({
+            icon: 'error',
+            title: 'Cart',
+            text: 'Product out of stock!!!',
+            confirmButtonText: 'Yes',
+        });
+            element.val(element.data('oldValue'));
+            updateCart();
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: "Cart",
+                text: 'Sorry  the minimum value was reached',
+                confirmButtonText: 'Yes',
+            });
+            element.val(element.data('oldValue'));
+            updateCart();
+        }
+
+        if (e.type == 'keydown') {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        }
+
+    }
+
+    $('.js-select2-custom').each(function () {
+        var select2 = $.HSCore.components.HSSelect2.init($(this));
+    });
+
+    $('.js-data-example-ajax').select2({
+        ajax: {
+            url: 'https://grofresh-admin.6amtech.com/admin/pos/customers',
+            data: function (params) {
+                return {
+                    q: params.term,
+                    page: params.page
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            __port: function (params, success, failure) {
+                var $request = $.ajax(params);
+
+                $request.then(success);
+                $request.fail(failure);
+
+                return $request;
+            }
+        }
+    });
+
+    $(document).ready(function() {
+        var orderType = null;
+
+        if (orderType === 'home_delivery') {
+            $('#home_delivery_section').removeClass('d-none');
+        } else {
+            $('#home_delivery_section').addClass('d-none');
+        }
+    });
+
+    function select_order_type(order_type) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd"
+            }
+        });
+
+        $.post({
+            url: 'https://grofresh-admin.6amtech.com/admin/pos/order_type/store',
+            data: {
+                order_type:order_type,
+            },
+            beforeSend: function () {
+                $('#loading').show();
+            },
+            success: function (data) {
+                console.log(data);
+                updateCart();
+            },
+            complete: function () {
+                $('#loading').hide();
+            }
+        });
+
+       if(order_type == 'home_delivery') {
+            $('#home_delivery_section').removeClass('d-none');
+        }else{
+            $('#home_delivery_section').addClass('d-none')
+        }
+    }
+
+    $( document ).ready(function() {
+        function initAutocomplete() {
+            var myLatLng = {
+
+                lat: 23.811842872190343,
+                lng: 90.356331
+            };
+            const map = new google.maps.Map(document.getElementById("location_map_canvas"), {
+                center: {
+                    lat: 23.811842872190343,
+                    lng: 90.356331
+                },
+                zoom: 13,
+                mapTypeId: "roadmap",
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+            });
+
+            marker.setMap(map);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            google.maps.event.addListener(map, 'click', function(mapsMouseEvent) {
+                var coordinates = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2);
+                var coordinates = JSON.parse(coordinates);
+                var latlng = new google.maps.LatLng(coordinates['lat'], coordinates['lng']);
+                marker.setPosition(latlng);
+                map.panTo(latlng);
+
+                document.getElementById('latitude').value = coordinates['lat'];
+                document.getElementById('longitude').value = coordinates['lng'];
+
+                geocoder.geocode({
+                    'latLng': latlng
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            document.getElementById('address').value = results[1].formatted_address;
+                        }
+                    }
+                });
+            });
+            const input = document.getElementById("pac-input");
+            const searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+            let markers = [];
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+                markers.forEach((marker) => {
+                    marker.setMap(null);
+                });
+                markers = [];
+                const bounds = new google.maps.LatLngBounds();
+                places.forEach((place) => {
+                    if (!place.geometry || !place.geometry.location) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var mrkr = new google.maps.Marker({
+                        map,
+                        title: place.name,
+                        position: place.geometry.location,
+                    });
+                    google.maps.event.addListener(mrkr, "click", function(event) {
+                        document.getElementById('latitude').value = this.position.lat();
+                        document.getElementById('longitude').value = this.position.lng();
+
+                    });
+
+                    markers.push(mrkr);
+
+                    if (place.geometry.viewport) {
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+        }
+        initAutocomplete();
+    });
+
+    function deliveryAddressStore(form_id = 'delivery_address_store') {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        $.post({
+            url: 'https://grofresh-admin.6amtech.com/admin/pos/add-delivery-address',
+            data: $('#' + form_id).serializeArray(),
+            beforeSend: function() {
+                $('#loading').show();
+            },
+            success: function(data) {
+                if (data.errors) {
+                    for (var i = 0; i < data.errors.length; i++) {
+                        toastr.error(data.errors[i].message, {
+                            CloseButton: true,
+                            ProgressBar: true
+                        });
+                    }
+                } else {
+                    $('#del-add').empty().html(data.view);
+                }
+                updateCart();
+                $('.call-when-done').click();
+            },
+            complete: function() {
+                $('#loading').hide();
+            }
+        });
+    }
+
+    $('.js-data-example-ajax-2').select2()
+
+    $('#order_place').submit(function (eventObj) {
+        if ($('#customer').val()) {
+            $(this).append('<input type="hidden" name="user_id" value="' + $('#customer').val() + '" /> ');
+        }
+        return true;
+    });
+</script>
+        <script>
+        $(window).on('load', function () {
+            if ($(".navbar-vertical-content li.active").length) {
+                $('.navbar-vertical-content').animate({
+                    scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
+                }, 10);
+            }
+        });
+
+        var $rows = $('#navbar-vertical-content .navbar-nav > li');
+        $('#search-sidebar-menu').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+        <audio id="myAudio">
+            <source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+    var audio = document.getElementById("myAudio");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+</script>
+        <script>
+    $('#check-order').on('click', function(){
+        location.href = 'https://grofresh-admin.6amtech.com/admin/order/list/all';
+    })
+
+            setInterval(function () {
+            $.get({
+                url: 'https://grofresh-admin.6amtech.com/admin/get-restaurant-data',
+                dataType: 'json',
+                success: function (response) {
+                    let data = response.data;
+                    if (data.new_order > 0) {
+                        playAudio();
+                        $('#popup-modal').appendTo("body").modal('show');
+                    }
+                },
+            });
+        }, 10000);
+    
+    function route_alert(route, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = route;
+            }
+        })
+    }
+
+    $('.form-alert').on('click', function (){
+        let id = $(this).data('id');
+        let message = $(this).data('message');
+        form_alert(id, message)
+    });
+
+    function form_alert(id, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                $('#'+id).submit()
+            }
+        })
+    }
+
+    function call_demo(){
+        toastr.info('Disabled for demo version!')
+    }
+
+    $('.call-demo').click(function() {
+        if ('demo' === 'demo') {
+            call_demo();
+        }
+    });
+</script>
+        <script>
+
+    $('.status-change-alert').on('click', function (){
+        let url = $(this).data('route');
+        let message = $(this).data('message');
+        status_change_alert(url, message, event)
+    });
+
+    function status_change_alert(url, message, e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#107980',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = url;
+            }
+        })
+    }
+</script>
+        <script>
+    var initialImages = [];
+    $(window).on('load', function() {
+        $("form").find('img').each(function (index, value) {
+            initialImages.push(value.src);
+        })
+    })
+
+    $(document).ready(function() {
+        $('form').on('reset', function(e) {
+            $("form").find('img').each(function (index, value) {
+                $(value).attr('src', initialImages[index]);
+            })
+        });
+    });
+</script>
+        <script>
+    $(function(){
+        var owl = $('.single-item-slider');
+        owl.owlCarousel({
+            autoplay: false,
+            items:1,
+            onInitialized  : counter,
+            onTranslated : counter,
+            autoHeight: true,
+            dots: true,
+        });
+
+        function counter(event) {
+            var element   = event.target;         // DOM element, in this example .owl-carousel
+            var items     = event.item.count;     // Number of items
+            var item      = event.item.index + 1;     // Position of the current item
+
+            if(item > items) {
+                item = item - items
+            }
+            $('.slide-counter').html(+item+"/"+items)
+        }
+    });
+</script>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
+
+        // Disable mailto links
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+        // Disable tel links
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+    });
+
+    function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
+        if (element.nodeType === 3) { // Text node
+            // Use regular expressions to match email and phone number patterns
+            element.nodeValue = element.nodeValue
+                .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
+                    var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
+                    return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
+                })
+                .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
+                    if (match.length >= 8) {
+                        var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
+                        var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
+                        return firstChar + remainingAsterisks;
+                    } else {
+                        return match;  // Don't replace if the length is less than 10
+                    }
+                });
+        } else if (element.nodeType === 1) { // Element node
+            for (var i = 0; i < element.childNodes.length; i++) {
+                replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
+            }
+        }
+    }
+</script>
+
+        <script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+    </body>
+</html>
