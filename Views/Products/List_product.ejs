@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="csrf-token" content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Product List</title>
+        <link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+        <link rel="shortcut icon" href>
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
+    </head>
+    <body class="footer-offset" id="demo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-none" id="loading">
+                        <div class="loader-image">
+                            <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../Layout/Header') %>
+        <div id="headerFluid" class="d-none"></div>
+        <div id="headerDouble" class="d-none"></div>
+        <%- include('../Layout/Sidebar') %>
+        <main id="content" role="main" class="main pointer-event">
+            <div class="content container-fluid product-list-page">
+
+                <div class="page-header">
+                    <h1 class="page-header-title">
+                        <span class="page-header-icon">
+                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/products.png" class="w--24" alt>
+                        </span>
+                        <span>
+                            Product List
+                            <span class="badge badge-soft-secondary">33</span>
+                        </span>
+                    </h1>
+                </div>
+
+                <div class="row gx-2 gx-lg-3">
+                    <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
+
+                        <div class="card">
+
+                            <div class="card-header border-0">
+                                <div class="card--header justify-content-end max--sm-grow">
+                                    <form action="https://grofresh-admin.6amtech.com/admin/product/list" method="GET" class="mr-sm-auto">
+                                        <div class="input-group">
+                                            <input id="datatableSearch_" type="search" name="search" class="form-control" placeholder="Search by ID or name" aria-label="Search" value required
+                                                autocomplete="off">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="input-group-text">
+                                                    Search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="hs-unfold mr-2">
+                                        <a class="js-hs-unfold-invoker btn btn-sm btn-outline-primary-2 dropdown-toggle min-height-40" href="javascript:;" data-hs-unfold-options="{
+                                            &quot;target&quot;: &quot;#usersExportDropdown&quot;,
+                                            &quot;type&quot;: &quot;css-animation&quot;
+                                        }">
+                                            <i class="tio-download-to mr-1"></i> Export
+                                        </a>
+                                        <div id="usersExportDropdown" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right">
+                                            <span class="dropdown-header">Download
+                                                Options</span>
+                                            <a id="export-excel" class="dropdown-item" href="https://grofresh-admin.6amtech.com/admin/product/bulk-export">
+                                                <img class="avatar avatar-xss avatar-4by3 mr-2" src="https://grofresh-admin.6amtech.com/public/assets/admin/svg/components/excel.svg"
+                                                    alt="Image Description">
+                                                Excel
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a href="https://grofresh-admin.6amtech.com/admin/product/limited-stock" class="btn btn--primary-2 min-height-40">Limited stocks</a>
+                                    </div>
+                                    <div>
+                                        <a href="https://grofresh-admin.6amtech.com/admin/product/add-new" class="btn btn-primary min-height-40 py-2"><i class="tio-add"></i>
+                                            Add new product
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive datatable-custom">
+                                <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Product name</th>
+                                            <th>Selling price</th>
+                                            <th class="text-center">Total sale</th>
+                                            <th class="text-center">Show in daily needs</th>
+                                            <th class="text-center">Featured</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="set-rows">
+                                        <!-- Table rows will be dynamically populated here -->
+                                    </tbody>
+                                </table>
+                                <div class="page-area">
+                                    <nav>
+                                        <ul class="pagination">
+                                            <!-- Pagination links will be dynamically populated here -->
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col">
+                        <p class="font-size-sm mb-0">
+                            <span class="d-none d-sm-inline-block">Copyright © 2023, groFresh</span>
+                        </p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="d-flex justify-content-end">
+                            <ul class="list-inline list-separator">
+                                <li class="list-inline-item">
+                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/business-settings/store/ecom-setup">Store Settings</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/settings">Profile</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="hs-unfold">
+                                        <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="https://grofresh-admin.6amtech.com/admin">
+                                            <i class="tio-home-outlined"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <label class="badge badge-success text-capitalize">
+                                        Software Version 7.4
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="popup-modal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h2 class="order-check-colour">
+                                            <i class="tio-shopping-cart-outlined"></i> You have new order Check Please.
+                                        </h2>
+                                        <hr>
+                                        <button id="check-order" class="btn btn-primary">Ok let me check</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // Function to fetch data from the server based on page number
+            function fetchData(page) {
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+        
+                const requestOptions = {
+                    method: "GET",
+                    headers: myHeaders,
+                    redirect: "follow"
+                };
+        
+                fetch(`/api/v1/allProduct?page=${page}`, requestOptions)
+                    .then(response => response.json())
+                    .then(Prod => {
+                        console.log(Prod,"aaaa")
+                        // Update table rows
+                        const data =  Prod?.products || [];
+                        const tableBody = document.getElementById("set-rows");
+                        tableBody.innerHTML = ""; // Clear existing rows
+                        data.forEach((item,index) => {
+                            const row = `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>
+                                        <a href="${item.productLink}" class="product-list-media">
+                                            <img src="${item.image}">
+                                            <h6 class="name line--limit-2">${item.name}</h6>
+                                        </a>
+                                    </td>
+                                    <td class="pt-1 pb-3 pt-4">${item.price}</td>
+                                    <td class="text-center">${item.total_stock}</td>
+                                    <td>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="toggle-switch-input status-change-alert"
+                                                data-id="${item._id}"
+                                                data-message="You want to ${item.daily_needs === 1 ? 'disable' : 'enable'} this category"
+                                                ${item.daily_needs === 1 ? 'checked' : ''}>
+                                            <span class="toggle-switch-label text">
+                                                <span class="toggle-switch-indicator"></span>
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="toggle-switch-input status-change-alert"
+                                                data-id="${item._id}"
+                                                data-message="You want to ${item.is_featured === 1 ? 'disable' : 'enable'} this category"
+                                                ${item.is_featured === 1 ? 'checked' : ''}>
+                                            <span class="toggle-switch-label text">
+                                                <span class="toggle-switch-indicator"></span>
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="toggle-switch-input status-change-alert"
+                                                data-id="${item._id}"
+                                                data-message="You want to ${item.status === 1 ? 'disable' : 'enable'} this category"
+                                                ${item.status === 1 ? 'checked' : ''}>
+                                            <span class="toggle-switch-label text">
+                                                <span class="toggle-switch-indicator"></span>
+                                            </span>
+                                        </label>
+                                    </td>
+                                    <td class="pt-1 pb-3 pt-4">
+                                        <div class="btn--container justify-content-center">
+                                            <a class="action-btn" href="${item.editLink}">
+                                                <i class="tio-edit"></i>
+                                            </a>
+                                            <a class="action-btn btn--danger btn-outline-danger" href="javascript:" onclick="form_alert('product-${item.productId}','Want to delete this')">
+                                                <i class="tio-delete-outlined"></i>
+                                            </a>
+                                        </div>
+                                        <form action="${item.deleteLink}" method="post" id="product-${item.productId}">
+                                            <input type="hidden" name="_token" value="${item.token}" autocomplete="off">
+                                            <input type="hidden" name="_method" value="delete">
+                                        </form>
+                                    </td>
+                                </tr>
+                            `;
+                            tableBody.innerHTML += row;
+                        });
+        
+                        // Update pagination links
+                        const pagination = document.querySelector(".pagination");
+                        pagination.innerHTML = ""; // Clear existing links
+                        for (let i = 1; i <= data.totalPages; i++) {
+                            const li = document.createElement("li");
+                            li.classList.add("page-item");
+                            if (i === data.page) {
+                                li.classList.add("active");
+                                li.innerHTML = `<span class="page-link">${i}</span>`;
+                            } else {
+                                li.innerHTML = `<a class="page-link" href="javascript:void(0)" onclick="fetchData(${i})">${i}</a>`;
+                            }
+                            pagination.appendChild(li);
+                        }
+                    })
+                    .catch(error => console.error(error));
+            }
+        
+            // Initial data fetch (page 1)
+            fetchData(1);
+        </script>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
+            src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+        <script type="text/javascript"></script>
+        <script>
+    $(document).on('ready', function () {
+        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                return false;
+            }
+        });
+
+        $('.js-hs-unfold-invoker').each(function () {
+            var unfold = new HSUnfold($(this)).init();
+        });
+
+        $('.js-form-search').each(function () {
+            new HSFormSearch($(this)).init()
+        });
+
+        $('.js-select2-custom').each(function () {
+            var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+        $('.js-daterangepicker').daterangepicker();
+
+        $('.js-daterangepicker-times').daterangepicker({
+            timePicker: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'M/DD hh:mm A'
+            }
+        });
+    });
+</script>
+        <script>
+        function status_change_alert(url, message, e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure ',
+                text: message,
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: 'default',
+                confirmButtonColor: '#107980',
+                cancelButtonText: 'No',
+                confirmButtonText: 'Yes',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    location.href = url;
+                }
+            })
+        }
+</script>
+        <script>
+    function featured_status_change_alert(url, message, e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#107980',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = url;
+            }
+        })
+    }
+</script>
+        <script>
+        function daily_needs(id, status) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "https://grofresh-admin.6amtech.com/admin/product/daily-needs",
+                method: 'POST',
+                data: {
+                    id: id,
+                    status: status
+                },
+                success: function () {
+                    toastr.success('Daily need status updated successfully');
+                }
+            });
+        }
+    </script>
+        <script>
+        $(window).on('load', function () {
+            if ($(".navbar-vertical-content li.active").length) {
+                $('.navbar-vertical-content').animate({
+                    scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
+                }, 10);
+            }
+        });
+
+        var $rows = $('#navbar-vertical-content .navbar-nav > li');
+        $('#search-sidebar-menu').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+        <audio id="myAudio">
+            <source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+    var audio = document.getElementById("myAudio");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+</script>
+        <script>
+    $('#check-order').on('click', function(){
+        location.href = 'https://grofresh-admin.6amtech.com/admin/order/list/all';
+    })
+
+            setInterval(function () {
+            $.get({
+                url: 'https://grofresh-admin.6amtech.com/admin/get-restaurant-data',
+                dataType: 'json',
+                success: function (response) {
+                    let data = response.data;
+                    if (data.new_order > 0) {
+                        playAudio();
+                        $('#popup-modal').appendTo("body").modal('show');
+                    }
+                },
+            });
+        }, 10000);
+    
+    function route_alert(route, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = route;
+            }
+        })
+    }
+
+    $('.form-alert').on('click', function (){
+        let id = $(this).data('id');
+        let message = $(this).data('message');
+        form_alert(id, message)
+    });
+
+    function form_alert(id, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                $('#'+id).submit()
+            }
+        })
+    }
+
+    function call_demo(){
+        toastr.info('Disabled for demo version!')
+    }
+
+    $('.call-demo').click(function() {
+        if ('demo' === 'demo') {
+            call_demo();
+        }
+    });
+</script>
+        <script>
+
+    $('.status-change-alert').on('click', function (){
+        let url = $(this).data('route');
+        let message = $(this).data('message');
+        status_change_alert(url, message, event)
+    });
+
+    function status_change_alert(url, message, e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#107980',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = url;
+            }
+        })
+    }
+</script>
+        <script>
+    var initialImages = [];
+    $(window).on('load', function() {
+        $("form").find('img').each(function (index, value) {
+            initialImages.push(value.src);
+        })
+    })
+
+    $(document).ready(function() {
+        $('form').on('reset', function(e) {
+            $("form").find('img').each(function (index, value) {
+                $(value).attr('src', initialImages[index]);
+            })
+        });
+    });
+</script>
+        <script>
+    $(function(){
+        var owl = $('.single-item-slider');
+        owl.owlCarousel({
+            autoplay: false,
+            items:1,
+            onInitialized  : counter,
+            onTranslated : counter,
+            autoHeight: true,
+            dots: true,
+        });
+
+        function counter(event) {
+            var element   = event.target;         // DOM element, in this example .owl-carousel
+            var items     = event.item.count;     // Number of items
+            var item      = event.item.index + 1;     // Position of the current item
+
+            if(item > items) {
+                item = item - items
+            }
+            $('.slide-counter').html(+item+"/"+items)
+        }
+    });
+</script>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
+
+        // Disable mailto links
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+        // Disable tel links
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+    });
+
+    function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
+        if (element.nodeType === 3) { // Text node
+            // Use regular expressions to match email and phone number patterns
+            element.nodeValue = element.nodeValue
+                .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
+                    var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
+                    return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
+                })
+                .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
+                    if (match.length >= 8) {
+                        var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
+                        var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
+                        return firstChar + remainingAsterisks;
+                    } else {
+                        return match;  // Don't replace if the length is less than 10
+                    }
+                });
+        } else if (element.nodeType === 1) { // Element node
+            for (var i = 0; i < element.childNodes.length; i++) {
+                replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
+            }
+        }
+    }
+</script>
+
+        <script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+    </body>
+</html>

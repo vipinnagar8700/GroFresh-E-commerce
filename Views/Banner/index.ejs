@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="csrf-token" content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Add new banner</title>
+<link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+<link rel="shortcut icon" href>
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+<link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
+</head>
+<body class="footer-offset" id="demo">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="d-none" id="loading">
+<div class="loader-image">
+<img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
+</div>
+</div>
+</div>
+</div>
+</div>
+<%- include('../Layout/Header') %>
+<div id="headerFluid" class="d-none"></div>
+<div id="headerDouble" class="d-none"></div>
+<%- include('../Layout/Sidebar') %>
+<main id="content" role="main" class="main pointer-event">
+<div class="content container-fluid">
+<div class="page-header">
+<h1 class="page-header-title">
+<span class="page-header-icon">
+<img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/banner.png" class="w--20" alt="Banner">
+</span>
+<span>
+Banner setup
+</span>
+</h1>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<form action="https://grofresh-admin.6amtech.com/admin/banner/store" method="post" enctype="multipart/form-data">
+<input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <div class="row g-3">
+<div class="col-md-6">
+<div class="row g-3">
+<div class="col-12">
+<div class="form-group mb-0">
+<label class="input-label" for="exampleFormControlInput1">Title</label>
+<input type="text" name="title" value class="form-control" placeholder="New banner" maxlength="255" required>
+</div>
+</div>
+<div class="col-12">
+<div class="form-group mb-0">
+<label class="input-label" for="exampleFormControlSelect1">Item Type<span class="input-label-secondary">*</span></label>
+<select name="item_type" class="form-control show-item">
+<option value="product">Product</option>
+<option value="category">Category</option>
+</select>
+</div>
+</div>
+<div class="col-12">
+<div class="form-group mb-0" id="type-product">
+<label class="input-label" for="exampleFormControlSelect1">Product <span class="input-label-secondary">*</span></label>
+<select name="product_id" class="form-control js-select2-custom">
+<option value="48">78% Alcohol Hand Sanitizer</option>
+<option value="31">Beef Salted Bacon</option>
+<option value="32">Beef Steak</option>
+<option value="26">Cabbage</option>
+<option value="28">Carrot Imported</option>
+<option value="29">Chicken Thigh Boneless (12 pc)</option>
+<option value="39">Chili Powder</option>
+<option value="38">Cinnamon Whole</option>
+<option value="40">Cloves</option>
+<option value="42">Dairy Fresh Milk 0.9 % Fat</option>
+<option value="19">Farmer’s Choice Mango Juice</option>
+<option value="21">Fresh Orange Juice</option>
+<option value="44">Fresh White Bread</option>
+<option value="50">Glass cleaner Mop</option>
+<option value="24">Green Mango (Local) ± 50 gm</option>
+<option value="45">Honey Lime Jelly</option>
+<option value="41">Margarine Butte</option>
+<option value="47">Natural Bio Yogurt</option>
+<option value="37">Organic Almond Flour</option>
+<option value="20">Organic Coffee bean</option>
+<option value="23">Organic Pomegranate</option>
+<option value="22">Premium Quality Avocado</option>
+<option value="51">Premium Quality Body Lotion</option>
+<option value="46">Pure Mixed Fruits Jam</option>
+<option value="34">Red Tilapia</option>
+<option value="27">Red tomato (Local)</option>
+<option value="49">Rok Cleaner - Super Power Detergent</option>
+<option value="25">Round Lemon (Local) ± 50 gm</option>
+<option value="30">Salmon Fish Fillet</option>
+<option value="33">Shrimps Large Size (16-20 pcs)</option>
+<option value="43">Sunrise Milk 2L</option>
+<option value="36">Thai Jasmine Basmati Rice</option>
+<option value="35">Thai Jasmine Rice</option>
+</select>
+</div>
+<div class="form-group mb-0" id="type-category d-none">
+<label class="input-label" for="exampleFormControlSelect1">Category <span class="input-label-secondary">*</span></label>
+<select name="category_id" class="form-control js-select2-custom">
+<option value="4">Beverages</option>
+<option value="15">Breakfast</option>
+<option value="5">Cleaning</option>
+<option value="3">Cooking</option>
+<option value="1">Fruits and Vegetables</option>
+<option value="8">Health Care</option>
+<option value="2">Meat and Fish</option>
+<option value="7">Personal Care</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="d-flex flex-column justify-content-center h-100">
+<h5 class="text-center mb-3 text--title text-capitalize">
+Banner Image
+<small class="text-danger">* ( Ratio 2:1 )</small>
+</h5>
+<label class="upload--vertical">
+<input type="file" name="image" id="customFileEg1" class accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" hidden>
+<img id="viewer" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/upload-vertical.png" alt="Banner image" />
+</label>
+</div>
+</div>
+<div class="col-12">
+<div class="btn--container justify-content-end">
+<button type="reset" class="btn btn--reset">Reset</button>
+<button type="submit" class="btn btn--primary">Submit</button>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div class="card">
+<div class="card-header border-0">
+<div class="card--header justify-content-between max--sm-grow">
+<h5 class="card-title">Banner List <span class="badge badge-soft-secondary">5</span></h5>
+<form action="https://grofresh-admin.6amtech.com/admin/banner/add-new" method="GET">
+<div class="input-group">
+<input type="search" name="search" class="form-control" placeholder="Search by ID or name" aria-label="Search" value required autocomplete="off">
+<div class="input-group-append">
+<button type="submit" class="input-group-text">
+Search
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div class="table-responsive datatable-custom">
+<table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+<thead class="thead-light">
+<tr>
+<th class="border-0">SL</th>
+<th class="border-0">Banner image</th>
+<th class="border-0">Title</th>
+<th class="border-0">Banner type</th>
+<th class="text-center border-0">Status</th>
+<th class="text-center border-0">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>
+<div>
+<img class="img-vertical-150" src="https://grofresh-admin.6amtech.com/storage/app/public/banner/2023-11-21-655c6fac93c4b.png" alt="Banner image">
+</div>
+</td>
+<td>
+<span class="d-block font-size-sm text-body text-trim-25">
+Get up to 5% discount
+</span>
+</td>
+<td>
+Product : Premium Quality Avocado
+</td>
+<td>
+<label class="toggle-switch my-0">
+<input type="checkbox" class="toggle-switch-input status-change-alert" id="stocksCheckbox7" data-route="https://grofresh-admin.6amtech.com/admin/banner/status/7/0" data-message="You want to disable this banner" checked>
+<span class="toggle-switch-label mx-auto text">
+<span class="toggle-switch-indicator"></span>
+</span>
+</label>
+</td>
+<td>
+<div class="btn--container justify-content-center">
+<a class="action-btn" href="https://grofresh-admin.6amtech.com/admin/banner/edit/7">
+<i class="tio-edit"></i></a>
+<a class="action-btn btn--danger btn-outline-danger form-alert" href="javascript:" data-id="banner-7" data-message="Want to delete this">
+<i class="tio-delete-outlined"></i>
+</a>
+</div>
+<form action="https://grofresh-admin.6amtech.com/admin/banner/delete/7" method="post" id="banner-7">
+<input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <input type="hidden" name="_method" value="delete"> </form>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<div>
+<img class="img-vertical-150" src="https://grofresh-admin.6amtech.com/storage/app/public/banner/2023-11-21-655c6fe96aeaa.png" alt="Banner image">
+</div>
+</td>
+<td>
+<span class="d-block font-size-sm text-body text-trim-25">
+Big Sale
+</span>
+</td>
+<td>
+Category : Fruits and Vegetables
+</td>
+<td>
+<label class="toggle-switch my-0">
+<input type="checkbox" class="toggle-switch-input status-change-alert" id="stocksCheckbox6" data-route="https://grofresh-admin.6amtech.com/admin/banner/status/6/0" data-message="You want to disable this banner" checked>
+<span class="toggle-switch-label mx-auto text">
+<span class="toggle-switch-indicator"></span>
+</span>
+</label>
+</td>
+<td>
+<div class="btn--container justify-content-center">
+<a class="action-btn" href="https://grofresh-admin.6amtech.com/admin/banner/edit/6">
+<i class="tio-edit"></i></a>
+<a class="action-btn btn--danger btn-outline-danger form-alert" href="javascript:" data-id="banner-6" data-message="Want to delete this">
+<i class="tio-delete-outlined"></i>
+</a>
+</div>
+<form action="https://grofresh-admin.6amtech.com/admin/banner/delete/6" method="post" id="banner-6">
+<input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <input type="hidden" name="_method" value="delete"> </form>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<div>
+<img class="img-vertical-150" src="https://grofresh-admin.6amtech.com/storage/app/public/banner/2023-11-21-655c6ffe7cdc7.png" alt="Banner image">
+</div>
+</td>
+<td>
+<span class="d-block font-size-sm text-body text-trim-25">
+Free delivery
+</span>
+</td>
+<td>
+Category : Meat and Fish
+</td>
+<td>
+<label class="toggle-switch my-0">
+<input type="checkbox" class="toggle-switch-input status-change-alert" id="stocksCheckbox5" data-route="https://grofresh-admin.6amtech.com/admin/banner/status/5/0" data-message="You want to disable this banner" checked>
+<span class="toggle-switch-label mx-auto text">
+<span class="toggle-switch-indicator"></span>
+</span>
+</label>
+</td>
+<td>
+<div class="btn--container justify-content-center">
+<a class="action-btn" href="https://grofresh-admin.6amtech.com/admin/banner/edit/5">
+<i class="tio-edit"></i></a>
+<a class="action-btn btn--danger btn-outline-danger form-alert" href="javascript:" data-id="banner-5" data-message="Want to delete this">
+<i class="tio-delete-outlined"></i>
+</a>
+</div>
+<form action="https://grofresh-admin.6amtech.com/admin/banner/delete/5" method="post" id="banner-5">
+<input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <input type="hidden" name="_method" value="delete"> </form>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<div>
+<img class="img-vertical-150" src="https://grofresh-admin.6amtech.com/storage/app/public/banner/2023-11-21-655c702267b04.png" alt="Banner image">
+</div>
+</td>
+<td>
+<span class="d-block font-size-sm text-body text-trim-25">
+get up to 5% discount
+</span>
+</td>
+<td>
+Category : Cooking
+</td>
+<td>
+<label class="toggle-switch my-0">
+<input type="checkbox" class="toggle-switch-input status-change-alert" id="stocksCheckbox3" data-route="https://grofresh-admin.6amtech.com/admin/banner/status/3/0" data-message="You want to disable this banner" checked>
+<span class="toggle-switch-label mx-auto text">
+<span class="toggle-switch-indicator"></span>
+</span>
+</label>
+</td>
+<td>
+<div class="btn--container justify-content-center">
+<a class="action-btn" href="https://grofresh-admin.6amtech.com/admin/banner/edit/3">
+<i class="tio-edit"></i></a>
+<a class="action-btn btn--danger btn-outline-danger form-alert" href="javascript:" data-id="banner-3" data-message="Want to delete this">
+<i class="tio-delete-outlined"></i>
+</a>
+</div>
+<form action="https://grofresh-admin.6amtech.com/admin/banner/delete/3" method="post" id="banner-3">
+<input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <input type="hidden" name="_method" value="delete"> </form>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<div>
+<img class="img-vertical-150" src="https://grofresh-admin.6amtech.com/storage/app/public/banner/2021-06-21-60d0c45638f15.png" alt="Banner image">
+</div>
+</td>
+<td>
+<span class="d-block font-size-sm text-body text-trim-25">
+Flash Deal
+</span>
+</td>
+<td>
+Category : Beverages
+</td>
+<td>
+<label class="toggle-switch my-0">
+<input type="checkbox" class="toggle-switch-input status-change-alert" id="stocksCheckbox2" data-route="https://grofresh-admin.6amtech.com/admin/banner/status/2/1" data-message="You want to active this banner">
+<span class="toggle-switch-label mx-auto text">
+<span class="toggle-switch-indicator"></span>
+</span>
+</label>
+</td>
+<td>
+<div class="btn--container justify-content-center">
+<a class="action-btn" href="https://grofresh-admin.6amtech.com/admin/banner/edit/2">
+<i class="tio-edit"></i></a>
+<a class="action-btn btn--danger btn-outline-danger form-alert" href="javascript:" data-id="banner-2" data-message="Want to delete this">
+<i class="tio-delete-outlined"></i>
+</a>
+</div>
+<form action="https://grofresh-admin.6amtech.com/admin/banner/delete/2" method="post" id="banner-2">
+<input type="hidden" name="_token" value="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd" autocomplete="off"> <input type="hidden" name="_method" value="delete"> </form>
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tfoot>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="row justify-content-between align-items-center">
+<div class="col">
+<p class="font-size-sm mb-0">
+<span class="d-none d-sm-inline-block">Copyright © 2023, groFresh</span>
+</p>
+</div>
+<div class="col-auto">
+<div class="d-flex justify-content-end">
+<ul class="list-inline list-separator">
+<li class="list-inline-item">
+<a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/business-settings/store/ecom-setup">Store Settings</a>
+</li>
+<li class="list-inline-item">
+<a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/settings">Profile</a>
+</li>
+<li class="list-inline-item">
+<div class="hs-unfold">
+<a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="https://grofresh-admin.6amtech.com/admin">
+<i class="tio-home-outlined"></i>
+</a>
+</div>
+</li>
+<li class="list-inline-item">
+<label class="badge badge-success text-capitalize">
+Software Version 7.4
+</label>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="popup-modal">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-body">
+<div class="row">
+<div class="col-12">
+<div class="text-center">
+<h2 class="order-check-colour">
+<i class="tio-shopping-cart-outlined"></i> You have new order Check Please.
+</h2>
+<hr>
+<button id="check-order" class="btn btn-primary">Ok let me check</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+<script type="text/javascript"></script>
+<script>
+    $(document).on('ready', function () {
+        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                return false;
+            }
+        });
+
+        $('.js-hs-unfold-invoker').each(function () {
+            var unfold = new HSUnfold($(this)).init();
+        });
+
+        $('.js-form-search').each(function () {
+            new HSFormSearch($(this)).init()
+        });
+
+        $('.js-select2-custom').each(function () {
+            var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+        $('.js-daterangepicker').daterangepicker();
+
+        $('.js-daterangepicker-times').daterangepicker({
+            timePicker: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'M/DD hh:mm A'
+            }
+        });
+    });
+</script>
+<script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/banner.js"></script>
+<script>
+        $(window).on('load', function () {
+            if ($(".navbar-vertical-content li.active").length) {
+                $('.navbar-vertical-content').animate({
+                    scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
+                }, 10);
+            }
+        });
+
+        var $rows = $('#navbar-vertical-content .navbar-nav > li');
+        $('#search-sidebar-menu').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+<audio id="myAudio">
+<source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3" type="audio/mpeg">
+</audio>
+<script>
+    var audio = document.getElementById("myAudio");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+</script>
+<script>
+    $('#check-order').on('click', function(){
+        location.href = 'https://grofresh-admin.6amtech.com/admin/order/list/all';
+    })
+
+            setInterval(function () {
+            $.get({
+                url: 'https://grofresh-admin.6amtech.com/admin/get-restaurant-data',
+                dataType: 'json',
+                success: function (response) {
+                    let data = response.data;
+                    if (data.new_order > 0) {
+                        playAudio();
+                        $('#popup-modal').appendTo("body").modal('show');
+                    }
+                },
+            });
+        }, 10000);
+    
+    function route_alert(route, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = route;
+            }
+        })
+    }
+
+    $('.form-alert').on('click', function (){
+        let id = $(this).data('id');
+        let message = $(this).data('message');
+        form_alert(id, message)
+    });
+
+    function form_alert(id, message) {
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#01684b',
+            cancelButtonText: 'No',
+            confirmButtonText: 'Yes',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                $('#'+id).submit()
+            }
+        })
+    }
+
+    function call_demo(){
+        toastr.info('Disabled for demo version!')
+    }
+
+    $('.call-demo').click(function() {
+        if ('demo' === 'demo') {
+            call_demo();
+        }
+    });
+</script>
+<script>
+
+    $('.status-change-alert').on('click', function (){
+        let url = $(this).data('route');
+        let message = $(this).data('message');
+        status_change_alert(url, message, event)
+    });
+
+    function status_change_alert(url, message, e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ',
+            text: message,
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: 'default',
+            confirmButtonColor: '#107980',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                location.href = url;
+            }
+        })
+    }
+</script>
+<script>
+    var initialImages = [];
+    $(window).on('load', function() {
+        $("form").find('img').each(function (index, value) {
+            initialImages.push(value.src);
+        })
+    })
+
+    $(document).ready(function() {
+        $('form').on('reset', function(e) {
+            $("form").find('img').each(function (index, value) {
+                $(value).attr('src', initialImages[index]);
+            })
+        });
+    });
+</script>
+<script>
+    $(function(){
+        var owl = $('.single-item-slider');
+        owl.owlCarousel({
+            autoplay: false,
+            items:1,
+            onInitialized  : counter,
+            onTranslated : counter,
+            autoHeight: true,
+            dots: true,
+        });
+
+        function counter(event) {
+            var element   = event.target;         // DOM element, in this example .owl-carousel
+            var items     = event.item.count;     // Number of items
+            var item      = event.item.index + 1;     // Position of the current item
+
+            if(item > items) {
+                item = item - items
+            }
+            $('.slide-counter').html(+item+"/"+items)
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
+
+        // Disable mailto links
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+        // Disable tel links
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+            });
+        });
+    });
+
+    function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
+        if (element.nodeType === 3) { // Text node
+            // Use regular expressions to match email and phone number patterns
+            element.nodeValue = element.nodeValue
+                .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
+                    var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
+                    return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
+                })
+                .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
+                    if (match.length >= 8) {
+                        var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
+                        var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
+                        return firstChar + remainingAsterisks;
+                    } else {
+                        return match;  // Don't replace if the length is less than 10
+                    }
+                });
+        } else if (element.nodeType === 1) { // Element node
+            for (var i = 0; i < element.childNodes.length; i++) {
+                replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
+            }
+        }
+    }
+</script>
+
+<script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+</script>
+</body>
+</html>

@@ -52,7 +52,7 @@ const createProductCategory = asyncHandler(async (req, res) => {
     }
 
     const newCategory = await ProductCategory.create(req.body);
-    res.status(201).json(newCategory);
+    res.status(201).json({message:'Product Category Create Sucessfully!',status:true});
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -84,14 +84,19 @@ const singleProductCategory = asyncHandler(async (req, res) => {
 // Delete a single product category by ID
 const deleteProductCategory = asyncHandler(async (req, res) => {
   try {
-    const category = await ProductCategory.findById(req.params.id);
-    if (!category) {
-      return res.status(404).json({ message: 'Category not found' });
+    // Finding the product category by ID and deleting it
+    const deletedCategory = await ProductCategory.findByIdAndDelete(req.params.id);
+    
+    // If category does not exist, return a 404 response
+    if (!deletedCategory) {
+      return res.status(404).json({ message: 'Category not found',status:false });
     }
-    await category.remove();
-    res.json({ message: 'Category deleted successfully' });
+
+    // Sending a success response
+    res.json({ message: 'Category deleted successfully' ,status:true});
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    // If an error occurs, sending a 500 status response with the error message
+    res.status(500).json({ message: err.message ,status:false});
   }
 });
 
@@ -103,7 +108,7 @@ const updateProductCategory = asyncHandler(async (req, res) => {
     let updatedData = req.body;
     let imageUrl;
     const file = req.file;
-
+console.log(updatedData,id)
     if (file) {
       // Upload image to Cloudinary
       const result = await cloudinary.uploader.upload(file.path, {
@@ -115,18 +120,76 @@ const updateProductCategory = asyncHandler(async (req, res) => {
 
     const updatedCategory = await ProductCategory.findByIdAndUpdate(id, updatedData, { new: true });
     if (!updatedCategory) {
-      return res.status(404).json({ message: 'Category not found' });
+      return res.status(404).json({ message: 'Category not found',status:false });
     }
-    res.json(updatedCategory);
+    res.json({message:'Category Data Sucessfully updated!',status:true,data:updatedCategory});
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message,status:false });
   }
 });
+
+const updateProductCategoryStatus = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the category by ID
+    const category = await ProductCategory.findById(id);
+
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' ,status:false});
+    }
+
+    // Toggle the status
+    const newStatus = category.status === 'pending' ? 'active' : 'pending';
+
+    // Update the status
+    category.status = newStatus;
+    const updatedCategory = await category.save();
+
+    // Send the updated category as a response
+    res.json({message:'Status Updated Successfully!',status:true});
+  } catch (err) {
+    // Handle any errors that occur during the process
+    res.status(500).json({ message: err.message, status:false});
+  }
+})
+
+const updateProductCategoryPriority = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { priority } = req.body;
+
+    // Validate the priority value
+    if (!priority || typeof priority !== 'number') {
+      return res.status(400).json({ message: 'Invalid priority value', status: false });
+    }
+
+    // Find the category by ID
+    const category = await ProductCategory.findById(id);
+
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found', status: false });
+    }
+
+    // Update the priority
+    category.priority = priority;
+
+    // Save the updated category
+    const updatedCategory = await category.save();
+
+    // Send the updated category as a response
+    res.json({ message: 'Priority Updated Successfully!', status: true, updatedCategory });
+  } catch (err) {
+    // Handle any errors that occur during the process
+    res.status(500).json({ message: err.message, status: false });
+  }
+});
+
 
 module.exports = {
   createProductCategory,
   allProductCategories,
   singleProductCategory,
   updateProductCategory,
-  deleteProductCategory,
+  deleteProductCategory,updateProductCategoryStatus,updateProductCategoryPriority
 };

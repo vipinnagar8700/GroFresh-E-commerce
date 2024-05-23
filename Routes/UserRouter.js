@@ -5,8 +5,8 @@ const { editDoctor, UpdateDoctor, deleteDoctor, AllDoctors, UpdateDoctorSocail_M
 // Multer configuration
 const path = require('path');
 const multer = require('multer');
-const { createProductCategory, singleProductCategory, deleteProductCategory, updateProductCategory, allProductCategories } = require('../controllers/ProductCategoryController');
-const { createProductSubCategory, singleProductSubCategory, updateProductSubCategory, deleteProductSubCategory, allProductSubCategories } = require('../controllers/ProductSubCategoryController');
+const { createProductCategory, singleProductCategory, deleteProductCategory, updateProductCategory, allProductCategories, updateProductCategoryStatus, updateProductCategoryPriority } = require('../controllers/ProductCategoryController');
+const { createProductSubCategory, singleProductSubCategory, updateProductSubCategory, deleteProductSubCategory, allProductSubCategories, updateSubProductCategoryStatus } = require('../controllers/ProductSubCategoryController');
 const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct, AllFeaturedProduct, AllDailyNeedProduct, ProductFilter, AllCategoryClilds, AllSubCategoryClilds } = require('../controllers/ProductController');
 const { createattribute, singleattribute, deleteattribute, updateattribute, allProductattribute } = require('../controllers/ProductCategoryController copy');
 const { createBanner, allProductBanner, singleBanner, updateBanner, deleteBanner } = require('../controllers/BannerController');
@@ -58,16 +58,19 @@ router.get('/AllDeliveryMan',AllDeliveryMan)
 //  Product Category
 router.post('/createProductCategory',upload.single('image'), createProductCategory);
 router.get('/singleProductCategory/:id', singleProductCategory);
-router.put('/updateProductCategory/:id', upload.single('image'),authenticateToken, updateProductCategory);
-router.delete('/deleteProductCategory/:id',authenticateToken, deleteProductCategory);
+router.put('/updateProductCategory/:id', upload.single('image'), updateProductCategory);
+router.delete('/deleteProductCategory/:id', deleteProductCategory);
 router.get('/categories',allProductCategories);
+router.put('/updateProductCategoryStatus/:id',updateProductCategoryStatus);
+router.put('/updateProductCategoryPriority/:id',updateProductCategoryPriority);
 
 // Product Sub Category
 router.post('/createProductSubCategory',upload.single('image'), createProductSubCategory);
 router.get('/singleProductSubCategory/:id', singleProductSubCategory);
-router.put('/updateProductSubCategory/:id', upload.single('image'),authenticateToken, updateProductSubCategory);
-router.delete('/deleteProductSubCategory/:id',authenticateToken, deleteProductSubCategory);
+router.put('/updateProductSubCategory/:id', upload.single('image'), updateProductSubCategory);
+router.delete('/deleteProductSubCategory/:id', deleteProductSubCategory);
 router.get('/allProductSubCategories',allProductSubCategories) ;
+router.put('/updateSubProductCategoryStatus/:id',updateSubProductCategoryStatus);
 
 // Products;
 router.post('/createProduct',upload.single('image'), createProduct);
@@ -137,24 +140,5 @@ router.delete('/deleteDeliveryTimeSlotById/:id', deleteDeliveryTimeSlotById);
 router.get('/AllAgents',AllAgents)
 router.get('/getAllUsersByAgent/:id',getAllUsersByAgent)
 router.post('/createUserByAgent',createUserByAgent)
-// // Doctor
-// router.get('/AllDoctors', AllDoctors)
-// router.get('/editDoctor/:id', editDoctor)
-// router.put('/UpdateDoctor/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'ClinicImage', maxCount: 5 }]), authenticateToken, UpdateDoctor);
-// router.put('/UpdateDoctorRegister/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'ClinicImage', maxCount: 5 }]), UpdateDoctor);
-// router.delete('/deleteDoctor/:id',authenticateToken, deleteDoctor)
-// router.put('/UpdateDoctorSocail_Media/:id',authenticateToken, UpdateDoctorSocail_Media)
-// router.put('/UpdateDoctorBankDetails',authenticateToken, upload.fields([
-//     { name: 'Aadhar_image', maxCount: 1 },
-//     { name: 'Pan_image', maxCount: 1 }
-// ]),UpdateDoctorBankDetails)
-// router.post('/changePassword/:resetToken',authenticateToken,changePassword)
-// router.get("/doctors/filter", FilterDoctors);
-
-// // admin
-// router.put('/Accept_User/:id',authenticateToken, Accept_User)
-// router.get('/edit_admin_profile/:id',edit_admin_profile,authenticateToken);
-// router.put('/Update_admin_profile/:id',upload.single('image'),Update_admin_profile,authenticateToken);
-// router.post('/register_admin',authenticateToken,register_admin);
 
 module.exports = router;
