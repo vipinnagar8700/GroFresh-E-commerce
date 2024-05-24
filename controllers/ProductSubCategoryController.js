@@ -32,6 +32,17 @@ const singleProductSubCategory = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+const singleProductSubCategory_category = async (req, res) => {
+  try {
+    const category = await ProductSubCategory.findOne({Main_Category:req.params.id}).populate('Main_Category');
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+    res.json(category);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 // Delete a single product category by ID
 const deleteProductSubCategory = async (req, res) => {
     try {
@@ -90,6 +101,6 @@ module.exports = {
     allProductSubCategories,
     singleProductSubCategory,
     updateProductSubCategory,
-    deleteProductSubCategory,updateSubProductCategoryStatus
+    deleteProductSubCategory,updateSubProductCategoryStatus,singleProductSubCategory_category
   };
   

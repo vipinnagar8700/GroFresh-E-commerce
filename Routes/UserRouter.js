@@ -6,7 +6,7 @@ const { editDoctor, UpdateDoctor, deleteDoctor, AllDoctors, UpdateDoctorSocail_M
 const path = require('path');
 const multer = require('multer');
 const { createProductCategory, singleProductCategory, deleteProductCategory, updateProductCategory, allProductCategories, updateProductCategoryStatus, updateProductCategoryPriority } = require('../controllers/ProductCategoryController');
-const { createProductSubCategory, singleProductSubCategory, updateProductSubCategory, deleteProductSubCategory, allProductSubCategories, updateSubProductCategoryStatus } = require('../controllers/ProductSubCategoryController');
+const { createProductSubCategory, singleProductSubCategory, updateProductSubCategory, deleteProductSubCategory, allProductSubCategories, updateSubProductCategoryStatus, singleProductSubCategory_category } = require('../controllers/ProductSubCategoryController');
 const { createProduct, singleProduct, deleteProduct, updateProduct, AllProduct, AllFeaturedProduct, AllDailyNeedProduct, ProductFilter, AllCategoryClilds, AllSubCategoryClilds } = require('../controllers/ProductController');
 const { createattribute, singleattribute, deleteattribute, updateattribute, allProductattribute } = require('../controllers/ProductCategoryController copy');
 const { createBanner, allProductBanner, singleBanner, updateBanner, deleteBanner } = require('../controllers/BannerController');
@@ -69,8 +69,9 @@ router.post('/createProductSubCategory',upload.single('image'), createProductSub
 router.get('/singleProductSubCategory/:id', singleProductSubCategory);
 router.put('/updateProductSubCategory/:id', upload.single('image'), updateProductSubCategory);
 router.delete('/deleteProductSubCategory/:id', deleteProductSubCategory);
-router.get('/allProductSubCategories',allProductSubCategories) ;
+router.get('/allProductSubCategories',allProductSubCategories);
 router.put('/updateSubProductCategoryStatus/:id',updateSubProductCategoryStatus);
+router.get('/singleProductSubCategory_category/:id',singleProductSubCategory_category);
 
 // Products;
 router.post('/createProduct',upload.single('image'), createProduct);

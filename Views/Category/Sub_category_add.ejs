@@ -91,10 +91,9 @@
                                 <div class="card--header">
                                     <h5 class="card-title">Sub Category Table <span id="categoryCount" class="badge badge-soft-secondary">15</span> </h5>
 
-                                    <form action="https://grofresh-admin.6amtech.com/admin/category/add-sub-category" method="GET">
+                                    <form id="searchForm" action="/admin/category/add-sub-category" method="GET">
                                         <div class="input-group">
-                                            <input id="datatableSearch_" type="search" name="search" class="form-control pl-5" placeholder="Search by Name" aria-label="Search" value required
-                                                autocomplete="off">
+                                            <input id="datatableSearch_" type="search" name="search" class="form-control pl-5" placeholder="Search by Name" aria-label="Search" required autocomplete="off">
                                             <i class="tio-search tio-input-search"></i>
                                             <div class="input-group-append">
                                                 <button type="submit" class="input-group-text">
@@ -154,7 +153,13 @@
             </div>
         </main>
         <script>
-            function fetchData() {
+            document.getElementById('searchForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                const searchText = document.getElementById('datatableSearch_').value.trim(); // Get the search text
+                fetchData(searchText); // Call the fetch function with search text
+            });
+        
+            function fetchData(searchText = '') {
                 const myHeaders = new Headers();
         
                 const requestOptions = {
@@ -168,7 +173,13 @@
                     .then((data) => {
                         const setRows = document.getElementById('set-rows');
                         setRows.innerHTML = ""; // Clear existing rows before appending new ones
-                        data.forEach((category, index) => {
+                        const filteredCategories = data.filter(category => {
+                            // Assuming you want to filter based on category name
+                            return category.SubCategory_name.toLowerCase().includes(searchText.toLowerCase()) || 
+           category.Main_Category.Category_name.toLowerCase().includes(searchText.toLowerCase());
+                        });
+                        console.log(filteredCategories, "filteredCategories");
+                        filteredCategories.forEach((category, index) => {
                             const row = `
                                 <tr>
                                     <td>${index + 1}</td>
@@ -204,98 +215,77 @@
                             `;
                             setRows.insertAdjacentHTML('beforeend', row);
                         });
-                        document.getElementById('categoryCount').innerText = data.length;
+                        document.getElementById('categoryCount').innerText = filteredCategories.length;
+        
+                        // Attach event listeners to delete buttons
                         const deleteButtons = document.querySelectorAll('.form-alert');
-                            deleteButtons.forEach(button => {
-                                button.addEventListener('click', function (event) {
-                                    event.preventDefault(); // Prevent the default action of the anchor tag
-
-                                    // Get the category ID from the data-id attribute
-                                    const categoryId = button.dataset.id;
-                                    console.log(categoryId, "categoryIdcategoryId")
-                                    // Get confirmation message
-                                    const confirmationMessage = button.dataset.message;
-
-                                    // Ask for confirmation before proceeding
-                                    if (confirm(confirmationMessage)) {
-                                        // Call the deleteCategory function passing the category ID
-                                        deleteCategory(categoryId);
-                                    }
-                                });
+                        deleteButtons.forEach(button => {
+                            button.addEventListener('click', function (event) {
+                                event.preventDefault(); // Prevent the default action of the anchor tag
+                                const categoryId = button.dataset.id;
+                                const confirmationMessage = button.dataset.message;
+                                if (confirm(confirmationMessage)) {
+                                    deleteCategory(categoryId);
+                                }
                             });
+                        });
+        
+                        // Attach event listeners to status change buttons
                         const StatusButtons = document.querySelectorAll('.status-change-alert');
-                            StatusButtons.forEach(button => {
-                                button.addEventListener('click', function (event) {
-                                    event.preventDefault(); // Prevent the default action
-
-                                    // Get the category ID from the data-id attribute
-                                    const categoryId = button.dataset.id;
-                                    console.log(categoryId, "categoryId");
-
-                                    // Get the route from the data-route attribute
-
-                                    // Get confirmation message
-                                    const message = button.dataset.message;
-
-                                    // Ask for confirmation before proceeding
-                                    const userConfirmed = confirm(message);
-                                    if (userConfirmed) {
-                                        // Proceed with the status change
-                                        fetch(`/api/v1/updateSubProductCategoryStatus/${categoryId}`, {
-                                            method: 'PUT',
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
+                        StatusButtons.forEach(button => {
+                            button.addEventListener('click', function (event) {
+                                event.preventDefault(); // Prevent the default action
+                                const categoryId = button.dataset.id;
+                                const message = button.dataset.message;
+                                if (confirm(message)) {
+                                    fetch(`/api/v1/updateSubProductCategoryStatus/${categoryId}`, {
+                                        method: 'PUT',
+                                        headers: { 'Content-Type': 'application/json' },
+                                    })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Failed to update category status');
+                                            }
+                                            return response.json();
                                         })
-                                            .then(response => {
-                                                if (!response.ok) {
-                                                    throw new Error('Failed to update category status');
-                                                }
-                                                return response.json();
-                                            })
-                                            .then(result => {
-                                                // Handle success response
-                                                console.log(result);
-                                                toastr.success(result?.message);
-                                                fetchData();
-                                            })
-                                            .catch(error => {
-                                                // Handle error response
-                                                console.error('Error:', error);
-                                                toastr.error('Error occurred while updating category status.');
-                                            });
-                                    }
-                                });
+                                        .then(result => {
+                                            console.log(result);
+                                            toastr.success(result?.message);
+                                            fetchData();
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            toastr.error('Error occurred while updating category status.');
+                                        });
+                                }
                             });
+                        });
                     })
                     .catch((error) => console.error(error));
             }
-         
+        
             function deleteCategory(categoryId) {
-                    console.log(categoryId, "categoryId")
-                    const myHeaders = new Headers();
-                    myHeaders.append("Content-Type", "application/json");
-
-                    const requestOptions = {
-                        method: "DELETE",
-                        headers: myHeaders,
-                        redirect: "follow"
-                    };
-
-                    fetch(`/api/v1/deleteProductSubCategory/${categoryId}`, requestOptions)
-                        .then((response) => response.json())
-                        .then((result) => {
-                            console.log(result);
-                            toastr.success(result?.message);
-                            // After successful deletion, fetch and display categories again
-                            fetchData();
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            // Show Toastr message on error
-                            toastr.error('Error occurred while adding Product Category.');
-                        });
-                }
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+        
+                const requestOptions = {
+                    method: "DELETE",
+                    headers: myHeaders,
+                    redirect: "follow"
+                };
+        
+                fetch(`/api/v1/deleteProductSubCategory/${categoryId}`, requestOptions)
+                    .then((response) => response.json())
+                    .then((result) => {
+                        toastr.success(result?.message);
+                        fetchData();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        toastr.error('Error occurred while deleting Product Category.');
+                    });
+            }
+        
             document.addEventListener('DOMContentLoaded', function () {
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
@@ -323,29 +313,24 @@
                 // Submit form on button click
                 const submitButton = document.querySelector('.btn--primary');
                 submitButton.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevent default form submission
-        
+                    event.preventDefault();
                     const subCategoryName = document.querySelector('input[name="name[]"]').value;
                     const mainCategoryId = document.querySelector('#exampleFormControlSelect1').value;
-        
                     const raw = JSON.stringify({
                         "SubCategory_name": subCategoryName,
                         "Main_Category": mainCategoryId
                     });
-        
                     const requestOptions = {
                         method: "POST",
                         headers: myHeaders,
                         body: raw,
                         redirect: "follow"
                     };
-        
-                    // Send POST request to create product subcategory
                     fetch("/api/v1/createProductSubCategory", requestOptions)
                         .then((response) => response.json())
                         .then((result) => {
                             toastr.success(result.message);
-                            fetchData(); // Call fetchData() to update table after successful submission
+                            fetchData();
                         })
                         .catch((error) => {
                             toastr.error(error.message);
@@ -354,12 +339,10 @@
             });
         
             // Call fetchData() when the document is loaded to populate the table initially
-            document.addEventListener('DOMContentLoaded', fetchData);
+            document.addEventListener('DOMContentLoaded', () => fetchData());
         </script>
         
-        <script>
-           
-        </script>
+       
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
             src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
         <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>

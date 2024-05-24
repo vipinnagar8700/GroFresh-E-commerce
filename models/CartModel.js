@@ -27,15 +27,22 @@ CartSchema.methods.addProduct = async function(productId, quantity = 1) {
 
 
 // Method to decrease product quantity in Cart
+// Method to decrease product quantity in Cart
 CartSchema.methods.decreaseProductQuantity = async function(productId) {
     const existingProductIndex = this.products.findIndex(item => item.product.equals(productId));
-    
-    if (existingProductIndex !== -1 && this.products[existingProductIndex].quantity > 1) {
-        // If product exists in the cart and its quantity is greater than 1, decrease its quantity by 1
-        this.products[existingProductIndex].quantity -= 1;
-        
+
+    if (existingProductIndex !== -1) {
+        if (this.products[existingProductIndex].quantity > 1) {
+            // If product quantity is greater than 1, decrease its quantity by 1
+            this.products[existingProductIndex].quantity -= 1;
+        } else {
+            // If product quantity is 1, remove the product from the cart
+            this.products.splice(existingProductIndex, 1);
+        }
+
         await this.save();
     }
 };
+
 //Export the model
 module.exports = mongoose.model('Cart', CartSchema);

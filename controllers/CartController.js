@@ -23,16 +23,30 @@ const addToCart = async (req, res) => {
 // Decrease product quantity in cart
 const decreaseProductQuantity = async (req, res) => {
     try {
-        const userId = req.user.userId; 
+        const userId = req.user.userId;
         const { productId } = req.body;
-        
+
         // Find user's cart
         const cart = await CartModel.findOne({ customer: userId });
-        
+
         if (!cart) {
             return res.status(404).json({ message: 'Cart not found', status: false });
         }
-        
+
+        // Check if the product exists in the cart
+        const productIndex = cart.products.findIndex(product => product.product.toString() === productId);
+        if (productIndex === -1) {
+            return res.status(404).json({ message: 'Product not found in the cart', status: false });
+        }
+
+        // Check if the product quantity is already 0
+        if (cart.products[productIndex].quantity === 0) {
+            // Remove the product from the cart
+            cart.products.splice(productIndex, 1);
+            await cart.save();
+            return res.status(200).json({ message: 'Product removed from the cart', status: true });
+        }
+
         // Decrease product quantity
         await cart.decreaseProductQuantity(productId);
 
@@ -42,6 +56,7 @@ const decreaseProductQuantity = async (req, res) => {
         res.status(500).json({ message: 'Internal server error', status: false });
     }
 };
+
 
 // List products in cart
 const listCartProducts = async (req, res) => {

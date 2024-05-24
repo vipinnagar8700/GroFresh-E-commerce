@@ -53,10 +53,9 @@
                     <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
 
                         <div class="card">
-
                             <div class="card-header border-0">
                                 <div class="card--header justify-content-end max--sm-grow">
-                                    <form action="https://grofresh-admin.6amtech.com/admin/product/list" method="GET" class="mr-sm-auto">
+                                    <form id="searchForm" action="/admin/product/list" method="GET">
                                         <div class="input-group">
                                             <input id="datatableSearch_" type="search" name="search" class="form-control" placeholder="Search by ID or name" aria-label="Search" value required
                                                 autocomplete="off">
@@ -85,10 +84,10 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="https://grofresh-admin.6amtech.com/admin/product/limited-stock" class="btn btn--primary-2 min-height-40">Limited stocks</a>
+                                        <a href="/admin/product/limited-stock" class="btn btn--primary-2 min-height-40">Limited stocks</a>
                                     </div>
                                     <div>
-                                        <a href="https://grofresh-admin.6amtech.com/admin/product/add-new" class="btn btn-primary min-height-40 py-2"><i class="tio-add"></i>
+                                        <a href="/admin/product/add-new" class="btn btn-primary min-height-40 py-2"><i class="tio-add"></i>
                                             Add new product
                                         </a>
                                     </div>
@@ -127,39 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col">
-                        <p class="font-size-sm mb-0">
-                            <span class="d-none d-sm-inline-block">Copyright © 2023, groFresh</span>
-                        </p>
-                    </div>
-                    <div class="col-auto">
-                        <div class="d-flex justify-content-end">
-                            <ul class="list-inline list-separator">
-                                <li class="list-inline-item">
-                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/business-settings/store/ecom-setup">Store Settings</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="list-separator-link" href="https://grofresh-admin.6amtech.com/admin/settings">Profile</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <div class="hs-unfold">
-                                        <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="https://grofresh-admin.6amtech.com/admin">
-                                            <i class="tio-home-outlined"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="list-inline-item">
-                                    <label class="badge badge-success text-capitalize">
-                                        Software Version 7.4
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           <%- include('../Layout/Footer')%>
             <div class="modal fade" id="popup-modal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -181,8 +148,14 @@
             </div>
         </main>
         <script>
+            document.getElementById('searchForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                const searchText = document.getElementById('datatableSearch_').value.trim(); // Get the search text
+                fetchData({ page: 1, searchText }); // Call the fetch function with search text
+            });
+        
             // Function to fetch data from the server based on page number
-            function fetchData(page) {
+            function fetchData({page,searchText = ''}) {
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
         
@@ -199,8 +172,15 @@
                         // Update table rows
                         const data =  Prod?.products || [];
                         const tableBody = document.getElementById("set-rows");
-                        tableBody.innerHTML = ""; // Clear existing rows
-                        data.forEach((item,index) => {
+                        tableBody.innerHTML = ""; 
+                        const filteredCategories = data.filter(category => {
+                            // Assuming you want to filter based on category name
+                            return category.name.toLowerCase().includes(searchText.toLowerCase()) || 
+                           category._id.toLowerCase().includes(searchText.toLowerCase());
+                        });
+                        console.log(searchText,"searchText")
+                        console.log(filteredCategories, "filteredProducts");// Clear existing rows
+                        filteredCategories.forEach((item,index) => {
                             const row = `
                                 <tr>
                                     <td>${index + 1}</td>
@@ -377,7 +357,7 @@
                 }
             });
             $.ajax({
-                url: "https://grofresh-admin.6amtech.com/admin/product/daily-needs",
+                url: "/admin/product/daily-needs",
                 method: 'POST',
                 data: {
                     id: id,

@@ -9,13 +9,11 @@ const dbConnect = require("../config/db");
 const path = require('path');
 
 
-
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 dbConnect();
-app.use(express.static("public"));
-
+app.use(express.static('public'))
 app.use((req, res, next) => {
   console.log("Request received:", req.method, req.url);
   next();
@@ -45,9 +43,11 @@ app.get("/admin/pos/orders", (req, res) => {
 app.get("/admin/orders/list/all", (req, res) => {
   res.render('Order/All_order')
 });
+
 app.get("/admin/orders/list/pending", (req, res) => {
   res.render('Order/Pending_order')
 });
+
 app.get("/admin/orders/list/confirmed", (req, res) => {
   res.render('Order/Confirmed_order')
 });
@@ -58,9 +58,14 @@ app.get("/admin/orders/list/processing", (req, res) => {
 app.get("/admin/orders/list/processing", (req, res) => {
   res.render('Order/Processing_order')
 });
+
 app.get("/admin/orders/list/delivered", (req, res) => {
   res.render('Order/Delivered_order')
 });
+app.get("/admin/product/add-new", (req, res) => {
+  res.render('Products/Add_product')
+});
+
 app.get("/admin/orders/list/returned", (req, res) => {
   res.render('Order/Returned_order')
 });
@@ -68,18 +73,23 @@ app.get("/admin/orders/list/returned", (req, res) => {
 app.get("/admin/orders/list/failed", (req, res) => {
   res.render('Order/Failed_order')
 });
+
 app.get("/admin/orders/list/canceled", (req, res) => {
   res.render('Order/Canceled_order')
 });
+
 app.get("/admin/orders/list/processing", (req, res) => {
   res.render('Order/Processing_order')
 });
+
 app.get("/admin/orders/list/out_for_delivery", (req, res) => {
   res.render('Order/Out_For_Delivered_order')
 });
+
 app.get("/admin/category/add", (req, res) => {
   res.render('Category/Category_add')
 });
+
 app.get("/admin/category/add-sub-category", (req, res) => {
   res.render('Category/Sub_category_add')
 });
@@ -112,7 +122,9 @@ app.get("/", (req, res) => {
   res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
   // res.render('Auth/login')
 });
-
+app.get("/test", (req, res) => {
+  res.render('test')
+});
 app.use("/api/v1", userRoutes);
 
 const port = process.env.PORT || 3000;
