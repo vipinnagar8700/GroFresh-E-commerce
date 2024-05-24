@@ -227,17 +227,14 @@
                                     </td>
                                     <td class="pt-1 pb-3 pt-4">
                                         <div class="btn--container justify-content-center">
-                                            <a class="action-btn" href="${item.editLink}">
+                                            <a class="action-btn" href="${item._id}">
                                                 <i class="tio-edit"></i>
                                             </a>
-                                            <a class="action-btn btn--danger btn-outline-danger" href="javascript:" onclick="form_alert('product-${item.productId}','Want to delete this')">
+                                            <a class="action-btn btn--danger btn-outline-danger" href="javascript:" onclick="form_alert('product-${item._id}','Want to delete this')">
                                                 <i class="tio-delete-outlined"></i>
                                             </a>
                                         </div>
-                                        <form action="${item.deleteLink}" method="post" id="product-${item.productId}">
-                                            <input type="hidden" name="_token" value="${item.token}" autocomplete="off">
-                                            <input type="hidden" name="_method" value="delete">
-                                        </form>
+                                        
                                     </td>
                                 </tr>
                             `;

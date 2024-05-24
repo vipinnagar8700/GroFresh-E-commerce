@@ -26,15 +26,20 @@ const upload = multer({
 // Create a new product
 const createProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, category_ids } = req.body;
+    const { name, category_ids,Sub_Category_Name } = req.body;
 
     // Check if name and category_ids fields are provided
-    if (!name || !category_ids) {
-      return res.status(400).json({ message: 'Product name and Category IDs fields are required', status: false });
-    }
+    if (!name) {
+      return res.status(400).json({ message: 'Product name field is required', status: false });
+  } else if (!category_ids) {
+      return res.status(400).json({ message: 'Category IDs field is required', status: false });
+  } else if(!Sub_Category_Name){
+    return res.status(400).json({ message: 'Sub Category IDs field is required', status: false });
+  }
+  
 
     // Check if a product with the same name and category already exists
-    const existingProduct = await Product.findOne({ name, category_ids });
+    const existingProduct = await Product.findOne({ name, category_ids,Sub_Category_Name });
     if (existingProduct) {
       return res.status(400).json({ message: 'Product with the same name and category already exists', status: false });
     }
@@ -80,7 +85,7 @@ const AllProduct = asyncHandler(async (req, res) => {
           path: 'customer_id', // Assuming 'customer_id' is the reference field for the customer
           model: 'Customer' // Assuming 'Customer' is the name of the customer model
         }
-      });
+      }).sort({ _id: -1 });;
 
     const length = ProductItem.length;
     res.json({ products: ProductItem, total_size: length, status: true, limit: 10, offset: null });
@@ -120,7 +125,7 @@ const AllFeaturedProduct = asyncHandler(async (req, res) => {
     const ProductItem = await Product.find({ is_featured: 1 })
       .populate('category_ids')
       .populate('Sub_Category_Name')
-      .populate('attributes');
+      .populate('attributes').sort({ _id: -1 });;
     const length = ProductItem.length;
     res.json({ products: ProductItem, total_size: length, status: true, limit: 10, offset: null });
   } catch (err) {
@@ -149,7 +154,7 @@ const AllSubCategoryClilds = asyncHandler(async (req, res) => {
     const ProductItems = await Product.find({ Sub_Category_Name: req.params.id, is_featured: 1 })
       .populate('category_ids')
       .populate('Sub_Category_Name')
-      .populate('attributes');
+      .populate('attributes').sort({ _id: -1 });;
     const length = ProductItems.length;
     res.json({ data: ProductItems, length: length, status: true });
   } catch (err) {
@@ -162,7 +167,7 @@ const AllDailyNeedProduct = asyncHandler(async (req, res) => {
     const ProductItem = await Product.find({ daily_needs: 1 })
       .populate('category_ids')
       .populate('Sub_Category_Name')
-      .populate('attributes');
+      .populate('attributes').sort({ _id: -1 });;
     const length = ProductItem.length;
     res.json({ products: ProductItem, total_size: length, status: true, limit: 10, offset: null });
   } catch (err) {

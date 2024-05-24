@@ -65,7 +65,9 @@ app.get("/admin/orders/list/delivered", (req, res) => {
 app.get("/admin/product/add-new", (req, res) => {
   res.render('Products/Add_product')
 });
-
+app.get("/admin/product/:id", (req, res) => {
+  res.render('Products/Edit_product')
+});
 app.get("/admin/orders/list/returned", (req, res) => {
   res.render('Order/Returned_order')
 });
@@ -97,6 +99,7 @@ app.get("/admin/category/add-sub-category", (req, res) => {
 app.get("/admin/attribute/add-new", (req, res) => {
   res.render('Products/Add_product')
 });
+
 app.get("/admin/product/list", (req, res) => {
   res.render('Products/List_product')
 });
