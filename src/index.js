@@ -125,8 +125,8 @@ app.get("/admin/category/edit-sub/:id", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  // res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
-  res.render('Auth/login')
+  res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
+  // res.render('Auth/login')
 });
 app.get("/test", (req, res) => {
   res.render('test')
