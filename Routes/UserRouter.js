@@ -113,9 +113,9 @@ router.get('/deleteFromCart/:id',authenticateToken,deleteFromCart)
 router.post('/decreaseProductQuantity',authenticateToken,decreaseProductQuantity)
 
 // Order
-router.post('/createOrderFromCart',createOrderFromCart)
+router.post('/customer/order/place',createOrderFromCart)
 router.get('/allOrder',allOrder);
-router.get('/CustomerOrder',authenticateToken,CustomerOrder)
+router.get('/customer/order/list',authenticateToken,CustomerOrder)
 router.post('/addCoupon', addCoupon);
 router.get('/getCoupons', getCoupons);
 router.get('/getSingleCoupon/:id', getSingleCoupon);
