@@ -1,911 +1,1077 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="csrf-token" content="6crIHgG9Njz0Rxw9EUrHWuYAqfQGUZG9cSchqzJ2">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Add new product</title>
-        <link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
-        <link rel="shortcut icon" href>
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
-        <meta name="csrf-token" content="6crIHgG9Njz0Rxw9EUrHWuYAqfQGUZG9cSchqzJ2">
-        <link href="https://grofresh-admin.6amtech.com/public/assets/admin/css/tags-input.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
-    </head>
-    <body class="footer-offset" id="demo">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-none" id="loading">
-                        <div class="loader-image">
-                            <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
-                        </div>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="6crIHgG9Njz0Rxw9EUrHWuYAqfQGUZG9cSchqzJ2">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Update product</title>
+    <link rel="icon" type="image/x-icon"
+        href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+    <link rel="shortcut icon" href>
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+    <meta name="csrf-token" content="6crIHgG9Njz0Rxw9EUrHWuYAqfQGUZG9cSchqzJ2">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-bs4.min.js"></script>
+    <link href="https://grofresh-admin.6amtech.com/public/assets/admin/css/tags-input.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script
+        src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
+</head>
+
+<body class="footer-offset" id="demo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-none" id="loading">
+                    <div class="loader-image">
+                        <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
                     </div>
                 </div>
             </div>
         </div>
-        <%- include('../Layout/Header') %>
+    </div>
+    <%- include('../Layout/Header') %>
         <div id="headerFluid" class="d-none"></div>
         <div id="headerDouble" class="d-none"></div>
         <%- include('../Layout/Sidebar') %>
-        <main id="content" role="main" class="main pointer-event">
-            <div class="content container-fluid">
-                <div class="page-header">
-                    <h1 class="page-header-title">
-                        <span class="page-header-icon">
-                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/add-product.png" class="w--24" alt>
-                        </span>
-                        <span>
-                            Add New Product
-                        </span>
-                    </h1>
-                </div>
-                <form action="javascript:" method="post" id="product_form" enctype="multipart/form-data" class="row g-2">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body pt-2">
-                                <ul class="nav nav-tabs mb-4">
-                                    <li class="nav-item">
-                                        <a class="nav-link lang_link active" href="#" id="en-link">English(EN)</a>
-                                    </li>
-                                </ul>
-                                <div class=" lang_form" id="en-form">
-                                    <div class="form-group">
-                                        <label class="input-label" for="name">Name (EN)</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="New Product" required>
-                                    </div>
-                                    <div class="form-group mb-0">
-                                        <label class="input-label" for="description">Short Description (EN)</label>
-                                        <textarea name="description" class="form-control h--172px summernote" id="description"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <main id="content" role="main" class="main pointer-event">
+                <div class="content container-fluid">
+                    <div class="page-header">
+                        <h1 class="page-header-title">
+                            <span class="page-header-icon">
+                                <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/add-product.png"
+                                    class="w--24" alt>
+                            </span>
+                            <span>
+                                Update product
+                            </span>
+                        </h1>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">
-                                    <span class="card-header-icon">
-                                        <i class="tio-user"></i>
-                                    </span>
-                                    <span>
-                                        Category
-                                    </span>
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-6">
+                    <form id="updateForm" enctype="multipart/form-data" class="row g-2">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body pt-2">
+                                    <ul class="nav nav-tabs mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link lang_link active" href="#" id="en-link">English(EN)</a>
+                                        </li>
+                                    </ul>
+                                    <div class="lang_form" id="en-form">
                                         <div class="form-group">
-                                            <label class="input-label" for="categorySelect">Category<span class="input-label-secondary">*</span></label>
-                                            <select name="category_ids" class="form-control js-select2-custom" id="categorySelect">
-                                            </select>
-
+                                            <label class="input-label" for="name">Name (EN)</label>
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                placeholder="New Product" required>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="input-label" for="sub-categories">Sub category<span class="input-label-secondary"></span></label>
-                                            <select name="Sub_Category_Name" id="sub-categories" class="form-control js-select2-custom">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="input-label" for="unit">Unit</label>
-                                            <select name="unit" class="form-control js-select2-custom">
-                                                <option value="kg">Kg</option>
-                                                <option value="gm">Gm</option>
-                                                <option value="ltr">Ltr</option>
-                                                <option value="pc">Pc</option>
-                                                <option value="ml">Ml</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="input-label" for="capacity">Capacity</label>
-                                            <input type="number" min="0" step="0.01" value="1" name="capacity" class="form-control" placeholder="Ex : 54ml" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="input-label" for="maximum_order_quantity">Maximum Order Quantity</label>
-                                            <input type="number" min="1" step="1" value="1" name="maximum_order_quantity" class="form-control" placeholder="Ex : 3" required>
+                                        <div class="form-group mb-0">
+                                            <label class="input-label" for="description">Short Description (EN)</label>
+                                            <textarea name="description" class="form-control h--172px summernote"
+                                                id="description"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2">
-                            <div class="card min-h-116px">
-                                <div class="card-body d-flex flex-column justify-content-center">
-                                    <div class="d-flex flex-wrap-reverse justify-content-between">
-                                        <div class="w-200 flex-grow-1 mr-3">
-                                            Turning Visibility off will not show this product in the user app and website
-                                        </div>
-                                        <div class="d-flex align-items-center mb-2 mb-sm-0">
-                                            <h5 class="mb-0 mr-2">Visibility</h5>
-                                            <label class="toggle-switch my-0">
-                                                <input type="checkbox" class="toggle-switch-input" name="status" value="1" checked>
-                                                <span class="toggle-switch-label mx-auto text">
-                                                    <span class="toggle-switch-indicator"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                        <span class="card-header-icon">
+                                            <i class="tio-user"></i>
+                                        </span>
+                                        <span>Category</span>
+                                    </h5>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="mb-3">Product Image <small class="text-danger">* ( Ratio 1:1 )</small></h5>
-                                <div class="product--coba">
-                                    <div class="row g-2" id="coba"><div class=" spartan_item_wrapper" data-spartanindexrow="0" style="margin-bottom : 20px; "><div style="position: relative;"><div
-                                                    class="spartan_item_loader" data-spartanindexloader="0"
-                                                    style=" position: absolute; width: 100%; height: 150px; background: rgba(255,255,255, 0.7); z-index: 22; text-align: center; align-items: center; margin: auto; justify-content: center; flex-direction: column; display : none; font-size : 1.7em; color: #CECECE"><i
-                                                        class="fas fa-sync fa-spin"></i></div><label class="file_upload"
-                                                    style="width: 100%; height: 150px; border: 2px dashed #ddd; border-radius: 3px; cursor: pointer; text-align: center; overflow: hidden; padding: 5px; margin-top: 5px; margin-bottom : 5px; position : relative; display: flex; align-items: center; margin: auto; justify-content: center; flex-direction: column;"><a
-                                                        href="javascript:void(0)" data-spartanindexremove="0"
-                                                        style="position: absolute !important; right : 3px; top: 3px; display : none; background : transparent; border-radius: 3px; width: 30px; height: 30px; line-height : 30px; text-align: center; text-decoration : none; color : #ff0700;"
-                                                        class="spartan_remove_row"><i class="tio-add-to-trash"></i></a><img style="width: 100%; margin: 0 auto; vertical-align: middle;"
-                                                        data-spartanindexi="0" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/upload-en.png" class="spartan_image_placeholder"> <p
-                                                        data-spartanlbldropfile="0" style="color : #5FAAE1; display: none; width : auto; ">Drop Here</p><img
-                                                        style="width: 100%; vertical-align: middle; display:none;" class="img_" data-spartanindeximage="0"><input
-                                                        class="form-control spartan_image_input" accept="image/*" data-spartanindexinput="0" style="display : none" id="name" name="image" type="file"></label>
-                                            </div></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">
-                                    <span class="card-header-icon">
-                                        <i class="tio-label"></i>
-                                    </span>
-                                    <span>
-                                        Tags
-                                    </span>
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="p-2">
-                                    <div class="row g-3">
-                                        <div class="col-12">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="tags" placeholder="Enter tags" data-role="tagsinput">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">
-                                    <span class="card-header-icon">
-                                        <i class="tio-dollar"></i>
-                                    </span>
-                                    <span>
-                                        Price information
-                                    </span>
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="p-2">
-                                    <div class="row g-3">
-                                        <div class="col-sm-6">
-                                            <div class="form-group mb-0">
-                                                <label class="input-label" for="price">Default unit price</label>
-                                                <input type="number" min="0" max="100000000" step="any" value="1" name="price" class="form-control" placeholder="Ex : 349" required>
+                                                <label class="input-label" for="categorySelect">Category<span
+                                                        class="input-label-secondary">*</span></label>
+                                                <select name="category_ids" class="form-control js-select2-custom"
+                                                    id="categorySelect">
+                                                <option value="">---Select---</option>
+                                            </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="form-group mb-0">
-                                                <label class="input-label" for="total_stock">Product stock</label>
-                                                <input type="number" min="0" max="100000000" value="0" name="total_stock" class="form-control" placeholder="Ex : 100">
+                                            <div class="form-group">
+                                                <label class="input-label" for="sub-categories">Sub category<span
+                                                        class="input-label-secondary"></span></label>
+                                                <select name="Sub_Category_Name" id="sub-categories"
+                                                    class="form-control js-select2-custom"></select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="form-group mb-0">
-                                                <label class="input-label" for="discount_type">Discount type</label>
-                                                <select name="discount_type" id="discount_type" class="form-control js-select2-custom">
-                                                    <option value="percent">Percent</option>
-                                                    <option value="amount">Amount</option>
+                                            <div class="form-group">
+                                                <label class="input-label" for="unit">Unit</label>
+                                                <select name="unit" class="form-control js-select2-custom">
+                                                    <option value="kg">Kg</option>
+                                                    <option value="gm">Gm</option>
+                                                    <option value="ltr">Ltr</option>
+                                                    <option value="pc">Pc</option>
+                                                    <option value="ml">Ml</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="form-group mb-0">
-                                                <label class="input-label" for="discount">Discount <span id="discount_symbol">(%)</span></label>
-                                                <input type="number" min="0" max="100000" value="0" name="discount" step="any" id="discount" class="form-control" placeholder="Ex : 5%" required>
+                                            <div class="form-group">
+                                                <label class="input-label" for="capacity">Capacity</label>
+                                                <input type="number" min="0" step="0.01" value="1" name="capacity"
+                                                    class="form-control" placeholder="Ex : 54ml" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="form-group mb-0">
-                                                <label class="input-label" for="tax_type">Tax type</label>
-                                                <select name="tax_type" id="tax_type" class="form-control js-select2-custom">
-                                                    <option value="percent">Percent</option>
-                                                    <option value="amount">Amount</option>
+                                            <div class="form-group">
+                                                <label class="input-label" for="maximum_order_quantity">Maximum Order
+                                                    Quantity</label>
+                                                <input type="number" min="1" step="1" value="1"
+                                                    name="maximum_order_quantity" class="form-control"
+                                                    placeholder="Ex : 3" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <div class="card min-h-116px">
+                                    <div class="card-body d-flex flex-column justify-content-center">
+                                        <div class="d-flex flex-wrap-reverse justify-content-between">
+                                            <div class="w-200 flex-grow-1 mr-3">
+                                                Turning Visibility off will not show this product in the user app and
+                                                website
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2 mb-sm-0">
+                                                <h5 class="mb-0 mr-2">Visibility</h5>
+                                                <label class="toggle-switch my-0">
+                                                    <input type="checkbox" class="toggle-switch-input" name="status"
+                                                        value="1" checked>
+                                                    <span class="toggle-switch-label mx-auto text">
+                                                        <span class="toggle-switch-indicator"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="mb-3">Product Image <small class="text-danger">* ( Ratio 1:1 )</small>
+                                    </h5>
+                                    <div class="product--coba">
+                                        <div class="row g-2" id="coba">
+                                            <div class="spartan_item_wrapper" data-spartanindexrow="0" style="margin-bottom: 20px;">
+                                                <div style="position: relative;">
+                                                    <div class="spartan_item_loader" data-spartanindexloader="0"
+                                                        style="position: absolute; width: 100%; height: 150px; background: rgba(255,255,255, 0.7); z-index: 22; text-align: center; align-items: center; margin: auto; justify-content: center; flex-direction: column; display: none; font-size: 1.7em; color: #CECECE">
+                                                        <i class="fas fa-sync fa-spin"></i>
+                                                    </div>
+                                                    <label class="file_upload"
+                                                        style="width: 100%; height: 150px; border: 2px dashed #ddd; border-radius: 3px; cursor: pointer; text-align: center; overflow: hidden; padding: 5px; margin-top: 5px; margin-bottom: 5px; position: relative; display: flex; align-items: center; margin: auto; justify-content: center; flex-direction: column;">
+                                                        <a href="javascript:void(0)" data-spartanindexremove="0"
+                                                            style="position: absolute !important; right: 3px; top: 3px; display: none; background: transparent; border-radius: 3px; width: 30px; height: 30px; line-height: 30px; text-align: center; text-decoration: none; color: #ff0700;"
+                                                            class="spartan_remove_row"><i class="tio-add-to-trash"></i></a>
+                                                        <img style="width: 100%; margin: 0 auto; vertical-align: middle;" data-spartanindexi="0"
+                                                            src="https://grofresh-admin.6amtech.com/public/assets/admin/img/upload-en.png"
+                                                            class="spartan_image_placeholder" id="image" name="image">
+                                                        <p data-spartanlbldropfile="0"
+                                                            style="color: #5FAAE1; display: none; width: auto;">Drop Here</p>
+                                                        <input class="form-control spartan_image_input" accept="image/*" data-spartanindexinput="0"
+                                                            style="display: none" id="fileInput" name="image" type="file">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                        <span class="card-header-icon">
+                                            <i class="tio-label"></i>
+                                        </span>
+                                        <span>Tags</span>
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="p-2">
+                                        <div class="row g-3">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="tags"
+                                                        placeholder="Enter tags" data-role="tagsinput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                        <span class="card-header-icon">
+                                            <i class="tio-dollar"></i>
+                                        </span>
+                                        <span>Price information</span>
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="p-2">
+                                        <div class="row g-3">
+                                            <div class="col-sm-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="input-label" for="price">Price</label>
+                                                    <input type="number" min="0" max="100000000" step="0.01" value="0"
+                                                        name="price" class="form-control" placeholder="Ex : 100"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="input-label" for="discount">Discount</label>
+                                                    <input type="number" min="0" max="100000000" value="0"
+                                                        name="discount" class="form-control" placeholder="Ex : 100">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="input-label" for="discount_type">Discount Type</label>
+                                                    <select name="discount_type" class="form-control js-select2-custom">
+                                                        <option value="percent">Percent</option>
+                                                        <option value="amount">Amount</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="input-label" for="minimum_purchase">Minimum
+                                                        purchase</label>
+                                                    <input type="number" min="1" max="100000000" value="1"
+                                                        name="minimum_purchase" class="form-control"
+                                                        placeholder="Ex : 100" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="input-label" for="tax">Tax (%)</label>
+                                                    <input type="number" min="0" max="100000000" step="0.01" value="0"
+                                                        name="tax" class="form-control" placeholder="Ex : 7" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="input-label" for="tax_type">Tax Type</label>
+                                                    <select name="tax_type" class="form-control js-select2-custom">
+                                                        <option value="percent">Percent</option>
+                                                        <option value="amount">Amount</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 pt-2">
+                                                <div class="form-group mb-0">
+                                                    <label class="input-label" for="stock">Stock</label>
+                                                    <input type="number" min="0" max="100000000" value="0" name="stock"
+                                                        class="form-control" placeholder="Ex : 100" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="quantity">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                        <span class="card-header-icon">
+                                            <i class="tio-clock"></i>
+                                        </span>
+                                        <span>Time Slot</span>
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="input-label" for="start_time">Start time</label>
+                                                <input type="time" name="start_time" class="form-control"
+                                                    placeholder="Ex : 10:30 am">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="input-label" for="end_time">End time</label>
+                                                <input type="time" name="end_time" class="form-control"
+                                                    placeholder="5:45 pm">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                        <span class="card-header-icon">
+                                            <i class="tio-file"></i>
+                                        </span>
+                                        <span>Variations</span>
+                                    </h5>
+                                </div>
+                                <div class="card-body pb-0" id="add_new_option">
+                                    <div class="form-group">
+                                        <div class="row g-3">
+                                            <div class="col-sm-6">
+                                                <label class="input-label">Add new variation</label>
+                                                <select name="attribute_id[]" class="form-control js-select2-custom">
+                                                    <option selected disabled>---Select---</option>
+                                                    <option value="1">Size</option>
+                                                    <option value="2">Color</option>
+                                                    <option value="3">Weight</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="input-label">Variation Values</label>
+                                                <select name="attribute_values[]" class="form-control js-select2-custom"
+                                                    id="attribute_values" multiple>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group mb-0">
-                                                <label class="input-label" for="tax">Tax rate <span id="tax_symbol">(%)</span></label>
-                                                <input type="number" min="0" value="0" step="0.01" max="100000" name="tax" class="form-control" placeholder="Ex : $ 100" required>
-                                            </div>
-                                        </div>
+                                        <div class="row mt-3" id="customer_choice_options"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card h-100">
-                            <div class="card-header">
-                                <h5 class="card-title">
-                                    <span class="card-header-icon">
-                                        <i class="tio-puzzle"></i>
-                                    </span>
-                                    <span>
-                                        Attribute
-                                    </span>
-                                </h5>
-                            </div>
-                            <div class="card-body pb-0">
-                                <div class="form-group __select-attr">
-                                    <label class="input-label" for="choice_attributes">Select attribute<span class="input-label-secondary"></span></label>
-                                    <select name="attribute_id[]" id="choice_attributes" class="form-control js-select2-custom" multiple="multiple">
-                                        <option value="1">Size</option>
-                                    </select>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="customer_choice_options" id="customer_choice_options"></div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="variant_combination" id="variant_combination"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="btn--container justify-content-end mt-2">
+                            <button type="button" onclick="check()" class="btn btn--reset">Reset</button>
+                            <button type="submit" id="submit" class="btn btn--primary">Update</button>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="btn--container justify-content-end">
-                            <a href="#" class="btn btn--reset min-w-120px">Reset</a>
-                            <button type="submit" class="btn btn--primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <%- include('../Layout/Footer') %>
-            <div class="modal fade" id="popup-modal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="text-center">
-                                        <h2 class="order-check-colour">
-                                            <i class="tio-shopping-cart-outlined"></i> You have new order Check Please.
-                                        </h2>
-                                        <hr>
-                                        <button id="check-order" class="btn btn-primary">Ok let me check</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-            </div>
-        </main>
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script
-            src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
-        <script type="text/javascript"></script>
-        <script>
-    $(document).on('ready', function () {
-        var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+                <%- include('../Layout/Footer') %>
+                    <div class="modal fade" id="popup-modal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="text-center">
+                                                <h2 class="order-check-colour">
+                                                    <i class="tio-shopping-cart-outlined"></i> You have new order Check
+                                                    Please.
+                                                </h2>
+                                                <hr>
+                                                <button id="check-order" class="btn btn-primary">Ok let me
+                                                    check</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </main>
+            <script>
+                // Fetch the product details and populate the form
+                document.addEventListener('DOMContentLoaded', function () {
+                    const productId = getProductIdFromUrl();
+                    console.log(productId, "productIdproductIdproductId")
+                    fetch(`/api/v1/products/details/${productId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            populateForm(data);
+                            console.log(data, "populateForm(data)")
+                            const categoryId = product.category_id;
+                            const categorySelect = document.getElementById('categorySelect');
+            categorySelect.value = categoryId;
+                        })
+                        .catch(error => console.error('Error fetching product details:', error));
+                });
 
-        $('.js-nav-tooltip-link').tooltip({boundary: 'window'})
-
-        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
-            if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
-                return false;
-            }
-        });
-
-        $('.js-hs-unfold-invoker').each(function () {
-            var unfold = new HSUnfold($(this)).init();
-        });
-
-        $('.js-form-search').each(function () {
-            new HSFormSearch($(this)).init()
-        });
-
-        $('.js-select2-custom').each(function () {
-            var select2 = $.HSCore.components.HSSelect2.init($(this));
-        });
-
-        $('.js-daterangepicker').daterangepicker();
-
-        $('.js-daterangepicker-times').daterangepicker({
-            timePicker: true,
-            startDate: moment().startOf('hour'),
-            endDate: moment().startOf('hour').add(32, 'hour'),
-            locale: {
-                format: 'M/DD hh:mm A'
-            }
-        });
-    });
-</script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/spartan-multi-image-picker.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            $('.summernote').summernote({
-                height: 200,
-            });
-        });
-    </script>
-        <script>
-        $(".lang_link").click(function(e){
-            e.preventDefault();
-            $(".lang_link").removeClass('active');
-            $(".lang_form").addClass('d-none');
-            $(this).addClass('active');
-
-            let form_id = this.id;
-            let lang = form_id.split("-")[0];
-            console.log(lang);
-            $("#"+lang+"-form").removeClass('d-none');
-            if(lang == 'en')
-            {
-                $("#from_part_2").removeClass('d-none');
-            }
-            else
-            {
-                $("#from_part_2").addClass('d-none');
-            }
-
-
-        })
-    </script>
-        <script>
-
-
-        $('#product_form').on('submit', function () {
-
-
-            var formData = new FormData(this);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                function getProductIdFromUrl() {
+                    const urlParts = window.location.pathname.split('/');
+                    return urlParts[urlParts.length - 1];
                 }
-            });
-            $.post({
-                url: 'https://grofresh-admin.6amtech.com/admin/product/store',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data.errors) {
-                        for (var i = 0; i < data.errors.length; i++) {
-                            toastr.error(data.errors[i].message, {
-                                CloseButton: true,
-                                ProgressBar: true
-                            });
-                        }
-                    } else {
-                        toastr.success('Product uploaded successfully!', {
-                            CloseButton: true,
-                            ProgressBar: true
+
+                function populateForm(data) {
+                    document.getElementById('name').value = data.name;
+                    $('#description').summernote('code', data.description);
+                    document.getElementById('categorySelect').value = data.category_id.Category_name;
+                    document.getElementById('sub-categories').value = data.Sub_Category_Name.Sub_Category_Name;
+                    document.getElementById('unit').value = data.unit;
+                    document.getElementById('capacity').value = data.capacity;
+                    document.getElementById('maximum_order_quantity').value = data.maximum_order_quantity;
+                    document.querySelector('input[name="status"]').checked = data.status === 1;
+                    document.querySelector('input[name="tags"]').value = data.tags.join(',');
+                    document.querySelector('input[name="price"]').value = data.price;
+                    document.querySelector('input[name="discount"]').value = data.discount;
+                    document.querySelector('select[name="discount_type"]').value = data.discount_type;
+                    document.querySelector('input[name="minimum_purchase"]').value = data.minimum_purchase;
+                    document.querySelector('input[name="tax"]').value = data.tax;
+                    document.querySelector('select[name="tax_type"]').value = data.tax_type;
+                    document.querySelector('input[name="stock"]').value = data.stock;
+                    document.querySelector('input[name="start_time"]').value = data.start_time;
+                    document.querySelector('input[name="end_time"]').value = data.end_time;
+                    document.querySelector('spartan_image_placeholder').value = data.image;
+                    // Populate image
+                    // Populate variations if any
+                    
+                    if (data.image) {
+            const imageElement = document.querySelector(".spartan_image_placeholder");
+            imageElement.src = data.image;
+            imageElement.style.display = "block";
+        }
+                    if (data.variations) {
+                        // Iterate and populate each variation
+                        data.variations.forEach(variation => {
+                            // Add variation logic here
                         });
-                        setTimeout(function () {
-                            location.href = 'https://grofresh-admin.6amtech.com/admin/product/list';
-                        }, 2000);
                     }
                 }
-            });
-        });
-    </script>
-        <script type="text/javascript">
-        $(function () {
-            $("#coba").spartanMultiImagePicker({
-                fieldName: 'images[]',
-                maxCount: 4,
-                rowHeight: '150px',
-                groupClassName: '',
-                maxFileSize: '',
-                placeholderImage: {
-                    image: 'https://grofresh-admin.6amtech.com/public/assets/admin/img/upload-en.png',
-                    width: '100%'
-                },
-                dropFileLabel: "Drop Here",
-                onAddRow: function (index, file) {
 
-                },
-                onRenderedPreview: function (index) {
+                // Handle form submission
+                document.getElementById('updateForm').addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const formData = new FormData(this);
+                    const productId = getProductIdFromUrl();
 
-                },
-                onRemoveRow: function (index) {
-
-                },
-                onExtensionErr: function (index, file) {
-                    toastr.error('Please only input png or jpg type file', {
-                        CloseButton: true,
-                        ProgressBar: true
-                    });
-                },
-                onSizeErr: function (index, file) {
-                    toastr.error('File size too big', {
-                        CloseButton: true,
-                        ProgressBar: true
-                    });
-                }
-            });
-        });
-    </script>
-
-        <script>
-        function getRequest(route, id) {
-            $.get({
-                url: route,
-                dataType: 'json',
-                success: function (data) {
-                    $('#' + id).empty().append(data.options);
-                },
-            });
-        }
-    </script>
-        <script>
-        $(document).on('ready', function () {
-            $('.js-select2-custom').each(function () {
-                var select2 = $.HSCore.components.HSSelect2.init($(this));
-            });
-        });
-    </script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/tags-input.min.js"></script>
-        <script>
-        $('#choice_attributes').on('change', function () {
-            $('#customer_choice_options').html(null);
-            $.each($("#choice_attributes option:selected"), function () {
-                add_more_customer_choice_option($(this).val(), $(this).text());
-            });
-        });
-
-        function add_more_customer_choice_option(i, name) {
-            let n = name.split(' ').join('');
-            $('#customer_choice_options').append('<div class="row g-1"><div class="col-md-3 col-sm-4"><input type="hidden" name="choice_no[]" value="' + i + '"><input type="text" class="form-control" name="choice[]" value="' + n + '" placeholder="Choice Title" readonly></div><div class="col-lg-9 col-sm-8"><input type="text" class="form-control" name="choice_options_' + i + '[]" placeholder="Enter choice values" data-role="tagsinput" onchange="combination_update()"></div></div>');
-            $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
-        }
-
-        function combination_update() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                url: 'https://grofresh-admin.6amtech.com/admin/product/variant-combination',
-                data: $('#product_form').serialize(),
-                success: function (data) {
-                    $('#variant_combination').html(data.view);
-                    if (data.length > 1) {
-                        $('#quantity').hide();
-                    } else {
-                        $('#quantity').show();
+                    // Check if category_id and sub_category_id are present in the form data
+                    const categoryId = formData.get('category_ids');
+                    const subCategoryId = formData.get('Sub_Category_Name');
+                    console.log(subCategoryId, "subCategoryIdsubCategoryId")
+                    // If they are not present, remove them from the form data
+                    if (!categoryId) {
+                        formData.delete('category_ids');
                     }
-                }
-            });
-        }
-    </script>
-        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-        <script>
-        var quill = new Quill('#editor', {
-            theme: 'snow'
-        });
+                    if (!subCategoryId) {
+                        formData.delete('Sub_Category_Name');
+                    }
+                    fetch(`/api/v1/updateProduct/${productId}`, {
+                        method: 'PUT',
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Product updated successfully');
+                                // Redirect or perform any other actions
+                            } else {
+                                alert('Error updating product');
+                            }
+                        })
+                        .catch(error => console.error('Error updating product:', error));
+                });
+            </script>
 
-        $('#product_form').on('submit', function () {
+            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+            <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+            <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+            <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+            <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+            <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+            <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+            <script type="text/javascript"></script>
+            <script>
+                $(document).on('ready', function () {
+                    var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
 
-            var myEditor = document.querySelector('#editor')
-            $("#hiddenArea").val(myEditor.children[0].innerHTML);
+                    $('.js-nav-tooltip-link').tooltip({ boundary: 'window' })
 
-            var formData = new FormData(this);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.post({
-                url: 'https://grofresh-admin.6amtech.com/admin/product/store',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data.errors) {
-                        for (var i = 0; i < data.errors.length; i++) {
-                            toastr.error(data.errors[i].message, {
-                                CloseButton: true,
-                                ProgressBar: true
-                            });
+                    $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+                        if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                            return false;
                         }
-                    } else {
-                        toastr.success('Product uploaded successfully!', {
-                            CloseButton: true,
-                            ProgressBar: true
-                        });
-                        setTimeout(function () {
-                            location.href = 'https://grofresh-admin.6amtech.com/admin/product/list';
-                        }, 2000);
+                    });
+
+                    $('.js-hs-unfold-invoker').each(function () {
+                        var unfold = new HSUnfold($(this)).init();
+                    });
+
+                    $('.js-form-search').each(function () {
+                        new HSFormSearch($(this)).init()
+                    });
+
+                    $('.js-select2-custom').each(function () {
+                        var select2 = $.HSCore.components.HSSelect2.init($(this));
+                    });
+
+                    $('.js-daterangepicker').daterangepicker();
+
+                    $('.js-daterangepicker-times').daterangepicker({
+                        timePicker: true,
+                        startDate: moment().startOf('hour'),
+                        endDate: moment().startOf('hour').add(32, 'hour'),
+                        locale: {
+                            format: 'M/DD hh:mm A'
+                        }
+                    });
+                });
+            </script>
+            <script
+                src="https://grofresh-admin.6amtech.com/public/assets/admin/js/spartan-multi-image-picker.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.summernote').summernote({
+                        height: 200,
+                    });
+                });
+            </script>
+            <script>
+                $(".lang_link").click(function (e) {
+                    e.preventDefault();
+                    $(".lang_link").removeClass('active');
+                    $(".lang_form").addClass('d-none');
+                    $(this).addClass('active');
+
+                    let form_id = this.id;
+                    let lang = form_id.split("-")[0];
+                    console.log(lang);
+                    $("#" + lang + "-form").removeClass('d-none');
+                    if (lang == 'en') {
+                        $("#from_part_2").removeClass('d-none');
                     }
-                }
-            });
-        });
-    </script>
-        <script>
-        function update_qty() {
-            var total_qty = 0;
-            var qty_elements = $('input[name^="stock_"]');
-            for(var i=0; i<qty_elements.length; i++)
-            {
-                total_qty += parseInt(qty_elements.eq(i).val());
-            }
-            if(qty_elements.length > 0)
-            {
-                $('input[name="total_stock"]').attr("readonly", true);
-                $('input[name="total_stock"]').val(total_qty);
-                console.log(total_qty)
-            }
-            else{
-                $('input[name="total_stock"]').attr("readonly", false);
-            }
-        }
-    </script>
-        <script>
-
-        $('#discount_type').change(function(){
-            if($('#discount_type').val() == 'percent') {
-                $("#discount_symbol").html('(%)')
-            } else {
-                $("#discount_symbol").html('')
-            }
-        });
-
-        $('#tax_type').change(function(){
-            if($('#tax_type').val() == 'percent') {
-                $("#tax_symbol").html('(%)')
-            } else {
-                $("#tax_symbol").html('')
-            }
-        });
-    </script>
-        <!-- okfsbdhjsnm -->
-        <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    // Fetch categories
-    fetchCategories();
-    fetchSubcategories();
-    // Handle category change to fetch subcategories
-  
-    document.addEventListener('DOMContentLoaded', function() {
-    // Category change ke liye event listener attach karein
-    // document.getElementById('categorySelect').addEventListener('change', function() {
-    //     const categoryId = this.value;
-    //     console.log('Selected Category ID:', categoryId);
-    //     // Selected category ke base par subcategories fetch karne ke liye function ko call karein
-    //     fetchSubcategories();
-    // });
-
-    // Categories fetch karne, form submit karne, etc. ke liye aur code
-});
-
-
-
-    // Form submission
-    document.getElementById('product_form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        submitProductForm();
-    });
-});
-
-function fetchCategories() {
-    fetch('/api/v1/categories')
-        .then(response => response.json())
-        .then(data => {
-            const categorySelect = document.getElementById('categorySelect');
-            categorySelect.innerHTML = '<option value="">---Select---</option>';
-            data.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category._id;
-                option.textContent = category.Category_name;
-                categorySelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching categories:', error));
-}
-
-function fetchSubcategories() {
-    fetch('/api/v1/allProductSubCategories')
-        .then(response => response.json())
-        .then(data => {
-            console.log('Subcategories:', data); // Add this line for debugging
-            const subcategorySelect = document.getElementById('sub-categories');
-            subcategorySelect.innerHTML = '<option value="">---Select---</option>';
-            data.forEach(subcategory => {
-                const option = document.createElement('option');
-                option.value = subcategory._id;
-                option.textContent = subcategory.SubCategory_name;
-                subcategorySelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching subcategories:', error));
-}
-
-function submitProductForm() {
-    const form = document.getElementById('product_form');
-    const formData = new FormData(form);
-console.log(formData,"formData")
-    fetch('/api/v1/createProduct', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Product added successfully!');
-            form.reset();
-        } else {
-            alert('Error adding product: ' + data.message);
-        }
-    })
-    .catch(error => console.error('Error submitting product form:', error));
-}
-
-        </script>
-        <!-- smiuxdgvhj -->
-        <script>
-        $(window).on('load', function () {
-            if ($(".navbar-vertical-content li.active").length) {
-                $('.navbar-vertical-content').animate({
-                    scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
-                }, 10);
-            }
-        });
-
-        var $rows = $('#navbar-vertical-content .navbar-nav > li');
-        $('#search-sidebar-menu').keyup(function () {
-            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-
-            $rows.show().filter(function () {
-                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                return !~text.indexOf(val);
-            }).hide();
-        });
-    </script>
-        <audio id="myAudio">
-            <source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3" type="audio/mpeg">
-        </audio>
-        <script>
-    var audio = document.getElementById("myAudio");
-
-    function playAudio() {
-        audio.play();
-    }
-
-    function pauseAudio() {
-        audio.pause();
-    }
-</script>
-        <script>
-    $('#check-order').on('click', function(){
-        location.href = 'https://grofresh-admin.6amtech.com/admin/order/list/all';
-    })
-
-            setInterval(function () {
-            $.get({
-                url: 'https://grofresh-admin.6amtech.com/admin/get-restaurant-data',
-                dataType: 'json',
-                success: function (response) {
-                    let data = response.data;
-                    if (data.new_order > 0) {
-                        playAudio();
-                        $('#popup-modal').appendTo("body").modal('show');
+                    else {
+                        $("#from_part_2").addClass('d-none');
                     }
-                },
-            });
-        }, 10000);
-    
-    function route_alert(route, message) {
-        Swal.fire({
-            title: 'Are you sure ',
-            text: message,
-            type: 'warning',
-            showCancelButton: true,
-            cancelButtonColor: 'default',
-            confirmButtonColor: '#01684b',
-            cancelButtonText: 'No',
-            confirmButtonText: 'Yes',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                location.href = route;
-            }
-        })
-    }
 
-    $('.form-alert').on('click', function (){
-        let id = $(this).data('id');
-        let message = $(this).data('message');
-        form_alert(id, message)
-    });
 
-    function form_alert(id, message) {
-        Swal.fire({
-            title: 'Are you sure ',
-            text: message,
-            type: 'warning',
-            showCancelButton: true,
-            cancelButtonColor: 'default',
-            confirmButtonColor: '#01684b',
-            cancelButtonText: 'No',
-            confirmButtonText: 'Yes',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                $('#'+id).submit()
-            }
-        })
-    }
-
-    function call_demo(){
-        toastr.info('Disabled for demo version!')
-    }
-
-    $('.call-demo').click(function() {
-        if ('demo' === 'demo') {
-            call_demo();
-        }
-    });
-</script>
-        <script>
-
-    $('.status-change-alert').on('click', function (){
-        let url = $(this).data('route');
-        let message = $(this).data('message');
-        status_change_alert(url, message, event)
-    });
-
-    function status_change_alert(url, message, e) {
-        e.preventDefault();
-        Swal.fire({
-            title: 'Are you sure ',
-            text: message,
-            type: 'warning',
-            showCancelButton: true,
-            cancelButtonColor: 'default',
-            confirmButtonColor: '#107980',
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'No',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                location.href = url;
-            }
-        })
-    }
-</script>
-        <script>
-    var initialImages = [];
-    $(window).on('load', function() {
-        $("form").find('img').each(function (index, value) {
-            initialImages.push(value.src);
-        })
-    })
-
-    $(document).ready(function() {
-        $('form').on('reset', function(e) {
-            $("form").find('img').each(function (index, value) {
-                $(value).attr('src', initialImages[index]);
-            })
-        });
-    });
-</script>
-        <script>
-    $(function(){
-        var owl = $('.single-item-slider');
-        owl.owlCarousel({
-            autoplay: false,
-            items:1,
-            onInitialized  : counter,
-            onTranslated : counter,
-            autoHeight: true,
-            dots: true,
-        });
-
-        function counter(event) {
-            var element   = event.target;         // DOM element, in this example .owl-carousel
-            var items     = event.item.count;     // Number of items
-            var item      = event.item.index + 1;     // Position of the current item
-
-            if(item > items) {
-                item = item - items
-            }
-            $('.slide-counter').html(+item+"/"+items)
-        }
-    });
-</script>
-        <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
-
-        // Disable mailto links
-        document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-            });
-        });
-        // Disable tel links
-        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-            });
-        });
-    });
-
-    function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
-        if (element.nodeType === 3) { // Text node
-            // Use regular expressions to match email and phone number patterns
-            element.nodeValue = element.nodeValue
-                .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
-                    var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
-                    return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
                 })
-                .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
-                    if (match.length >= 8) {
-                        var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
-                        var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
-                        return firstChar + remainingAsterisks;
+            </script>
+            <script>
+
+
+                $('#product_form').on('submit', function () {
+
+
+                    var formData = new FormData(this);
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.post({
+                        url: 'https://grofresh-admin.6amtech.com/admin/product/store',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data.errors) {
+                                for (var i = 0; i < data.errors.length; i++) {
+                                    toastr.error(data.errors[i].message, {
+                                        CloseButton: true,
+                                        ProgressBar: true
+                                    });
+                                }
+                            } else {
+                                toastr.success('Product uploaded successfully!', {
+                                    CloseButton: true,
+                                    ProgressBar: true
+                                });
+                                setTimeout(function () {
+                                    location.href = 'https://grofresh-admin.6amtech.com/admin/product/list';
+                                }, 2000);
+                            }
+                        }
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                $(function () {
+                    $("#coba").spartanMultiImagePicker({
+                        fieldName: 'image',
+                        maxCount: 1,
+                        rowHeight: '150px',
+                        groupClassName: '',
+                        maxFileSize: '',
+                        placeholderImage: {
+                            image: 'https://grofresh-admin.6amtech.com/public/assets/admin/img/upload-en.png',
+                            width: '100%'
+                        },
+                        dropFileLabel: "Drop Here",
+                        onAddRow: function (index, file) {
+
+                        },
+                        onRenderedPreview: function (index) {
+
+                        },
+                        onRemoveRow: function (index) {
+
+                        },
+                        onExtensionErr: function (index, file) {
+                            toastr.error('Please only input png or jpg type file', {
+                                CloseButton: true,
+                                ProgressBar: true
+                            });
+                        },
+                        onSizeErr: function (index, file) {
+                            toastr.error('File size too big', {
+                                CloseButton: true,
+                                ProgressBar: true
+                            });
+                        }
+                    });
+                });
+            </script>
+
+            <script>
+                function getRequest(route, id) {
+                    $.get({
+                        url: route,
+                        dataType: 'json',
+                        success: function (data) {
+                            $('#' + id).empty().append(data.options);
+                        },
+                    });
+                }
+            </script>
+            <script>
+                $(document).on('ready', function () {
+                    $('.js-select2-custom').each(function () {
+                        var select2 = $.HSCore.components.HSSelect2.init($(this));
+                    });
+                });
+            </script>
+            <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/tags-input.min.js"></script>
+            <script>
+                $('#choice_attributes').on('change', function () {
+                    $('#customer_choice_options').html(null);
+                    $.each($("#choice_attributes option:selected"), function () {
+                        add_more_customer_choice_option($(this).val(), $(this).text());
+                    });
+                });
+
+                function add_more_customer_choice_option(i, name) {
+                    let n = name.split(' ').join('');
+                    $('#customer_choice_options').append('<div class="row g-1"><div class="col-md-3 col-sm-4"><input type="hidden" name="choice_no[]" value="' + i + '"><input type="text" class="form-control" name="choice[]" value="' + n + '" placeholder="Choice Title" readonly></div><div class="col-lg-9 col-sm-8"><input type="text" class="form-control" name="choice_options_' + i + '[]" placeholder="Enter choice values" data-role="tagsinput" onchange="combination_update()"></div></div>');
+                    $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+                }
+
+                function combination_update() {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: 'https://grofresh-admin.6amtech.com/admin/product/variant-combination',
+                        data: $('#product_form').serialize(),
+                        success: function (data) {
+                            $('#variant_combination').html(data.view);
+                            if (data.length > 1) {
+                                $('#quantity').hide();
+                            } else {
+                                $('#quantity').show();
+                            }
+                        }
+                    });
+                }
+            </script>
+            <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+            <script>
+                var quill = new Quill('#editor', {
+                    theme: 'snow'
+                });
+
+                $('#product_form').on('submit', function () {
+
+                    var myEditor = document.querySelector('#editor')
+                    $("#hiddenArea").val(myEditor.children[0].innerHTML);
+
+                    var formData = new FormData(this);
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.post({
+                        url: 'https://grofresh-admin.6amtech.com/admin/product/store',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data.errors) {
+                                for (var i = 0; i < data.errors.length; i++) {
+                                    toastr.error(data.errors[i].message, {
+                                        CloseButton: true,
+                                        ProgressBar: true
+                                    });
+                                }
+                            } else {
+                                toastr.success('Product uploaded successfully!', {
+                                    CloseButton: true,
+                                    ProgressBar: true
+                                });
+                                setTimeout(function () {
+                                    location.href = 'https://grofresh-admin.6amtech.com/admin/product/list';
+                                }, 2000);
+                            }
+                        }
+                    });
+                });
+            </script>
+            <script>
+                function update_qty() {
+                    var total_qty = 0;
+                    var qty_elements = $('input[name^="stock_"]');
+                    for (var i = 0; i < qty_elements.length; i++) {
+                        total_qty += parseInt(qty_elements.eq(i).val());
+                    }
+                    if (qty_elements.length > 0) {
+                        $('input[name="total_stock"]').attr("readonly", true);
+                        $('input[name="total_stock"]').val(total_qty);
+                        console.log(total_qty)
+                    }
+                    else {
+                        $('input[name="total_stock"]').attr("readonly", false);
+                    }
+                }
+            </script>
+            <script>
+
+                $('#discount_type').change(function () {
+                    if ($('#discount_type').val() == 'percent') {
+                        $("#discount_symbol").html('(%)')
                     } else {
-                        return match;  // Don't replace if the length is less than 10
+                        $("#discount_symbol").html('')
                     }
                 });
-        } else if (element.nodeType === 1) { // Element node
-            for (var i = 0; i < element.childNodes.length; i++) {
-                replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
-            }
-        }
-    }
-</script>
 
-        <script>
-    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
-</script>
-    </body>
+                $('#tax_type').change(function () {
+                    if ($('#tax_type').val() == 'percent') {
+                        $("#tax_symbol").html('(%)')
+                    } else {
+                        $("#tax_symbol").html('')
+                    }
+                });
+            </script>
+            <!-- okfsbdhjsnm -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Fetch categories
+                    fetchCategories();
+                    fetchSubcategories();
+                    // Handle category change to fetch subcategories
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Category change ke liye event listener attach karein
+                        // document.getElementById('categorySelect').addEventListener('change', function() {
+                        //     const categoryId = this.value;
+                        //     console.log('Selected Category ID:', categoryId);
+                        //     // Selected category ke base par subcategories fetch karne ke liye function ko call karein
+                        //     fetchSubcategories();
+                        // });
+
+                        // Categories fetch karne, form submit karne, etc. ke liye aur code
+                    });
+
+
+
+                    // Form submission
+                    document.getElementById('product_form').addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        submitProductForm();
+                    });
+                });
+
+                function fetchCategories() {
+                    fetch('/api/v1/categories')
+                        .then(response => response.json())
+                        .then(data => {
+                            const categorySelect = document.getElementById('categorySelect');
+                            categorySelect.innerHTML = '<option value="">---Select---</option>';
+                            data.forEach(category => {
+                                const option = document.createElement('option');
+                                option.value = category._id;
+                                option.textContent = category.Category_name;
+                                categorySelect.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error('Error fetching categories:', error));
+                }
+
+                function fetchSubcategories() {
+                    fetch('/api/v1/allProductSubCategories')
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Subcategories:', data); // Add this line for debugging
+                            const subcategorySelect = document.getElementById('sub-categories');
+                            subcategorySelect.innerHTML = '<option value="">---Select---</option>';
+                            data.forEach(subcategory => {
+                                const option = document.createElement('option');
+                                option.value = subcategory._id;
+                                option.textContent = subcategory.SubCategory_name;
+                                subcategorySelect.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error('Error fetching subcategories:', error));
+                }
+
+                function submitProductForm() {
+                    const form = document.getElementById('product_form');
+                    const formData = new FormData(form);
+                    console.log(formData, "formData")
+                    fetch('/api/v1/createProduct', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Product added successfully!');
+                                form.reset();
+                            } else {
+                                alert('Error adding product: ' + data.message);
+                            }
+                        })
+                        .catch(error => console.error('Error submitting product form:', error));
+                }
+
+            </script>
+            <!-- smiuxdgvhj -->
+            <script>
+                $(window).on('load', function () {
+                    if ($(".navbar-vertical-content li.active").length) {
+                        $('.navbar-vertical-content').animate({
+                            scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
+                        }, 10);
+                    }
+                });
+
+                var $rows = $('#navbar-vertical-content .navbar-nav > li');
+                $('#search-sidebar-menu').keyup(function () {
+                    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+                    $rows.show().filter(function () {
+                        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                        return !~text.indexOf(val);
+                    }).hide();
+                });
+            </script>
+            <audio id="myAudio">
+                <source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3"
+                    type="audio/mpeg">
+            </audio>
+            <script>
+                var audio = document.getElementById("myAudio");
+
+                function playAudio() {
+                    audio.play();
+                }
+
+                function pauseAudio() {
+                    audio.pause();
+                }
+            </script>
+            <script>
+                $('#check-order').on('click', function () {
+                    location.href = 'https://grofresh-admin.6amtech.com/admin/order/list/all';
+                })
+
+                setInterval(function () {
+                    $.get({
+                        url: 'https://grofresh-admin.6amtech.com/admin/get-restaurant-data',
+                        dataType: 'json',
+                        success: function (response) {
+                            let data = response.data;
+                            if (data.new_order > 0) {
+                                playAudio();
+                                $('#popup-modal').appendTo("body").modal('show');
+                            }
+                        },
+                    });
+                }, 10000);
+
+                function route_alert(route, message) {
+                    Swal.fire({
+                        title: 'Are you sure ',
+                        text: message,
+                        type: 'warning',
+                        showCancelButton: true,
+                        cancelButtonColor: 'default',
+                        confirmButtonColor: '#01684b',
+                        cancelButtonText: 'No',
+                        confirmButtonText: 'Yes',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.value) {
+                            location.href = route;
+                        }
+                    })
+                }
+
+                $('.form-alert').on('click', function () {
+                    let id = $(this).data('id');
+                    let message = $(this).data('message');
+                    form_alert(id, message)
+                });
+
+                function form_alert(id, message) {
+                    Swal.fire({
+                        title: 'Are you sure ',
+                        text: message,
+                        type: 'warning',
+                        showCancelButton: true,
+                        cancelButtonColor: 'default',
+                        confirmButtonColor: '#01684b',
+                        cancelButtonText: 'No',
+                        confirmButtonText: 'Yes',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.value) {
+                            $('#' + id).submit()
+                        }
+                    })
+                }
+
+                function call_demo() {
+                    toastr.info('Disabled for demo version!')
+                }
+
+                $('.call-demo').click(function () {
+                    if ('demo' === 'demo') {
+                        call_demo();
+                    }
+                });
+            </script>
+            <script>
+
+                $('.status-change-alert').on('click', function () {
+                    let url = $(this).data('route');
+                    let message = $(this).data('message');
+                    status_change_alert(url, message, event)
+                });
+
+                function status_change_alert(url, message, e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure ',
+                        text: message,
+                        type: 'warning',
+                        showCancelButton: true,
+                        cancelButtonColor: 'default',
+                        confirmButtonColor: '#107980',
+                        confirmButtonText: 'Yes',
+                        cancelButtonText: 'No',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.value) {
+                            location.href = url;
+                        }
+                    })
+                }
+            </script>
+            <script>
+                var initialImages = [];
+                $(window).on('load', function () {
+                    $("form").find('img').each(function (index, value) {
+                        initialImages.push(value.src);
+                    })
+                })
+
+                $(document).ready(function () {
+                    $('form').on('reset', function (e) {
+                        $("form").find('img').each(function (index, value) {
+                            $(value).attr('src', initialImages[index]);
+                        })
+                    });
+                });
+            </script>
+            <script>
+                $(function () {
+                    var owl = $('.single-item-slider');
+                    owl.owlCarousel({
+                        autoplay: false,
+                        items: 1,
+                        onInitialized: counter,
+                        onTranslated: counter,
+                        autoHeight: true,
+                        dots: true,
+                    });
+
+                    function counter(event) {
+                        var element = event.target;         // DOM element, in this example .owl-carousel
+                        var items = event.item.count;     // Number of items
+                        var item = event.item.index + 1;     // Position of the current item
+
+                        if (item > items) {
+                            item = item - items
+                        }
+                        $('.slide-counter').html(+item + "/" + items)
+                    }
+                });
+            </script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
+
+                    // Disable mailto links
+                    document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+                        link.addEventListener('click', function (event) {
+                            event.preventDefault();
+                        });
+                    });
+                    // Disable tel links
+                    document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+                        link.addEventListener('click', function (event) {
+                            event.preventDefault();
+                        });
+                    });
+                });
+
+                function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
+                    if (element.nodeType === 3) { // Text node
+                        // Use regular expressions to match email and phone number patterns
+                        element.nodeValue = element.nodeValue
+                            .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
+                                var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
+                                return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
+                            })
+                            .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
+                                if (match.length >= 8) {
+                                    var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
+                                    var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
+                                    return firstChar + remainingAsterisks;
+                                } else {
+                                    return match;  // Don't replace if the length is less than 10
+                                }
+                            });
+                    } else if (element.nodeType === 1) { // Element node
+                        for (var i = 0; i < element.childNodes.length; i++) {
+                            replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
+                        }
+                    }
+                }
+            </script>
+
+            <script>
+                if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+            </script>
+</body>
+
 </html>

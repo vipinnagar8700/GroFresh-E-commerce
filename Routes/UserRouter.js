@@ -19,6 +19,7 @@ const { AllReviews, addReview } = require('../controllers/ReviewSController');
 const { deleteFlashDealById, updateFlashDealById, getFlashDealById, getAllFlashDeals, createFlashDeal } = require('../controllers/FlashDealController');
 const { deleteDeliveryTimeSlotById, updateDeliveryTimeSlotById, getDeliveryTimeSlotById, getAllDeliveryTimeSlots, createDeliveryTimeSlot } = require('../controllers/DeliveryTimeSlotController');
 const { AllAgents, createUserByAgent, getAllUsersByAgent } = require('../controllers/AgentController');
+const { addAddress, getAddressByUserId, updateAddress, deleteAddress } = require('../controllers/addressController');
 
 const storage = multer.diskStorage({
     destination: './public/images', // Specify the destination folder
@@ -76,7 +77,7 @@ router.get('/singleProductSubCategory_category/:id',singleProductSubCategory_cat
 // Products;
 router.post('/createProduct',upload.single('image'), createProduct);
 router.get('/products/details/:id', singleProduct);
-router.put('/updateProduct/:id', upload.single('image'),authenticateToken, updateProduct);
+router.put('/updateProduct/:id', upload.single('image'), updateProduct);
 router.delete('/deleteProduct/:id',authenticateToken, deleteProduct);
 router.get('/AllProduct',AllProduct) ;
 router.get('/products/featured',AllFeaturedProduct);
@@ -141,5 +142,12 @@ router.delete('/deleteDeliveryTimeSlotById/:id', deleteDeliveryTimeSlotById);
 router.get('/AllAgents',AllAgents)
 router.get('/getAllUsersByAgent/:id',getAllUsersByAgent)
 router.post('/createUserByAgent',createUserByAgent)
+
+// Address
+router.post('/customer/address/add', authenticateToken,addAddress);
+router.get('/customer/address/list',authenticateToken, getAddressByUserId);
+router.get('/customer/address/update/:addressId',authenticateToken,getDeliveryTimeSlotById);
+router.put('/customer/address/update/:addressId', authenticateToken,updateAddress);
+router.delete('/customer/address/delete/:addressId',authenticateToken, deleteAddress);
 
 module.exports = router;

@@ -62,12 +62,7 @@ app.get("/admin/orders/list/processing", (req, res) => {
 app.get("/admin/orders/list/delivered", (req, res) => {
   res.render('Order/Delivered_order')
 });
-app.get("/admin/product/add-new", (req, res) => {
-  res.render('Products/Add_product')
-});
-app.get("/admin/product/:id", (req, res) => {
-  res.render('Products/Edit_product')
-});
+
 app.get("/admin/orders/list/returned", (req, res) => {
   res.render('Order/Returned_order')
 });
@@ -96,12 +91,19 @@ app.get("/admin/category/add-sub-category", (req, res) => {
   res.render('Category/Sub_category_add')
 });
 // Product
+
 app.get("/admin/attribute/add-new", (req, res) => {
   res.render('Products/Add_product')
 });
 
 app.get("/admin/product/list", (req, res) => {
   res.render('Products/List_product')
+});
+app.get("/admin/product/add-new", (req, res) => {
+  res.render('Products/Add_product')
+});
+app.get("/admin/product/:id", (req, res) => {
+  res.render('Products/Edit_product')
 });
 app.get("/admin/product/bulk-export-index", (req, res) => {
   res.render('Products/Bulk_Export_product')
@@ -121,9 +123,10 @@ app.get("/admin/category/edit/:id", (req, res) => {
 app.get("/admin/category/edit-sub/:id", (req, res) => {
   res.render('Category/Sub_category_edit')
 });
+
 app.get("/", (req, res) => {
-  res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
-  // res.render('Auth/login')
+  // res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
+  res.render('Auth/login')
 });
 app.get("/test", (req, res) => {
   res.render('test')

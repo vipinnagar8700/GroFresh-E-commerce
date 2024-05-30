@@ -178,7 +178,7 @@ const AllDailyNeedProduct = asyncHandler(async (req, res) => {
 // Get a single product by ID
 const singleProduct = asyncHandler(async (req, res) => {
   try {
-    const ProductItem = await Product.findById(req.params.id);
+    const ProductItem = await Product.findById(req.params.id).populate('category_ids').populate('Sub_Category_Name');
     if (!ProductItem) {
       return res.status(404).json({ message: 'ProductItem not found' });
     }
@@ -206,6 +206,7 @@ const updateProduct = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     let updatedData = req.body;
+    console.log(updatedData,"updatedData")
     let imageUrl;
     const file = req.file;
 
@@ -222,9 +223,9 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (!updatedProduct) {
       return res.status(404).json({ message: 'Product not found' });
     }
-    res.json(updatedProduct);
+    res.json({message:"Product Data Successfully Updated!",success:true});
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message ,success:false});
   }
 });
 
