@@ -89,12 +89,11 @@
             <div class="card--header">
               <h5 class="card-title">
                 Attribute Table
-                <span class="badge badge-soft-secondary">1</span>
+                <span class="badge badge-soft-secondary" id="badge-count"
+                  >1</span
+                >
               </h5>
-              <form
-                action="/admin/attribute/add-new"
-                method="GET"
-              >
+              <form id="searchForm">
                 <div class="input-group">
                   <input
                     id="datatableSearch_"
@@ -103,13 +102,12 @@
                     class="form-control"
                     placeholder="Search"
                     aria-label="Search"
-                    value
-                    required
                     autocomplete="off"
+                    required
                   />
                   <div class="input-group-append">
                     <button type="submit" class="input-group-text">
-                      <i class="tio-search"></i>
+                      <i class="tio-search">aaaa</i>
                     </button>
                   </div>
                 </div>
@@ -134,47 +132,7 @@
                   <th class="text-center">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <span class="d-block font-size-sm text-body text-trim-70">
-                      Size
-                    </span>
-                  </td>
-                  <td>
-                    <div class="btn--container justify-content-center">
-                      <a
-                        class="action-btn"
-                        href="/admin/attribute/edit/1"
-                      >
-                        <i class="tio-edit"></i
-                      ></a>
-                      <a
-                        class="action-btn btn--danger btn-outline-danger form-alert"
-                        href="javascript:"
-                        data-id="attribute-1"
-                        data-message="Want to delete this"
-                      >
-                        <i class="tio-delete-outlined"></i>
-                      </a>
-                    </div>
-                    <form
-                      action="/admin/attribute/delete/1"
-                      method="post"
-                      id="attribute-1"
-                    >
-                      <input
-                        type="hidden"
-                        name="_token"
-                        value="wMxuTXoaEzrQMkJ3BFSGetCzeGuQ2upnYIQWCmjs"
-                        autocomplete="off"
-                      />
-                      <input type="hidden" name="_method" value="delete" />
-                    </form>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody id="attribute-table-body"></tbody>
             </table>
             <table>
               <tfoot></tfoot>
@@ -185,10 +143,7 @@
       <div class="modal fade" tabindex="-1" id="attribute-modal">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form
-              action="/admin/attribute/store"
-              method="post"
-            >
+            <form id="add-attribute-form">
               <div class="modal-body pt-3">
                 <input
                   type="hidden"
@@ -198,11 +153,10 @@
                 />
                 <ul class="nav nav-tabs mb-4">
                   <li class="nav-item">
-                    <a class="nav-link lang_link active" href="#" id="en-link">
-                      English(EN)
-                    </a>
+                    <a class="nav-link lang_link active" href="#" id="en-link"
+                      >Add Attribute</a
+                    >
                   </li>
-                 
                 </ul>
                 <div class="row">
                   <div class="col-12">
@@ -212,7 +166,8 @@
                       >
                       <input
                         type="text"
-                        name="name[]"
+                        name="name"
+                        id="attribute-name"
                         class="form-control"
                         placeholder="New attribute"
                         required
@@ -221,7 +176,6 @@
                       />
                     </div>
                     <input type="hidden" name="lang[]" value="en" />
-                    
                     <input type="hidden" name="lang[]" value="ar" />
                   </div>
                 </div>
@@ -240,7 +194,64 @@
           </div>
         </div>
       </div>
-    <%- include('../Layout/Header') %>
+      <div class="modal fade" tabindex="-1" id="attribute-modala">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form id="edit-attribute-form">
+              <div class="modal-body pt-3">
+                <input
+                  type="hidden"
+                  name="_token"
+                  value="wMxuTXoaEzrQMkJ3BFSGetCzeGuQ2upnYIQWCmjs"
+                  autocomplete="off"
+                />
+                <ul class="nav nav-tabs mb-4">
+                  <li class="nav-item">
+                    <a class="nav-link lang_link active" href="#" id="en-link"
+                      >Edit Attribute</a
+                    >
+                  </li>
+                </ul>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group lang_form" id="en-form">
+                      <label class="input-label" for="exampleFormControlInput1"
+                        >Name (EN)</label
+                      >
+                      <input
+                        type="text"
+                        name="name"
+                        id="attribute-namea"
+                        class="form-control"
+                        placeholder="New attribute"
+                        required
+                        maxlength="255"
+                        oninvalid="document.getElementById('en-link').click()"
+                      />
+                    </div>
+                    <input type="hidden" name="lang[]" value="en" />
+                    <input type="hidden" name="lang[]" value="ar" />
+                  </div>
+                </div>
+                <div class="btn--container justify-content-end">
+                  <button
+                    type="reset"
+                    class="btn btn--reset"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn--primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Include your existing card HTML here -->
+
+      <%- include('../Layout/Header') %>
       <div class="modal fade" id="popup-modal">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -264,6 +275,242 @@
         </div>
       </div>
     </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const fetchAttributes = (searchQuery = "") => {
+          let url = "/api/v1/allProductattribute";
+
+          const requestOptions = {
+            method: "GET",
+            headers: myHeaders,
+            redirect: "follow",
+          };
+
+          fetch(url, requestOptions)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              const tableBody = document.getElementById("attribute-table-body");
+              const filteredCategories = data.filter((category) => {
+                // Assuming you want to filter based on category name or id
+                return (
+                  category.name
+                    .toLowerCase()
+                    .includes(searchQuery.toLowerCase()) ||
+                  category._id.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+              });
+
+              const badgeCount = document.getElementById("badge-count");
+
+              // Clear existing table rows
+              tableBody.innerHTML = "";
+
+              // Populate table with fetched data
+              filteredCategories.forEach((attribute, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+        <td>${index + 1}</td>
+        <td><span class="d-block font-size-sm text-body text-trim-70">${
+          attribute.name
+        }</span></td>
+        <td>
+            <div class="btn--container justify-content-center">
+                <a class="action-btn edit-btn" data-toggle="modal" data-target="#attribute-modala" data-id="${
+                  attribute._id
+                }" data-name="${attribute.name}">
+                    <i class="tio-edit"></i>
+                </a>
+                <a class="action-btn btn--danger btn-outline-danger form-alert" href="javascript:;" data-id="attribute-${
+                  attribute._id
+                }" data-message="Want to delete this">
+                    <i class="tio-delete-outlined"></i>
+                </a>
+            </div>
+        </td>
+    `;
+                tableBody.appendChild(row);
+
+                // Add delete event listener
+                row
+                  .querySelector(".btn--danger")
+                  .addEventListener("click", function () {
+                    if (confirm("Want to delete this")) {
+                      deleteAttribute(attribute._id);
+                    }
+                  });
+
+                // Add edit event listener
+                row
+                  .querySelector(".edit-btn")
+                  .addEventListener("click", function () {
+                    const attributeId = this.getAttribute("data-id");
+                    const attributeName = this.getAttribute("data-name");
+                    console.log(attributeId, "attributeId");
+                    // Populate modal fields
+                    document.getElementById("attribute-namea").value =
+                      attributeName;
+                    editAttribute(attributeId);
+                    // You may need to store the attribute ID in a hidden field or in a way that your form can access it upon submission
+                    document.getElementById("edit-attribute-form").dataset.id =
+                      attributeId;
+                  });
+              });
+
+              // Handle form submission for edit
+              document
+                .getElementById("edit-attribute-form")
+                .addEventListener("submit", function (event) {
+                  event.preventDefault();
+
+                  const attributeId = this.dataset.id;
+                  const attributeName =
+                    document.getElementById("attribute-namea").value;
+
+                  // Perform your update operation here, e.g., sending a request to the server
+                  updateAttribute(attributeId, attributeName);
+                });
+
+              // Update badge count
+              badgeCount.textContent = filteredCategories.length;
+            })
+            .catch((error) => console.error("Error fetching data:", error));
+        };
+        const editAttribute = (editAttribute) => {
+          console.log("first");
+          const requestOptions = {
+            method: "GET",
+            headers: myHeaders,
+            redirect: "follow",
+          };
+
+          fetch(`/api/v1/singleattribute/${editAttribute}`, requestOptions)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((result) => {
+              console.log("Attribute Edited:", result);
+              // Fetch and update the attribute list
+              fetchAttributes();
+            })
+            .catch((error) =>
+              console.error("Error deleting attribute:", error)
+            );
+        };
+        const updateAttribute = (attributeId, attributeName) => {
+          console.log("first");
+          const raw = JSON.stringify({
+            name: attributeName,
+          });
+          const requestOptions = {
+            method: "PUT",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+          };
+
+          fetch(`/api/v1/updateattribute/${attributeId}`, requestOptions)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((result) => {
+              console.log("Attribute Updated:", result);
+              // Fetch and update the attribute list
+              fetchAttributes();
+            })
+            .catch((error) =>
+              console.error("Error deleting attribute:", error)
+            );
+        };
+
+        const deleteAttribute = (id) => {
+          const requestOptions = {
+            method: "DELETE",
+            headers: myHeaders,
+            redirect: "follow",
+          };
+
+          fetch(`/api/v1/deleteattribute/${id}`, requestOptions)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((result) => {
+              console.log("Attribute deleted:", result);
+              // Fetch and update the attribute list
+              fetchAttributes();
+            })
+            .catch((error) =>
+              console.error("Error deleting attribute:", error)
+            );
+        };
+
+        // Fetch attributes on page load
+        fetchAttributes();
+
+        // Handle form submission for adding a new attribute
+        const addAttributeForm = document.getElementById("add-attribute-form");
+        addAttributeForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const attributeName = document.getElementById("attribute-name").value;
+
+          const raw = JSON.stringify({
+            name: attributeName,
+          });
+
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+          };
+
+          fetch("/api/v1/createattribute", requestOptions)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((result) => {
+              console.log("Attribute added:", result);
+              // Close the modal
+              $("#attribute-modal").modal("hide");
+              // Clear the form
+              addAttributeForm.reset();
+              // Fetch and update the attribute list
+              fetchAttributes();
+            })
+            .catch((error) => console.error("Error adding attribute:", error));
+        });
+
+        // Handle form submission for searching attributes
+        const searchForm = document.getElementById("searchForm");
+        searchForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const searchQuery = document.getElementById("datatableSearch_").value;
+          console.log(`Search query: ${searchQuery}`);
+          fetchAttributes(searchQuery);
+        });
+      });
+    </script>
+
     <script
       data-cfasync="false"
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"

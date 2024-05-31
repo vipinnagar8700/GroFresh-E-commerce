@@ -49,7 +49,6 @@ var OrderSchema = new mongoose.Schema({
     delivery_address_id:{
         type:String,
         default:null,
-        
     },
     checked:{
         type:String,
@@ -117,7 +116,6 @@ var OrderSchema = new mongoose.Schema({
     payment_note:{
         type:String,
         default:null,
-        
         index:true,
     },
     free_delivery_amount:{

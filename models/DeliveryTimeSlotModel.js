@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 // Define the schema for the DeliveryTimeSlot model
 const DeliveryTimeSlotSchema = new mongoose.Schema({
     start_time: {
-        type: Date,
+        type: String,
         required: true
     },
     end_time: {
-        type: Date,
+        type: String,
         required: true
     },
     is_available: {

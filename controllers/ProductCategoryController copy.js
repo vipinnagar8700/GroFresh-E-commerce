@@ -36,7 +36,7 @@ const singleattribute = async (req, res) => {
 // Delete a single product category by ID
 const deleteattribute = async (req, res) => {
     try {
-      const category = await attribute.findById(req.params.id);
+      const category = await attribute.findByIdAndDelete(req.params.id);
       if (!category) {
         return res.status(404).json({ message: 'attribute not found' });
       }

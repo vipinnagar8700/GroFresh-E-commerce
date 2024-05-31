@@ -44,7 +44,7 @@
                         </span>
                         <span>
                             Product List
-                            <span class="badge badge-soft-secondary">33</span>
+                            <span class="badge badge-soft-secondary" id="badge-count">0</span>
                         </span>
                     </h1>
                 </div>
@@ -76,7 +76,7 @@
                                         <div id="usersExportDropdown" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right">
                                             <span class="dropdown-header">Download
                                                 Options</span>
-                                            <a id="export-excel" class="dropdown-item" href="https://grofresh-admin.6amtech.com/admin/product/bulk-export">
+                                            <a id="export-excel" class="dropdown-item" href="/admin/product/bulk-export">
                                                 <img class="avatar avatar-xss avatar-4by3 mr-2" src="https://grofresh-admin.6amtech.com/public/assets/admin/svg/components/excel.svg"
                                                     alt="Image Description">
                                                 Excel
@@ -172,6 +172,7 @@
                         // Update table rows
                         const data =  Prod?.products || [];
                         const tableBody = document.getElementById("set-rows");
+                        const badgeCount = document.getElementById("badge-count");
                         tableBody.innerHTML = ""; 
                         const filteredCategories = data.filter(category => {
                             // Assuming you want to filter based on category name
@@ -240,7 +241,7 @@
                             `;
                             tableBody.innerHTML += row;
                         });
-        
+                        badgeCount.textContent = filteredCategories.length;
                         // Update pagination links
                         const pagination = document.querySelector(".pagination");
                         pagination.innerHTML = ""; // Clear existing links

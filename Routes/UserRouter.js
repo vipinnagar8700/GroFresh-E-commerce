@@ -89,8 +89,8 @@ router.get('/categories/products/:id',AllSubCategoryClilds);
 // Product Attributes
 router.post('/createattribute', createattribute)
 router.get('/singleattribute/:id', singleattribute)
-router.put('/updateattribute/:id', upload.single('image'),authenticateToken, updateattribute)
-router.delete('/deleteattribute/:id',authenticateToken, deleteattribute)
+router.put('/updateattribute/:id', upload.single('image'), updateattribute)
+router.delete('/deleteattribute/:id', deleteattribute)
 router.get('/allProductattribute',allProductattribute)
 
 // Product Banner
