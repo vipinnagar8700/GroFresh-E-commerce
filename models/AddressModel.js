@@ -4,7 +4,7 @@ const addressSchema = new mongoose.Schema({
     address_type: {
         type: String,
         required: true,
-        enum: ['Home', 'Office', 'Other'] // Adjust this according to the expected values
+        enum: ['Home', 'Workplace', 'Other'] // Adjust this according to the expected values
     },
     contact_person_number: {
         type: String,
