@@ -36,6 +36,7 @@ app.get("/admin/verify-offline-payment/pending", (req, res) => {
 app.get("/admin/verify-offline-payment/denied", (req, res) => {
   res.render('verify-offline-payment_denied')
 });
+
 app.get("/admin/pos/orders", (req, res) => {
   res.render('posOrder')
 });
@@ -93,7 +94,7 @@ app.get("/admin/category/add-sub-category", (req, res) => {
 // Product
 
 app.get("/admin/attribute/add-new", (req, res) => {
-  res.render('Products/Add_product')
+  res.render('Products/Add_product-Attributes')
 });
 
 app.get("/admin/product/list", (req, res) => {
@@ -128,6 +129,7 @@ app.get("/", (req, res) => {
   res.status(200).json([{"message":"Hii Vipin Nagar@",status:true}]); // Sending an empty JSON object
   // res.render('Auth/login')
 });
+
 app.get("/test", (req, res) => {
   res.render('test')
 });

@@ -34,9 +34,9 @@ const addAddress = async (req, res) => {
 
         // Save the address to the database
         const savedAddress = await newAddress.save();
-        res.status(201).json(savedAddress);
+        res.status(200).json({message:'Address added Successfully',status:true});
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message ,status:false});
     }
 };
 
