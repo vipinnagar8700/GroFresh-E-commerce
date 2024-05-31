@@ -1,223 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="csrf-token"
+      content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Add new category</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png"
+    />
+    <link rel="shortcut icon" href />
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css"
+    />
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css"
+    />
+  </head>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="csrf-token" content="j6j4MEYno5qh0sfU0PeYC2ZvCkfaT6RKZf16l3Wd">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Add new category</title>
-        <link rel="icon" type="image/x-icon"
-            href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
-        <link rel="shortcut icon" href>
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
-        <script
-            src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
-        <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
-    </head>
-
-    <body class="footer-offset" id="demo">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-none" id="loading">
-                        <div class="loader-image">
-                            <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
-                        </div>
-                    </div>
-                </div>
+  <body class="footer-offset" id="demo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="d-none" id="loading">
+            <div class="loader-image">
+              <img
+                width="200"
+                src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif"
+              />
             </div>
+          </div>
         </div>
-        <%- include('../Layout/Header') %>
-        <div id="headerFluid" class="d-none"></div>
-        <div id="headerDouble" class="d-none"></div>
-        <%- include('../Layout/Sidebar') %>
+      </div>
+    </div>
+    <%- include('../Layout/Header') %>
+    <div id="headerFluid" class="d-none"></div>
+    <div id="headerDouble" class="d-none"></div>
+    <%- include('../Layout/Sidebar') %>
 
-        <main id="content" role="main" class="main pointer-event">
-            <div class="content container-fluid">
-                <div class="page-header">
-                    <h1 class="page-header-title">
-                        <span class="page-header-icon">
-                            <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/category.png"
-                                class="w--24" alt="Category">
-                        </span>
-                        <span>
-                            Category setup
-                        </span>
-                    </h1>
-                </div>
-                <div class="row g-2">
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="card">
-                            <div class="card-body pt-sm-0 pb-sm-4">
-                                <form id="categoryForm" enctype="multipart/form-data">
-                                    <input type="hidden" name="_token" value="your_csrf_token_here"
-                                        autocomplete="off">
-                                    <ul class="nav nav-tabs d-inline-flex mb--n-30">
-                                        <li class="nav-item">
-                                            <a class="nav-link lang_link active" href="#"
-                                                id="en-link">English(EN)</a>
-                                        </li>
-                                    </ul>
-                                    <div class="row align-items-end g-4">
-                                        <div class="col-sm-6 lang_form" id="en-form">
-                                            <label class="form-label" for="categoryName">Category Name (EN)</label>
-                                            <input type="text" name="Category_name" id="Category_name"
-                                                class="form-control" placeholder="Ex: Size" maxlength="255"
-                                                required>
-                                        </div>
-                                        <input name="position" value="0" hidden>
-                                        <div class="col-sm-6">
-                                            <div>
-                                                <div class="text-center mb-3">
-                                                    <img id="image" class="img--105"
-                                                        src="https://grofresh-admin.6amtech.com/public/assets/admin/img/160x160/1.png"
-                                                        alt="Image" />
-                                                </div>
-                                            </div>
-                                            <label class="form-label text-capitalize">Category image</label><small
-                                                class="text-danger">* ( Ratio3:1 )</small>
-                                            <div class="custom-file">
-                                                <input type="file" name="image" id="customFileEg1"
-                                                    class="custom-file-input"
-                                                    accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
-                                                    required>
-                                                <label class="custom-file-label" for="customFileEg1">Choose
-                                                    File</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="btn--container justify-content-end">
-                                                <button type="reset" class="btn btn--reset">Reset</button>
-                                                <button type="submit" class="btn btn--primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+    <main id="content" role="main" class="main pointer-event">
+      <div class="content container-fluid">
+        <div class="page-header">
+          <h1 class="page-header-title">
+            <span class="page-header-icon">
+              <img
+                src="https://grofresh-admin.6amtech.com/public/assets/admin/img/category.png"
+                class="w--24"
+                alt="Category"
+              />
+            </span>
+            <span> Category setup </span>
+          </h1>
+        </div>
+        <div class="row g-2">
+          <div class="col-sm-12 col-lg-12">
+            <div class="card">
+              <div class="card-body pt-sm-0 pb-sm-4">
+                <form id="categoryForm" enctype="multipart/form-data">
+                  <input
+                    type="hidden"
+                    name="_token"
+                    value="your_csrf_token_here"
+                    autocomplete="off"
+                  />
+                  <ul class="nav nav-tabs d-inline-flex mb--n-30">
+                    <li class="nav-item">
+                      <a class="nav-link lang_link active" href="#" id="en-link"
+                        >English(EN)</a
+                      >
+                    </li>
+                  </ul>
+                  <div class="row align-items-end g-4">
+                    <div class="col-sm-6 lang_form" id="en-form">
+                      <label class="form-label" for="categoryName"
+                        >Category Name (EN)</label
+                      >
+                      <input
+                        type="text"
+                        name="Category_name"
+                        id="Category_name"
+                        class="form-control"
+                        placeholder="Ex: Size"
+                        maxlength="255"
+                        required
+                      />
                     </div>
-                    <div class="col-sm-12 col-lg-12">
-                        <div class="card">
-                            <div class="card-header border-0">
-                                <div class="card--header">
-                                    <h5 class="card-title">Category Table <span id="categoryCount"
-                                            class="badge badge-soft-secondary">8</span> </h5>
-                                    <form id="searchForm" action="/admin/category/add" method="GET">
-                                        <div class="input-group">
-                                            <input id="datatableSearch_" type="search" name="search" maxlength="255"
-                                                class="form-control pl-5" placeholder="Search by Name"
-                                                aria-label="Search" value required autocomplete="off">
-                                            <i class="tio-search tio-input-search"></i>
-                                            <div class="input-group-append">
-                                                <button type="submit" class="input-group-text">
-                                                    Search
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <div class="table-responsive datatable-custom">
-                                <table
-                                    class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th class="text-center">SL</th>
-                                            <th>Category image</th>
-                                            <th>Name</th>
-                                            <th>Status</th>
-                                            <th>Priority</th>
-                                            <th class="text-center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="categoryTableBody">
-                                        <!-- Categories will be populated here -->
-                                    </tbody>
-                                </table>
-                                <table>
-                                    <tfoot>
-                                    </tfoot>
-                                </table>
-                            </div>
+                    <input name="position" value="0" hidden />
+                    <div class="col-sm-6">
+                      <div>
+                        <div class="text-center mb-3">
+                          <img
+                            id="image"
+                            class="img--105"
+                            src="https://grofresh-admin.6amtech.com/public/assets/admin/img/160x160/1.png"
+                            alt="Image"
+                          />
                         </div>
+                      </div>
+                      <label class="form-label text-capitalize"
+                        >Category image</label
+                      ><small class="text-danger">* ( Ratio3:1 )</small>
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          name="image"
+                          id="customFileEg1"
+                          class="custom-file-input"
+                          accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
+                          required
+                        />
+                        <label class="custom-file-label" for="customFileEg1"
+                          >Choose File</label
+                        >
+                      </div>
                     </div>
-                </div>
+                    <div class="col-12">
+                      <div class="btn--container justify-content-end">
+                        <button type="reset" class="btn btn--reset">
+                          Reset
+                        </button>
+                        <button type="submit" class="btn btn--primary">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-            <%- include('../Layout/Footer') %>
-            <div class="modal fade" id="popup-modal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="text-center">
-                                        <h2 class="order-check-colour">
-                                            <i class="tio-shopping-cart-outlined"></i> You have new order Check
-                                            Please.
-                                        </h2>
-                                        <hr>
-                                        <button id="check-order" class="btn btn-primary">Ok let me
-                                            check</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+          </div>
+          <div class="col-sm-12 col-lg-12">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="card--header">
+                  <h5 class="card-title">
+                    Category Table
+                    <span id="categoryCount" class="badge badge-soft-secondary"
+                      >8</span
+                    >
+                  </h5>
+                  <form
+                    id="searchForm"
+                    action="/admin/category/add"
+                    method="GET"
+                  >
+                    <div class="input-group">
+                      <input
+                        id="datatableSearch_"
+                        type="search"
+                        name="search"
+                        maxlength="255"
+                        class="form-control pl-5"
+                        placeholder="Search by Name"
+                        aria-label="Search"
+                        value
+                        required
+                        autocomplete="off"
+                      />
+                      <i class="tio-search tio-input-search"></i>
+                      <div class="input-group-append">
+                        <button type="submit" class="input-group-text">
+                          Search
+                        </button>
+                      </div>
                     </div>
+                  </form>
                 </div>
+              </div>
+
+              <div class="table-responsive datatable-custom">
+                <table
+                  class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+                >
+                  <thead class="thead-light">
+                    <tr>
+                      <th class="text-center">SL</th>
+                      <th>Category image</th>
+                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Priority</th>
+                      <th class="text-center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="categoryTableBody">
+                    <!-- Categories will be populated here -->
+                  </tbody>
+                </table>
+                <table>
+                  <tfoot></tfoot>
+                </table>
+              </div>
             </div>
-        </main>
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
-        <script type="text/javascript"></script>
-        <script>
-                document.getElementById('searchForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
-    const searchText = document.getElementById('datatableSearch_').value.trim(); // Get the search text
-    fetchAndDisplayCategories(searchText); // Call the fetch function with search text
-});
-                // Function to fetch and display categories
-                function fetchAndDisplayCategories(searchText = '') {
-                    const categoryTableBody = document.getElementById('categoryTableBody');
-                    const myHeaders = new Headers();
-                    const requestOptions = {
-                        method: "GET",
-                        headers: myHeaders,
-                        redirect: "follow"
-                    };
+          </div>
+        </div>
+      </div>
+      <%- include('../Layout/Footer') %>
+      <div class="modal fade" id="popup-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="text-center">
+                    <h2 class="order-check-colour">
+                      <i class="tio-shopping-cart-outlined"></i> You have new
+                      order Check Please.
+                    </h2>
+                    <hr />
+                    <button id="check-order" class="btn btn-primary">
+                      Ok let me check
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+      document
+        .getElementById("searchForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+          const searchText = document
+            .getElementById("datatableSearch_")
+            .value.trim(); // Get the search text
+          fetchAndDisplayCategories(searchText); // Call the fetch function with search text
+        });
+      // Function to fetch and display categories
+      function fetchAndDisplayCategories(searchText = "") {
+        const categoryTableBody = document.getElementById("categoryTableBody");
+        const myHeaders = new Headers();
+        const requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow",
+        };
 
-                    fetch("/api/v1/categories", requestOptions)
-                        .then((response) => response.json())
-                        .then((categories) => {
-                            categoryTableBody.innerHTML = ""; // Clear existing table content
-                            const filteredCategories = categories.filter(category => {
-        // Assuming you want to filter based on category name
-        return category.Category_name.toLowerCase().includes(searchText.toLowerCase());
-    });
-    filteredCategories.forEach((category, index) => {
-                                const row = document.createElement('tr');
+        fetch("/api/v1/categories", requestOptions)
+          .then((response) => response.json())
+          .then((categories) => {
+            categoryTableBody.innerHTML = ""; // Clear existing table content
+            const filteredCategories = categories.filter((category) => {
+              // Assuming you want to filter based on category name
+              return category.Category_name.toLowerCase().includes(
+                searchText.toLowerCase()
+              );
+            });
+            filteredCategories.forEach((category, index) => {
+              const row = document.createElement("tr");
 
-                                row.innerHTML = `
+              row.innerHTML = `
                                     <td class="text-center">${index + 1}</td>
-                                    <td><img src="${category?.image}" class="img--50 ml-3" alt="Category"></td>
-                                    <td><span class="d-block font-size-sm text-body text-trim-50">${category?.Category_name}</span></td>
+                                    <td><img src="${
+                                      category?.image
+                                    }" class="img--50 ml-3" alt="Category"></td>
+                                    <td><span class="d-block font-size-sm text-body text-trim-50">${
+                                      category?.Category_name
+                                    }</span></td>
                                     <td>
     <label class="toggle-switch">
         <input type="checkbox" class="toggle-switch-input status-change-alert"
         data-id="${category._id}"
-        data-message="You want to ${category.status === 'active' ? 'disable' : 'enable'} this category"
-        ${category.status === 'active' ? 'checked' : ''}>
+        data-message="You want to ${
+          category.status === "active" ? "disable" : "enable"
+        } this category"
+        ${category.status === "active" ? "checked" : ""}>
         <span class="toggle-switch-label text">
             <span class="toggle-switch-indicator"></span>
         </span>
@@ -226,13 +320,20 @@
 
 <td>
     <div class="max-85">
-        <select name="priority" class="custom-select priority-select" data-id="${category._id}">
-            <option value="0" ${category.priority === null ? 'selected' : ''}>${category.priority !== null ? category.priority : '0'}</option>
-            ${[...Array(10).keys()].map(i => {
-                                    const value = i + 1;
-                                    const isSelected = category.priority === value ? 'selected' : '';
-                                    return `<option value="${value}" ${isSelected}>${value}</option>`;
-                                }).join('')}
+        <select name="priority" class="custom-select priority-select" data-id="${
+          category._id
+        }">
+            <option value="0" ${category.priority === null ? "selected" : ""}>${
+                category.priority !== null ? category.priority : "0"
+              }</option>
+            ${[...Array(10).keys()]
+              .map((i) => {
+                const value = i + 1;
+                const isSelected =
+                  category.priority === value ? "selected" : "";
+                return `<option value="${value}" ${isSelected}>${value}</option>`;
+              })
+              .join("")}
         </select>
     </div>
 </td>
@@ -241,347 +342,377 @@
 
                                     <td>
                                         <div class="btn--container justify-content-center">
-                                            <a class="action-btn" href="/admin/category/edit/${category._id}"><i class="tio-edit"></i></a>
-                                            <a class="action-btn btn--danger btn-outline-danger form-alert delete-category" href="javascript:" data-id="${category._id}" data-message="Want to delete this?">
+                                            <a class="action-btn" href="/admin/category/edit/${
+                                              category._id
+                                            }"><i class="tio-edit"></i></a>
+                                            <a class="action-btn btn--danger btn-outline-danger form-alert delete-category" href="javascript:" data-id="${
+                                              category._id
+                                            }" data-message="Want to delete this?">
                                                 <i class="tio-delete-outlined"></i>
                                             </a>
                                         </div>
                                     </td>
                                 `;
 
-                                categoryTableBody.appendChild(row);
-                            });
-                            document.getElementById('categoryCount').innerText = categories.length;
-                            // Add event listener to delete buttons
-                            const deleteButtons = document.querySelectorAll('.delete-category');
-                            deleteButtons.forEach(button => {
-                                button.addEventListener('click', function (event) {
-                                    event.preventDefault(); // Prevent the default action of the anchor tag
+              categoryTableBody.appendChild(row);
+            });
+            document.getElementById("categoryCount").innerText =
+              categories.length;
+            // Add event listener to delete buttons
+            const deleteButtons = document.querySelectorAll(".delete-category");
+            deleteButtons.forEach((button) => {
+              button.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent the default action of the anchor tag
 
-                                    // Get the category ID from the data-id attribute
-                                    const categoryId = button.dataset.id;
-                                    console.log(categoryId, "categoryIdcategoryId")
-                                    // Get confirmation message
-                                    const confirmationMessage = button.dataset.message;
+                // Get the category ID from the data-id attribute
+                const categoryId = button.dataset.id;
+                console.log(categoryId, "categoryIdcategoryId");
+                // Get confirmation message
+                const confirmationMessage = button.dataset.message;
 
-                                    // Ask for confirmation before proceeding
-                                    if (confirm(confirmationMessage)) {
-                                        // Call the deleteCategory function passing the category ID
-                                        deleteCategory(categoryId);
-                                    }
-                                });
-                            });
-
-                            const StatusButtons = document.querySelectorAll('.status-change-alert');
-                            StatusButtons.forEach(button => {
-                                button.addEventListener('click', function (event) {
-                                    event.preventDefault(); // Prevent the default action
-
-                                    // Get the category ID from the data-id attribute
-                                    const categoryId = button.dataset.id;
-                                    console.log(categoryId, "categoryId");
-
-                                    // Get the route from the data-route attribute
-
-                                    // Get confirmation message
-                                    const message = button.dataset.message;
-
-                                    // Ask for confirmation before proceeding
-                                    const userConfirmed = confirm(message);
-                                    if (userConfirmed) {
-                                        // Proceed with the status change
-                                        fetch(`/api/v1/updateProductCategoryStatus/${categoryId}`, {
-                                            method: 'PUT',
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
-                                        })
-                                            .then(response => {
-                                                if (!response.ok) {
-                                                    throw new Error('Failed to update category status');
-                                                }
-                                                return response.json();
-                                            })
-                                            .then(result => {
-                                                // Handle success response
-                                                console.log(result);
-                                                toastr.success(result?.message);
-                                                fetchAndDisplayCategories();
-                                            })
-                                            .catch(error => {
-                                                // Handle error response
-                                                console.error('Error:', error);
-                                                toastr.error('Error occurred while updating category status.');
-                                            });
-                                    }
-                                });
-                            });
-                            document.querySelectorAll('.priority-select').forEach(select => {
-                                select.addEventListener('change', async function () {
-                                    const categoryId = this.getAttribute('data-id');
-                                    const selectedValue = parseInt(this.value, 10);
-
-                                    try {
-                                        const response = await fetch(`/api/v1/updateProductCategoryPriority/${categoryId}`, {
-                                            method: 'PUT',
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
-                                            body: JSON.stringify({ priority: selectedValue })
-                                        });
-
-                                        const result = await response.json();
-
-                                        if (response.ok) {
-                                            console.log(`Priority Updated Successfully!`, result);
-                                            toastr.success(result?.message);
-                                            fetchAndDisplayCategories();
-                                            // Optionally update the UI or provide feedback to the user
-                                        } else {
-                                            console.error(`Failed to update priority: ${result.message}`);
-                                            toastr.error(result?.message);
-                                        }
-                                    } catch (error) {
-                                        console.error('Error:', error);
-                                        // Optionally handle the error by updating the UI or providing feedback to the user
-                                    }
-                                });
-                            });
-
-                        })
-                        .catch((error) => console.error('Error fetching categories:', error));
+                // Ask for confirmation before proceeding
+                if (confirm(confirmationMessage)) {
+                  // Call the deleteCategory function passing the category ID
+                  deleteCategory(categoryId);
                 }
+              });
+            });
 
-                // Function to delete a category
-                function deleteCategory(categoryId) {
-                    console.log(categoryId, "categoryId")
-                    const myHeaders = new Headers();
-                    myHeaders.append("Content-Type", "application/json");
+            const StatusButtons = document.querySelectorAll(
+              ".status-change-alert"
+            );
+            StatusButtons.forEach((button) => {
+              button.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent the default action
 
-                    const requestOptions = {
-                        method: "DELETE",
-                        headers: myHeaders,
-                        redirect: "follow"
-                    };
+                // Get the category ID from the data-id attribute
+                const categoryId = button.dataset.id;
+                console.log(categoryId, "categoryId");
 
-                    fetch(`/api/v1/deleteProductCategory/${categoryId}`, requestOptions)
-                        .then((response) => response.json())
-                        .then((result) => {
-                            console.log(result);
-                            toastr.success(result?.message);
-                            // After successful deletion, fetch and display categories again
-                            fetchAndDisplayCategories();
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            // Show Toastr message on error
-                            toastr.error('Error occurred while adding Product Category.');
-                        });
-                }
+                // Get the route from the data-route attribute
 
-                // Event listener for form submission to create a product category
-                document.getElementById('categoryForm').addEventListener('submit', function (event) {
-                    event.preventDefault(); // Prevent the default form submission
-                    const form = event.target;
-                    const formData = new FormData(form);
+                // Get confirmation message
+                const message = button.dataset.message;
 
-                    const requestOptions = {
-                        method: 'POST',
-                        body: formData,
-                        redirect: 'follow'
-                    };
-
-                    fetch('/api/v1/createProductCategory', requestOptions)
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log(result, "Product Category added!");
-                            toastr.success(result?.message);
-                            // Fetch and display categories after successful creation
-                            fetchAndDisplayCategories();
-                            // Handle success or failure here
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            // Show Toastr message on error
-                            toastr.error('Error occurred while adding Product Category.');
-                        });
-                });
-
-
-                // Fetch and display categories on page load
-                document.addEventListener('DOMContentLoaded', function () {
-                    fetchAndDisplayCategories();
-                });
-                document.addEventListener('DOMContentLoaded', function () {
-                    const statusButtons = document.querySelectorAll('.status-change-alert');
-
-                    statusButtons.forEach(button => {
-                        button.addEventListener('change', function (event) {
-                            event.preventDefault(); // Prevent the default action of the input element
-
-                            // Get the category ID and current status
-                            const categoryId = button.dataset.id;
-                            const currentStatus = button.dataset.status;
-                            const newStatus = currentStatus === 'active' ? 'pending' : 'active';
-
-                            // Ask for confirmation before proceeding
-                            const confirmationMessage = button.dataset.message;
-                            if (confirm(confirmationMessage)) {
-                                // Update the status via PUT request
-                                fetch(`/api/v1/updateProductCategoryStatus/${categoryId}`, {
-                                    method: 'PUT',
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({ status: newStatus })
-                                })
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            throw new Error('Failed to update category status');
-                                        }
-                                        return response.json();
-                                    })
-                                    .then(result => {
-                                        // Handle success response
-                                        console.log(result);
-                                        button.dataset.status = newStatus; // Update the data-status attribute
-                                        button.dataset.message = `You want to ${newStatus === 'active' ? 'disable' : 'enable'} this category`; // Update the confirmation message
-                                        toastr.success('Category status updated successfully.');
-                                    })
-                                    .catch(error => {
-                                        // Handle error response
-                                        console.error('Error:', error);
-                                        toastr.error('Error occurred while updating category status.');
-                                    });
-                            } else {
-                                // Revert the checkbox state if the user cancels
-                                button.checked = !button.checked;
-                            }
-                        });
-                    });
-                });
-
-            </script>
-
-        <script>
-                $(document).on('ready', function () {
-                    var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
-
-                    $('.js-nav-tooltip-link').tooltip({ boundary: 'window' })
-
-                    $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
-                        if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
-                            return false;
-                        }
-                    });
-
-                    $('.js-hs-unfold-invoker').each(function () {
-                        var unfold = new HSUnfold($(this)).init();
-                    });
-
-                    $('.js-form-search').each(function () {
-                        new HSFormSearch($(this)).init()
-                    });
-
-                    $('.js-select2-custom').each(function () {
-                        var select2 = $.HSCore.components.HSSelect2.init($(this));
-                    });
-
-                    $('.js-daterangepicker').daterangepicker();
-
-                    $('.js-daterangepicker-times').daterangepicker({
-                        timePicker: true,
-                        startDate: moment().startOf('hour'),
-                        endDate: moment().startOf('hour').add(32, 'hour'),
-                        locale: {
-                            format: 'M/DD hh:mm A'
-                        }
-                    });
-                });
-            </script>
-        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/category.js"></script>
-        
-        <script>
-                $(window).on('load', function () {
-                    if ($(".navbar-vertical-content li.active").length) {
-                        $('.navbar-vertical-content').animate({
-                            scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
-                        }, 10);
-                    }
-                });
-
-                var $rows = $('#navbar-vertical-content .navbar-nav > li');
-                $('#search-sidebar-menu').keyup(function () {
-                    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-
-                    $rows.show().filter(function () {
-                        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                        return !~text.indexOf(val);
-                    }).hide();
-                });
-            </script>
-        <audio id="myAudio">
-            <source src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3"
-                type="audio/mpeg">
-        </audio>
-        <script>
-                var audio = document.getElementById("myAudio");
-
-                function playAudio() {
-                    audio.play();
-                }
-
-                function pauseAudio() {
-                    audio.pause();
-                }
-            </script>
-       
-
-        <script>
-                var initialImages = [];
-                $(window).on('load', function () {
-                    $("form").find('img').each(function (index, value) {
-                        initialImages.push(value.src);
+                // Ask for confirmation before proceeding
+                const userConfirmed = confirm(message);
+                if (userConfirmed) {
+                  // Proceed with the status change
+                  fetch(`/api/v1/updateProductCategoryStatus/${categoryId}`, {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  })
+                    .then((response) => {
+                      if (!response.ok) {
+                        throw new Error("Failed to update category status");
+                      }
+                      return response.json();
                     })
-                })
-
-                $(document).ready(function () {
-                    $('form').on('reset', function (e) {
-                        $("form").find('img').each(function (index, value) {
-                            $(value).attr('src', initialImages[index]);
-                        })
+                    .then((result) => {
+                      // Handle success response
+                      console.log(result);
+                      toastr.success(result?.message);
+                      fetchAndDisplayCategories();
+                    })
+                    .catch((error) => {
+                      // Handle error response
+                      console.error("Error:", error);
+                      toastr.error(
+                        "Error occurred while updating category status."
+                      );
                     });
-                });
-            </script>
-        <script>
-                $(function () {
-                    var owl = $('.single-item-slider');
-                    owl.owlCarousel({
-                        autoplay: false,
-                        items: 1,
-                        onInitialized: counter,
-                        onTranslated: counter,
-                        autoHeight: true,
-                        dots: true,
-                    });
+                }
+              });
+            });
+            document.querySelectorAll(".priority-select").forEach((select) => {
+              select.addEventListener("change", async function () {
+                const categoryId = this.getAttribute("data-id");
+                const selectedValue = parseInt(this.value, 10);
 
-                    function counter(event) {
-                        var element = event.target;         // DOM element, in this example .owl-carousel
-                        var items = event.item.count;     // Number of items
-                        var item = event.item.index + 1;     // Position of the current item
-
-                        if (item > items) {
-                            item = item - items
-                        }
-                        $('.slide-counter').html(+item + "/" + items)
+                try {
+                  const response = await fetch(
+                    `/api/v1/updateProductCategoryPriority/${categoryId}`,
+                    {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ priority: selectedValue }),
                     }
+                  );
+
+                  const result = await response.json();
+
+                  if (response.ok) {
+                    console.log(`Priority Updated Successfully!`, result);
+                    toastr.success(result?.message);
+                    fetchAndDisplayCategories();
+                    // Optionally update the UI or provide feedback to the user
+                  } else {
+                    console.error(
+                      `Failed to update priority: ${result.message}`
+                    );
+                    toastr.error(result?.message);
+                  }
+                } catch (error) {
+                  console.error("Error:", error);
+                  // Optionally handle the error by updating the UI or providing feedback to the user
+                }
+              });
+            });
+          })
+          .catch((error) => console.error("Error fetching categories:", error));
+      }
+
+      // Function to delete a category
+      function deleteCategory(categoryId) {
+        console.log(categoryId, "categoryId");
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const requestOptions = {
+          method: "DELETE",
+          headers: myHeaders,
+          redirect: "follow",
+        };
+
+        fetch(`/api/v1/deleteProductCategory/${categoryId}`, requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            toastr.success(result?.message);
+            // After successful deletion, fetch and display categories again
+            fetchAndDisplayCategories();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            // Show Toastr message on error
+            toastr.error("Error occurred while adding Product Category.");
+          });
+      }
+
+      // Event listener for form submission to create a product category
+      document
+        .getElementById("categoryForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+          const form = event.target;
+          const formData = new FormData(form);
+
+          const requestOptions = {
+            method: "POST",
+            body: formData,
+            redirect: "follow",
+          };
+
+          fetch("/api/v1/createProductCategory", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+              console.log(result, "Product Category added!");
+              toastr.success(result?.message);
+              // Fetch and display categories after successful creation
+              fetchAndDisplayCategories();
+              // Handle success or failure here
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              // Show Toastr message on error
+              toastr.error("Error occurred while adding Product Category.");
+            });
+        });
+
+      // Fetch and display categories on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        fetchAndDisplayCategories();
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const statusButtons = document.querySelectorAll(".status-change-alert");
+
+        statusButtons.forEach((button) => {
+          button.addEventListener("change", function (event) {
+            event.preventDefault(); // Prevent the default action of the input element
+
+            // Get the category ID and current status
+            const categoryId = button.dataset.id;
+            const currentStatus = button.dataset.status;
+            const newStatus = currentStatus === "active" ? "pending" : "active";
+
+            // Ask for confirmation before proceeding
+            const confirmationMessage = button.dataset.message;
+            if (confirm(confirmationMessage)) {
+              // Update the status via PUT request
+              fetch(`/api/v1/updateProductCategoryStatus/${categoryId}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ status: newStatus }),
+              })
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error("Failed to update category status");
+                  }
+                  return response.json();
+                })
+                .then((result) => {
+                  // Handle success response
+                  console.log(result);
+                  button.dataset.status = newStatus; // Update the data-status attribute
+                  button.dataset.message = `You want to ${
+                    newStatus === "active" ? "disable" : "enable"
+                  } this category`; // Update the confirmation message
+                  toastr.success("Category status updated successfully.");
+                })
+                .catch((error) => {
+                  // Handle error response
+                  console.error("Error:", error);
+                  toastr.error(
+                    "Error occurred while updating category status."
+                  );
                 });
-            </script>
-        
+            } else {
+              // Revert the checkbox state if the user cancels
+              button.checked = !button.checked;
+            }
+          });
+        });
+      });
+    </script>
 
-        <script>
-                if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
-            </script>
-    </body>
+    <script>
+      $(document).on("ready", function () {
+        var sidebar = $(".js-navbar-vertical-aside").hsSideNav();
 
+        $(".js-nav-tooltip-link").tooltip({ boundary: "window" });
+
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+          if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+            return false;
+          }
+        });
+
+        $(".js-hs-unfold-invoker").each(function () {
+          var unfold = new HSUnfold($(this)).init();
+        });
+
+        $(".js-form-search").each(function () {
+          new HSFormSearch($(this)).init();
+        });
+
+        $(".js-select2-custom").each(function () {
+          var select2 = $.HSCore.components.HSSelect2.init($(this));
+        });
+
+        $(".js-daterangepicker").daterangepicker();
+
+        $(".js-daterangepicker-times").daterangepicker({
+          timePicker: true,
+          startDate: moment().startOf("hour"),
+          endDate: moment().startOf("hour").add(32, "hour"),
+          locale: {
+            format: "M/DD hh:mm A",
+          },
+        });
+      });
+    </script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/category.js"></script>
+
+    <script>
+      $(window).on("load", function () {
+        if ($(".navbar-vertical-content li.active").length) {
+          $(".navbar-vertical-content").animate(
+            {
+              scrollTop:
+                $(".navbar-vertical-content li.active").offset().top - 150,
+            },
+            10
+          );
+        }
+      });
+
+      var $rows = $("#navbar-vertical-content .navbar-nav > li");
+      $("#search-sidebar-menu").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, " ").toLowerCase();
+
+        $rows
+          .show()
+          .filter(function () {
+            var text = $(this).text().replace(/\s+/g, " ").toLowerCase();
+            return !~text.indexOf(val);
+          })
+          .hide();
+      });
+    </script>
+    <audio id="myAudio">
+      <source
+        src="https://grofresh-admin.6amtech.com/public/assets/admin/sound/notification.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+    <script>
+      var audio = document.getElementById("myAudio");
+
+      function playAudio() {
+        audio.play();
+      }
+
+      function pauseAudio() {
+        audio.pause();
+      }
+    </script>
+
+    <script>
+      var initialImages = [];
+      $(window).on("load", function () {
+        $("form")
+          .find("img")
+          .each(function (index, value) {
+            initialImages.push(value.src);
+          });
+      });
+
+      $(document).ready(function () {
+        $("form").on("reset", function (e) {
+          $("form")
+            .find("img")
+            .each(function (index, value) {
+              $(value).attr("src", initialImages[index]);
+            });
+        });
+      });
+    </script>
+    <script>
+      $(function () {
+        var owl = $(".single-item-slider");
+        owl.owlCarousel({
+          autoplay: false,
+          items: 1,
+          onInitialized: counter,
+          onTranslated: counter,
+          autoHeight: true,
+          dots: true,
+        });
+
+        function counter(event) {
+          var element = event.target; // DOM element, in this example .owl-carousel
+          var items = event.item.count; // Number of items
+          var item = event.item.index + 1; // Position of the current item
+
+          if (item > items) {
+            item = item - items;
+          }
+          $(".slide-counter").html(+item + "/" + items);
+        }
+      });
+    </script>
+
+    <script>
+      if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+        document.write(
+          '<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>'
+        );
+    </script>
+  </body>
 </html>

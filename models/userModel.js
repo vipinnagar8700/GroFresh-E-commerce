@@ -213,6 +213,7 @@ const DeliveryManSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    
     status: {
     type: String,
     enum: ['pending', 'approved', 'blocked'],

@@ -13,7 +13,7 @@ require("dotenv/config");
 
 // Register
 const register = asyncHandler(async (req, res) => {
-  const { f_name, l_name, email, phone, role, password, Branch } = req.body;
+  const { f_name, l_name, email, phone, role, password, Branch_id } = req.body;
 
   // Check if email is provided
   if (!email) {
@@ -53,7 +53,7 @@ const register = asyncHandler(async (req, res) => {
       phone,
       role,
       password,
-      Branch
+      Branch_id
     });
 
     // Add role-specific data based on the role
@@ -68,7 +68,7 @@ const register = asyncHandler(async (req, res) => {
         phone: newUser.phone,
         email: newUser.email,
         role: newUser.role,
-        Branch: newUser.Branch,
+        Branch_id: newUser.Branch,
       });
     } else if (role === "Customer") {
       roleData = await Customer.create({

@@ -25,12 +25,13 @@ var OrderSchema = new mongoose.Schema({
         default:null,
     },
     payment_status:{
-        type:String,
-        default:null,
+        type: String,
+        enum: ['Unpaid', 'Paid'],
+        default: 'Unpaid'
     },
     order_status:{
         type: String,
-        enum: ['pending', 'confirmed', 'packaging', 'out_for_delivery', 'delivered', 'returned', 'failed', 'cancelled'],
+        enum: ['pending', 'confirmed', 'packaging', 'out_for_delivery', 'delivered', 'returned', 'failed', 'canceled'],
         default: 'pending'
     },
     total_tax_amount:{
@@ -56,8 +57,8 @@ var OrderSchema = new mongoose.Schema({
         
     },
     delivery_man_id:{
-        type:String,
-        default:null,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "DeliveryMan",
     },
     delivery_charge:{
         type:String,
@@ -77,13 +78,12 @@ var OrderSchema = new mongoose.Schema({
         type:String,
         default:null,
     },branch_id:{
-        type:String,
-        default:null,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Branch",
     },
     time_slot_id:{
-        type:String,
-        default:null,
-        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "DeliveryTimeSlot",
     },
     date:{
         type:String,
@@ -144,6 +144,14 @@ var OrderSchema = new mongoose.Schema({
             }
         }],
         default: []
+    },
+    created_at: {
+        type: Date,
+        default: Date.now
+    },
+    updated_at: {
+        type: Date,
+        default: Date.now
     },
 });
 

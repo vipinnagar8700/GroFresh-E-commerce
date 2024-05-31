@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="wMxuTXoaEzrQMkJ3BFSGetCzeGuQ2upnYIQWCmjs">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Order Details</title>
+    <link rel="icon" type="image/x-icon"
+        href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png">
+    <link rel="shortcut icon" href>
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css">
+    <style>
+        figure {
+            margin-bottom: -1px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/lightbox.min.css">
+    <script
+        src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css">
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css">
+</head>
+
+<body class="footer-offset" id="demo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-none" id="loading">
+                    <div class="loader-image">
+                        <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../Layout/Header') %>
+    <div id="headerFluid" class="d-none"></div>
+    <div id="headerDouble" class="d-none"></div>
+    <%- include('../Layout/Sidebar') %>
+    <main id="content" role="main" class="main pointer-event">
+        <div class="content container-fluid">
+            <div class="page-header d-flex justify-content-between">
+                <h1 class="page-header-title">
+                    <span class="page-header-icon">
+                        <img src="https://grofresh-admin.6amtech.com/public/assets/admin/img/order.png" class="w--20"
+                            alt>
+                    </span>
+                    <span>
+                        Order details
+                    </span>
+                </h1>
+            </div>
+            <div class="row" id="printableArea">
+                <div class="col-lg-8 order-print-area-left">
+                    <div class="card mb-3 mb-lg-5">
+                        <div class="card-header flex-wrap align-items-start border-0">
+                            <div class="order-invoice-left">
+                                <h1 class="page-header-title">
+                                  Order ID
+                                <span class="badge badge-soft-info py-2 px-3" id="Branch_Name">Main</span>
+                                  
+                                </h1>
+                                <span class="" id="order-id" style="font-size: 15px;"></span>
+<br>
+                            <span id="created_at" style="font-size: 15px;"><i class="tio-date-range"></i>
+                                
+                            </div>
+                            </span>
+                            <div class="order-invoice-right mt-3 mt-sm-0">
+                                <div class="btn--container ml-auto align-items-center justify-content-end">
+                                    <a class="btn btn-outline-info font-semibold last-location-view" href="javascript:"
+                                        data-toggle="tooltip" data-placement="top"
+                                        title="Only available when order is out for delivery!">
+                                        <i class="tio-map"></i>
+                                        Show Location in Map
+                                    </a>
+                                    <a class="btn btn--info print--btn" target="_blank"
+                                        href="/admin/orders/generate-invoice/100089">
+                                        <i class="tio-print mr-1"></i> Print Invoice
+                                    </a>
+                                </div>
+                                <div class="text-right mt-3 order-invoice-right-contents text-capitalize">
+                                    <h6>
+                                        Status :
+                                        <span class="badge badge-soft-info ml-2 ml-sm-3 text-capitalize" id="order_status">
+                                        </span>
+                                    </h6>
+                                    <h6 class="text-capitalize">
+                                        <span class="text-body mr-2" >Payment Method
+                                            :</span> <span class="text--title font-bold" id="payment_method"></span>
+                                    </h6>
+                                    <h6 class="text-capitalize">
+                                        <span class="text-body mr-2">Reference Code
+                                            :</span> <span class="text--title font-bold">
+                                            pi_3OsOYS2eZvKYlo2C0WVYPuLA</span>
+                                    </h6>
+                                    <h6>
+                                        <span class="text-body mr-2">Payment Status : </span>
+                                        <span class="badge badge-soft-success ml-sm-3" id="payment_status">
+                                        </span>
+                                    </h6>
+                                    <h6 class="text-capitalize">
+                                        <span class="text-body">Order Type</span>
+                                        :<label class="badge badge-soft-primary ml-3" id="order_type"></label>
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="w-100">
+                                <h6>
+                                    <strong>Order Note</strong>
+                                    : <span class="text-body" id="order_note"> </span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-borderless table-nowrap table-align-middle card-table dataTable no-footer mb-0">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th class="border-0">SL</th>
+                                            <th class="border-0">Item details</th>
+                                            <th class="border-0 text-right">Price</th>
+                                            <th class="border-0 text-right">Discount</th>
+                                            <th class="text-right border-0">Total Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product-list">
+                                        <!-- Product details will be populated here -->
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                            <div class="row justify-content-md-end mb-3 mt-4">
+                                <div class="col-md-9 col-lg-8">
+                                    <dl class="row text-right justify-content-end">
+                                        <dt class="col-6 text-left">
+                                            <div class="ml-auto max-w-130px">
+                                                Items Price :
+                                            </div>
+                                        </dt>
+                                        <dd class="col-6 col-xl-5 pr-5" >₹
+                                           <span id="totalPrice"></span>
+                                        </dd>
+                                        
+                                        <dt class="col-6 text-left">
+                                            <div class="ml-auto max-w-130px">
+                                                Coupon Discount :
+                                            </div>
+                                        </dt>
+                                        <dd class="col-6 col-xl-5 pr-5"> - ₹ 
+                                           <span id="coupon_discount_amount"></span>
+                                        </dd>
+                                        
+                                        <dt class="col-6 text-left">
+                                            <div class="ml-auto max-w-130px">
+                                                Delivery Fee :
+                                            </div>
+                                        </dt>
+                                        <dd class="col-6 col-xl-5 pr-5"> + ₹ 
+                                            <span id="delivery_charge"></span>
+                                            <hr>
+                                         </dd>
+                                        <dt class="col-6 text-left">
+                                            <div class="ml-auto max-w-130px">
+                                                Total:
+                                            </div>
+                                        </dt>
+                                        <dd class="col-6 col-xl-5 pr-5">
+                                          <span id="total_Amount"></span>
+                                            <hr>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 order-print-area-right">
+                    <div class="card">
+                        <div class="card-header border-0 pb-0 justify-content-center">
+                            <h4 class="card-title">Order Setup</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="hs-unfold w-100">
+                                <span class="d-block form-label font-bold mb-2">Change Order Status:</span>
+                                <div class="dropdown">
+                                    <button
+                                        class="form-control h--45px dropdown-toggle d-flex justify-content-between align-items-center w-100"
+                                        type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Confirmed
+                                    </button>
+                                    <div class="dropdown-menu text-capitalize" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="pending">Pending</a>
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="confirmed">Confirmed</a>
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="packaging">Packaging</a>
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="out_for_delivery">Out for delivery</a>
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="delivered">Delivered</a>
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="returned">Returned</a>
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="failed">Failed</a>
+                                        <a class="dropdown-item manage-status" href="#" data-order_status="canceled">Canceled</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="hs-unfold w-100 mt-3">
+                                <span class="d-block form-label font-bold mb-2">Payment Status:</span>
+                                <div class="dropdown">
+                                    <button
+                                        class="form-control h--45px dropdown-toggle d-flex justify-content-between align-items-center w-100"
+                                        type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Paid
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item change-payment-status" data-status="Paid"
+                                            >Paid</a>
+                                        <a class="dropdown-item change-payment-status" data-status="Unpaid"
+                                           >Unpaid</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <span class="d-block form-label mb-2 font-bold">Delivery Date &amp; Time:</span>
+                                <div class="d-flex flex-wrap g-2">
+                                    <div class="hs-unfold w-0 flex-grow min-w-160px">
+                                        <label class="input-date">
+                                            <input
+                                                class="js-flatpickr form-control flatpickr-custom min-h-45px form-control"
+                                                type="text" value="09 Mar 2024" name="deliveryDate" id="from_date"
+                                                data-id="100089" required>
+                                        </label>
+                                    </div>
+                                    <div class="hs-unfold w-0 flex-grow min-w-160px">
+                                        <select class="custom-select custom-select time_slote" name="timeSlot"
+                                            data-id="100089">
+                                            <option disabled selected>Select Time Slot</option>
+                                            <option value="6">10:30:00 AM
+                                                - 11:30:00 AM
+                                            </option>
+                                            <option value="7">12:30:00 PM
+                                                - 02:00:00 PM
+                                            </option>
+                                            <option value="8" selected>05:30:00 PM
+                                                - 06:30:00 PM
+                                            </option>
+                                            <option value="9">10:30:00 PM
+                                                - 11:30:00 PM
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn--primary w-100" type="button"
+                                    data-target="#assign_delivey_man_modal" data-toggle="modal">Assign delivery man
+                                    manually</button>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">
+                                    <span class="card-header-icon">
+                                        <i class="tio-user"></i>
+                                    </span>
+                                    <span>Delivery information</span>
+                                </h5>
+                                <a class="link" data-toggle="modal" data-target="#shipping-address-modal"
+                                    href="javascript:"><i class="tio-edit"></i></a>
+                            </div>
+                            <div class="delivery--information-single flex-column mt-3">
+                                <div class="d-flex">
+                                    <span class="name">
+                                        Name
+                                    </span>
+                                    <span class="info" id="Branch_Name">User</span>
+                                </div>
+                                <div class="d-flex">
+                                    <span class="name" >Phone</span>
+                                    <span class="info" id="Branch_phone">1234567890</span>
+                                </div>
+                                <hr class="w-100">
+                                <div>
+                                    <a target="_blank"
+                                        href="https://maps.google.com/maps?z=12&t=m&q=loc:23.76346724591604+90.34788041694947">
+                                        <i class="tio-poi"></i> 23/23ff fajd df
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h5 class="form-label mb-3">
+                                <span class="card-header-icon">
+                                    <i class="tio-user"></i>
+                                </span>
+                                <span>Customer information</span>
+                            </h5>
+                            <div class="media align-items-center deco-none customer--information-single">
+                                <div class="avatar avatar-circle">
+                                    <img class="avatar-img"
+                                        src="https://grofresh-admin.6amtech.com/storage/app/public/profile/2024-03-09-65ec3cbe34688.png"
+                                        alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span class="fz--14px text--title font-semibold text-hover-primary" id="Cus_fname">
+                                    </span>
+                                    <span>5 Orders</span>
+                                    <span class="text--title font-semibold " id="Cus_phone">
+                                    </span>
+                                    <span class="text--title">
+                                        <i class="tio-email mr-2"></i>
+                                       <span
+                                               id="Cus_email"
+                                                ></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h5 class="form-label mb-3">
+                                <span class="card-header-icon">
+                                    <i class="tio-shop-outlined"></i>
+                                </span>
+                                <span>Branch information</span>
+                            </h5>
+                            <div class="media align-items-center deco-none resturant--information-single">
+                                <div class="avatar avatar-circle">
+                                    <img class="avatar-img w-75px"
+                                        src="https://grofresh-admin.6amtech.com/public/assets/admin/img/160x160/2.png"
+                                        alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span class="fz--14px text--title font-semibold text-hover-primary d-block" id="Branch_Name">
+                                       
+                                    </span>
+                                    <span>6 Orders</span>
+                                    <span class="text--title font-semibold d-block"  id="Branch_Phone">
+                                        <i class="tio-call-talking-quiet mr-2"></i>
+                                        <a href="Tel:"></a>
+                                    </span>
+                                    <span class="text--title"  id="Branch_Name">
+                                        <i class="tio-email mr-2"></i>
+                                        <a
+                                            href="/cdn-cgi/l/email-protection#32565a53595372555f535b5e515d5f" >dhaka@gmailcom</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <span class="d-block">
+                                <a target="_blank"
+                                    href="https://maps.google.com/maps?z=12&t=m&q=loc:23.7805733+90.2792397">
+                                    <i class="tio-poi"></i> Dhaka
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title h4" id="mySmallModalLabel">Reference Code Add</h5>
+                        <button type="button" class="btn btn-xs btn-icon btn-ghost-secondary" data-dismiss="modal"
+                            aria-label="Close">
+                            <i class="tio-clear tio-lg"></i>
+                        </button>
+                    </div>
+                    <form action="searchForm/admin/orders/add-payment-ref-code/100089"
+                        method="post">
+                        <input type="hidden" name="_token" value="wMxuTXoaEzrQMkJ3BFSGetCzeGuQ2upnYIQWCmjs"
+                            autocomplete="off">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="text" name="transaction_reference" class="form-control"
+                                    placeholder="EX : Code123" required>
+                            </div>
+                            <div class="btn--container justify-content-end">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                <button class="btn btn--primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="shipping-address-modal" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalTopCoverTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-top-cover bg-dark text-center">
+                        <figure class="position-absolute right-0 bottom-0 left-0">
+                            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                viewBox="0 0 1920 100.1">
+                                <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z" />
+                            </svg>
+                        </figure>
+                        <div class="modal-close">
+                            <button type="button" class="btn btn-icon btn-sm btn-ghost-light" data-dismiss="modal"
+                                aria-label="Close">
+                                <svg width="16" height="16" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="currentColor"
+                                        d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal-top-cover-icon">
+                        <span class="icon icon-lg icon-light icon-circle icon-centered shadow-soft">
+                            <i class="tio-location-search"></i>
+                        </span>
+                    </div>
+                    <form action="searchForm/admin/order/update-shipping/7" method="post">
+                        <input type="hidden" name="_token" value="wMxuTXoaEzrQMkJ3BFSGetCzeGuQ2upnYIQWCmjs"
+                            autocomplete="off">
+                        <div class="modal-body">
+                            <div class="row mb-3">
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Type
+                                </label>
+                                <div class="col-md-10 js-form-message">
+                                    <input type="text" class="form-control" name="address_type" value="Home" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Contact
+                                </label>
+                                <div class="col-md-10 js-form-message">
+                                    <input type="text" class="form-control" name="contact_person_number" value="123456"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Name
+                                </label>
+                                <div class="col-md-10 js-form-message">
+                                    <input type="text" class="form-control" name="contact_person_name" value="sultan"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Address
+                                </label>
+                                <div class="col-md-10 js-form-message">
+                                    <input type="text" class="form-control" name="address" value="23/23ff fajd df"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Road
+                                </label>
+                                <div class="col-md-10 js-form-message">
+                                    <input type="text" class="form-control" name="road" value>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    House
+                                </label>
+                                <div class="col-md-4 js-form-message">
+                                    <input type="text" class="form-control" name="house" value>
+                                </div>
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Floor
+                                </label>
+                                <div class="col-md-4 js-form-message">
+                                    <input type="text" class="form-control" name="floor" value>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Latitude
+                                </label>
+                                <div class="col-md-4 js-form-message">
+                                    <input type="text" class="form-control" name="latitude" value="23.76346724591604"
+                                        required>
+                                </div>
+                                <label for="requiredLabel" class="col-md-2 col-form-label input-label text-md-right">
+                                    Longitude
+                                </label>
+                                <div class="col-md-4 js-form-message">
+                                    <input type="text" class="form-control" name="longitude" value="90.34788041694947"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="assign_delivey_man_modal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Assign Delivery Man</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 my-2">
+                                <ul class="list-group overflow-auto initial--23">
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="1">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2024-03-10-65ed8bb47f10f.png"
+                                                alt="Floyd">
+                                            Floyd Miles
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="1">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="2">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2021-07-06-60e49aa1da652.png"
+                                                alt="Arlene">
+                                            Arlene McCoy
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="2">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="3">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2024-03-10-65ed8bce60f3d.png"
+                                                alt="Devon">
+                                            Devon Lane
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="3">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="4">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2024-03-10-65ed8c014ee46.png"
+                                                alt="Dianne">
+                                            Dianne Russell
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="4">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="7">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2024-03-10-65ed8ba6148ef.png"
+                                                alt="Leslie">
+                                            Leslie Alexander
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="7">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="8">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2024-03-10-65ed8b9933371.png"
+                                                alt="Theresa">
+                                            Theresa Webb
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="8">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="9">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2022-12-09-6394222bcb621.png"
+                                                alt="Jerome">
+                                            Jerome Bell
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="9">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="10">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2024-03-10-65ed8b8c858e0.png"
+                                                alt="demo">
+                                            demo Deliveryman
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="10">Assign</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="dm_list" role="button" data-id="14">
+                                            <img class="avatar avatar-sm avatar-circle mr-1"
+                                                src="https://grofresh-admin.6amtech.com/storage/app/public/delivery-man/2023-10-21-65336898d31c7.png"
+                                                alt="Melodie">
+                                            Melodie Allison
+                                        </span>
+                                        <a class="btn btn-primary btn-xs float-right assign-deliveryman"
+                                            data-deliveryman-id="14">Assign</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <%- include('../Layout/Footer') %>
+        <div class="modal fade" id="popup-modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <h2 class="order-check-colour">
+                                        <i class="tio-shopping-cart-outlined"></i> You have new order Check Please.
+                                    </h2>
+                                    <hr>
+                                    <button id="check-order" class="btn btn-primary">Ok let me check</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const orderId = window.location.pathname.split('/').pop();
+
+            // Function to fetch order details
+            function fetchOrderDetails() {
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const requestOptions = {
+                    method: "GET",
+                    headers: myHeaders,
+                    redirect: "follow"
+                };
+
+                fetch(`/api/v1/get_single_Order/${orderId}`, requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data?.orders, "result Order");
+
+                        // Clear existing product list
+                        const productList = document.getElementById('product-list');
+                        productList.innerHTML = '';
+
+                        const cartData = data?.orders?.cart_data;
+                        cartData.forEach((producta, index) => {
+                            const product = producta?.product;
+                            const row = `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>
+                                        <div class="media media--sm">
+                                            <div class="avatar avatar-xl mr-3">
+                                                <img class="img-fluid rounded aspect-ratio-1" src="${product?.image}" alt="Product Image">
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="line--limit-1"> ${product?.name}</h5>
+                                                <div class="font-size-sm text-body text-capitalize">
+                                                    <span class="font-weight-bold"></span>
+                                                </div>
+                                                <h5 class="mt-1"><span class="text-body">Unit</span> : ${product?.unit}</h5>
+                                                <h5 class="mt-1"><span class="text-body">Unit Price</span> : ₹ ${product?.price}</h5>
+                                                <h5 class="mt-1"><span class="text-body">QTY</span> : ${producta?.quantity}</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right"><h6> ₹ ${product?.price}</h6></td>
+                                    <td class="text-right"><h6> ₹ ${product?.discount}</h6></td>
+                                    <td class="text-right">
+                                        <h5>₹${(product?.price - product?.discount).toFixed(2)}</h5>
+                                    </td>
+                                </tr>
+                            `;
+                            productList.insertAdjacentHTML('beforeend', row);
+                        });
+
+                        document.getElementById('totalPrice').innerText = data?.TotalPrice;
+                        document.getElementById('coupon_discount_amount').innerText = data?.orders?.coupon_discount_amount;
+                        document.getElementById('delivery_charge').innerText = data?.orders?.delivery_charge;
+
+                        const totalPrice = parseFloat(data?.TotalPrice) || 0;
+                        const couponDiscount = parseFloat(data?.orders?.coupon_discount_amount) || 0;
+                        const deliveryCharge = parseFloat(data?.orders?.delivery_charge) || 0;
+                        const totalAmount = totalPrice - couponDiscount;
+                        document.getElementById('total_Amount').innerText = totalAmount.toFixed(2);
+
+                        document.getElementById('order-id').innerText = data?.orders?._id;
+
+                        function formatDateTime(dateString) {
+                            const date = new Date(dateString);
+                            const day = String(date.getDate()).padStart(2, '0');
+                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                            const year = String(date.getFullYear()).slice(-2);
+                            let hours = date.getHours();
+                            const minutes = String(date.getMinutes()).padStart(2, '0');
+                            const ampm = hours >= 12 ? 'PM' : 'AM';
+                            hours = hours % 12;
+                            hours = hours ? hours : 12; // the hour '0' should be '12'
+                            return `${day}-${month}-${year} ${hours}:${minutes} ${ampm}`;
+                        }
+
+                        const createdAt = data?.orders?.created_at;
+                        document.getElementById('created_at').innerHTML = `<i class="tio-date-range"></i> ${formatDateTime(createdAt)}`;
+
+                        document.getElementById('Branch_Name').innerText = data?.orders?.branch_id?.f_name;
+                        document.getElementById('order_status').innerText = getFriendlyStatus(data?.orders?.order_status);
+                        function getFriendlyStatus(status) {
+    switch (status) {
+        case "out_for_delivery":
+            return "Out for Delivery";
+        case "pending":
+            return "Pending";
+        case "confirmed":
+            return "Confirmed";
+        case "packaging":
+            return "Packaging";
+        case "delivered":
+            return "Delivered";
+        case "returned":
+            return "Returned";
+        case "failed":
+            return "Failed";
+        case "canceled":
+            return "Canceled";
+        default:
+            return status; // If status doesn't match any predefined state
+    }
+}
+                        document.getElementById('payment_method').innerText = data?.orders?.payment_method;
+                        document.getElementById('payment_status').innerText = data?.orders?.payment_status;
+                        document.getElementById('order_type').innerText = data?.orders?.order_type;
+                        document.getElementById('delivery_man_idEmail').innerText = data?.orders?.delivery_man_id?.email;
+                        document.getElementById('delivery_man_idphone').innerText = data?.orders?.delivery_man_id?.phone;
+                        document.getElementById('Cus_fname').innerText = data?.orders?.customer_id?.f_name;
+                        document.getElementById('Cus_lname').innerText = data?.orders?.customer_id?.l_name;
+                        document.getElementById('Cus_email').innerText = data?.orders?.customer_id?.email;
+                        document.getElementById('Cus_phone').innerText = data?.orders?.customer_id?.phone;
+                        document.getElementById('Branch_phone').innerText = data?.orders?.branch_id?.phone;
+                    })
+                    .catch(error => console.error(error));
+            }
+
+            // Fetch order details on page load
+            fetchOrderDetails();
+
+            // Function to update order status
+            function updateOrderStatus(orderId, newStatus) {
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const raw = JSON.stringify({
+                    "order_status": newStatus
+                });
+
+                const requestOptions = {
+                    method: "PUT",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow"
+                };
+
+                fetch(`/api/v1/Update_Order_status/${orderId}`, requestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        // Fetch updated order details after status update
+                        fetchOrderDetails();
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            // Add event listeners to the status change links
+            document.querySelectorAll('.manage-status').forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const newStatus = event.target.getAttribute('data-order_status');
+                    updateOrderStatus(orderId, newStatus);
+                });
+            });
+            // Payment
+            function updateOrderStatusPayment(orderId, newStatus) {
+                console.log("data-status")
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const raw = JSON.stringify({
+                    "payment_status": newStatus
+                });
+
+                const requestOptions = {
+                    method: "PUT",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow"
+                };
+
+                fetch(`/api/v1/Update_Order_payment_status/${orderId}`, requestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        // Fetch updated order details after status update
+                        fetchOrderDetails();
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            // Add event listeners to the status change links
+            document.querySelectorAll('.change-payment-status').forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const newStatus = event.target.getAttribute('data-status');
+                    updateOrderStatusPayment(orderId, newStatus);
+                });
+            });
+           
+        });
+    </script>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/vendor.min.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/sweet_alert.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/owl.min.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        $(document).on('ready', function () {
+            var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
+
+            $('.js-nav-tooltip-link').tooltip({ boundary: 'window' })
+
+            $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+                if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
+                    return false;
+                }
+            });
+
+            $('.js-hs-unfold-invoker').each(function () {
+                var unfold = new HSUnfold($(this)).init();
+            });
+
+            $('.js-form-search').each(function () {
+                new HSFormSearch($(this)).init()
+            });
+
+            $('.js-select2-custom').each(function () {
+                var select2 = $.HSCore.components.HSSelect2.init($(this));
+            });
+
+            $('.js-daterangepicker').daterangepicker();
+
+            $('.js-daterangepicker-times').daterangepicker({
+                timePicker: true,
+                startDate: moment().startOf('hour'),
+                endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
+                    format: 'M/DD hh:mm A'
+                }
+            });
+        });
+    </script>
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/flatpicker.js"></script>
+    <script>
+        "use strict";
+
+        $('.last-location-view').on('click', function () {
+            last_location_view();
+        })
+
+        $('#verifyPaymentButton').on('click', function () {
+            var orderId = $(this).data('id');
+            get_offline_payment_data(orderId);
+        });
+
+        $('.manage-status').on('click', function (event) {
+            event.preventDefault();
+            var status = $(this).data('status');
+            var order_status = $(this).data('order_status');
+            if (status === 'pending' || status === 'confirmed' || status === 'packaging' || status === 'out_for_delivery' || status === 'delivered' || status === 'returned') {
+                var message = 'You can not change order status to this status. Please Check &amp; Verify the payment information whether it is correct or not. You can only change order status to failed or cancel if payment is not verified.';
+                offline_payment_order_alert(message);
+            } else {
+                var route = $(this).attr('href');
+                var confirmMessage = 'Change status to ' + order_status + ' ?';
+                if (order_status == 'out_for_delivery') {
+                    var confirmMessage = 'Change status to out for delivery' + ' ?';
+                }
+                route_alert(route, confirmMessage);
+            }
+        });
+
+        // $('.change-payment-status').on('click', function (event) {
+        //     event.preventDefault();
+        //     var status = $(this).data('status');
+        //     var message = 'Change status to ' + status + ' ?';
+        //     var route = $(this).data('route');
+        //     console.log(status);
+        //     console.log(message);
+        //     console.log(route);
+        //     route_alert(route, message);
+            
+        // });
+
+        $('.offline-payment').on('click', function (event) {
+            event.preventDefault();
+            var message = $(this).data('message');
+            offline_payment_status_alert(message);
+        });
+
+        $('.assign-deliveryman').on('click', function (event) {
+            event.preventDefault();
+            var deliverymanId = $(this).data('deliveryman-id');
+            addDeliveryMan(deliverymanId);
+        });
+
+        $('.verify-offline-payment').on('click', function (event) {
+            event.preventDefault();
+            var status = $(this).data('status');
+            verify_offline_payment(status);
+        });
+
+        function offline_payment_order_alert(message) {
+            Swal.fire({
+                title: 'Payment is Not Verified',
+                text: message,
+                type: 'question',
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonColor: 'default',
+                confirmButtonColor: '#01684b',
+                cancelButtonText: 'Close',
+                confirmButtonText: 'Proceed',
+                reverseButtons: true
+            }).then((result) => {
+
+            })
+        }
+
+        function offline_payment_status_alert(message) {
+            Swal.fire({
+                title: 'Payment is Not Verified',
+                text: message,
+                type: 'question',
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonColor: 'default',
+                confirmButtonColor: '#01684b',
+                cancelButtonText: 'Close',
+                confirmButtonText: '',
+                reverseButtons: true
+            }).then((result) => {
+
+            })
+        }
+
+        function addDeliveryMan(id) {
+            $.ajax({
+                type: "GET",
+                url: 'searchForm/admin/orders/add-delivery-man/100089/' + id,
+                data: $('#product_form').serialize(),
+                success: function (data) {
+                    //console.log(data);
+                    location.reload();
+                    if (data.status == true) {
+                        toastr.success('Deliveryman successfully assigned/changed', {
+                            CloseButton: true,
+                            ProgressBar: true
+                        });
+                    } else {
+                        toastr.error('Deliveryman man can not assign/change in that status', {
+                            CloseButton: true,
+                            ProgressBar: true
+                        });
+                    }
+
+                },
+                error: function () {
+                    toastr.error('Add valid data', {
+                        CloseButton: true,
+                        ProgressBar: true
+                    });
+                }
+            });
+        }
+
+        function verify_offline_payment(status) {
+            $.ajax({
+                type: "GET",
+                url: '/admin/orders/verify-offline-payment/100089/' + status,
+                success: function (data) {
+                    //console.log(data);
+                    location.reload();
+                    if (data.status == true) {
+                        toastr.success('Offline payment verify status changed', {
+                            CloseButton: true,
+                            ProgressBar: true
+                        });
+                    } else {
+                        toastr.error('Offline payment verify status not changed', {
+                            CloseButton: true,
+                            ProgressBar: true
+                        });
+                    }
+
+                },
+                error: function () {
+                }
+            });
+        }
+
+        function last_location_view() {
+            toastr.warning('Only available when order is out for delivery!', {
+                CloseButton: true,
+                ProgressBar: true
+            });
+        }
+
+        $(document).on('change', '#from_date', function () {
+            var id = $(this).attr("data-id");
+            console.log(id);
+            var value = $(this).val();
+            console.log(value);
+            Swal.fire({
+                title: 'Are you sure Change this Delivery date ',
+                text: "You won t be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#01684b',
+                cancelButtonColor: 'secondary',
+                confirmButtonText: 'Yes  Change it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.post({
+                        url: "#",
+
+                        data: {
+                            "id": id,
+                            "deliveryDate": value
+                        },
+
+                        success: function (data) {
+                            console.log(data);
+                            toastr.success('Delivery Date Change successfully');
+                            location.reload();
+                        }
+                    });
+                }
+            })
+        });
+
+        $(document).on('change', '.time_slote', function () {
+            var id = $(this).attr("data-id");
+            var value = $(this).val();
+            Swal.fire({
+                title: 'Are you sure Change this ',
+                text: "You won t be able to revert this!",
+                showCancelButton: true,
+                confirmButtonColor: '#01684b',
+                cancelButtonColor: 'secondary',
+                confirmButtonText: 'Yes, Change it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.post({
+                        url: "/admin/order/update-timeSlot",
+
+                        data: {
+                            "id": id,
+                            "timeSlot": value
+                        },
+
+                        success: function (data) {
+                            toastr.success('Time Slot Change successfully');
+                            location.reload();
+                        }
+                    });
+                }
+            })
+        });
+
+        $(document).on('ready', function () {
+            $('.js-select2-custom').each(function () {
+                var select2 = $.HSCore.components.HSSelect2.init($(this));
+            });
+        });
+    </script>
+    <script>
+        var lightbox = function (o) {
+            var s = void 0,
+                c = void 0,
+                u = void 0,
+                d = void 0,
+                i = void 0,
+                p = void 0,
+                m = document,
+                e = m.body,
+                l = "fadeIn .3s",
+                v = "fadeOut .3s",
+                t = "scaleIn .3s",
+                f = "scaleOut .3s",
+                a = "lightbox-btn",
+                n = "lightbox-gallery",
+                b = "lightbox-trigger",
+                g = "lightbox-active-item",
+                y = function () {
+                    return e.classList.toggle("remove-scroll");
+                },
+                r = function (e) {
+                    if (
+                        ("A" === o.tagName && (e = e.getAttribute("href")),
+                            e.match(/\.(jpeg|jpg|gif|png)/))
+                    ) {
+                        var t = m.createElement("img");
+                        return (
+                            (t.className = "lightbox-image"),
+                            (t.src = e),
+                            "A" === o.tagName &&
+                            (t.alt = o.getAttribute("data-image-alt")),
+                            t
+                        );
+                    }
+                    if (e.match(/(youtube|vimeo)/)) {
+                        var a = [];
+                        return (
+                            e.match("youtube") &&
+                            ((a.id = e
+                                .split(/v\/|v=|youtu\.be\//)[1]
+                                .split(/[?&]/)[0]),
+                                (a.url = "youtube.com/embed/"),
+                                (a.options = "?autoplay=1&rel=0")),
+                            e.match("vimeo") &&
+                            ((a.id = e
+                                .split(/video\/|https:\/\/vimeo\.com\//)[1]
+                                .split(/[?&]/)[0]),
+                                (a.url = "player.vimeo.com/video/"),
+                                (a.options = "?autoplay=1title=0&byline=0&portrait=0")),
+                            (a.player = m.createElement("iframe")),
+                            a.player.setAttribute("allowfullscreen", ""),
+                            (a.player.className = "lightbox-video-player"),
+                            (a.player.src = "https://" + a.url + a.id + a.options),
+                            (a.wrapper = m.createElement("div")),
+                            (a.wrapper.className = "lightbox-video-wrapper"),
+                            a.wrapper.appendChild(a.player),
+                            a.wrapper
+                        );
+                    }
+                    return m.querySelector(e).children[0].cloneNode(!0);
+                },
+                h = function (e) {
+                    var t = {
+                        next: e.parentElement.nextElementSibling,
+                        previous: e.parentElement.previousElementSibling,
+                    };
+                    for (var a in t)
+                        null !== t[a] && (t[a] = t[a].querySelector("[data-lightbox]"));
+                    return t;
+                },
+                x = function (e) {
+                    p.removeAttribute("style");
+                    var t = h(u)[e];
+                    if (null !== t)
+                        for (var a in ((i.style.animation = v),
+                            setTimeout(function () {
+                                i.replaceChild(r(t), i.children[0]),
+                                    (i.style.animation = l);
+                            }, 200),
+                            u.classList.remove(g),
+                            t.classList.add(g),
+                            (u = t),
+                            c))
+                            c.hasOwnProperty(a) && (c[a].disabled = !h(t)[a]);
+                },
+                E = function (e) {
+                    var t = e.target,
+                        a = e.keyCode,
+                        i = e.type;
+                    ((("click" == i && -1 !== [d, s].indexOf(t)) ||
+                        ("keyup" == i && 27 == a)) &&
+                        d.parentElement === o.parentElement &&
+                        (N("remove"),
+                            (d.style.animation = v),
+                            (p.style.animation = [f, v]),
+                            setTimeout(function () {
+                                if ((y(), o.parentNode.removeChild(d), "A" === o.tagName)) {
+                                    u.classList.remove(g);
+                                    var e = m.querySelector("." + b);
+                                    e.classList.remove(b), e.focus();
+                                }
+                            }, 200)),
+                        c) &&
+                        ((("click" == i && t == c.next) || ("keyup" == i && 39 == a)) &&
+                            x("next"),
+                            (("click" == i && t == c.previous) ||
+                                ("keyup" == i && 37 == a)) &&
+                            x("previous"));
+                    if ("keydown" == i && 9 == a) {
+                        var l = ["[href]", "button", "input", "select", "textarea"];
+                        l = l.map(function (e) {
+                            return e + ":not([disabled])";
+                        });
+                        var n = (l = d.querySelectorAll(l.toString()))[0],
+                            r = l[l.length - 1];
+                        e.shiftKey
+                            ? m.activeElement == n && (r.focus(), e.preventDefault())
+                            : (m.activeElement == r && (n.focus(), e.preventDefault()),
+                                r.addEventListener("blur", function () {
+                                    r.disabled && (n.focus(), e.preventDefault());
+                                }));
+                    }
+                },
+                N = function (t) {
+                    ["click", "keyup", "keydown"].forEach(function (e) {
+                        "remove" !== t
+                            ? m.addEventListener(e, function (e) {
+                                return E(e);
+                            })
+                            : m.removeEventListener(e, function (e) {
+                                return E(e);
+                            });
+                    });
+                };
+            !(function () {
+                if (
+                    ((s = m.createElement("button")).setAttribute(
+                        "aria-label",
+                        "Close"
+                    ),
+                        (s.className = a + " " + a + "-close"),
+                        ((i = m.createElement("div")).className = "lightbox-content"),
+                        i.appendChild(r(o)),
+                        ((p = i.cloneNode(!1)).className = "lightbox-wrapper"),
+                        (p.style.animation = [t, l]),
+                        p.appendChild(s),
+                        p.appendChild(i),
+                        ((d = i.cloneNode(!1)).className = "lightbox-container"),
+                        (d.style.animation = l),
+                        (d.onclick = function () { }),
+                        d.appendChild(p),
+                        "A" === o.tagName && "gallery" === o.getAttribute("data-lightbox"))
+                )
+                    for (var e in (d.classList.add(n),
+                        (c = { previous: "", next: "" })))
+                        c.hasOwnProperty(e) &&
+                            ((c[e] = s.cloneNode(!1)),
+                                c[e].setAttribute("aria-label", e),
+                                (c[e].className = a + " " + a + "-" + e),
+                                (c[e].disabled = !h(o)[e]),
+                                p.appendChild(c[e]));
+                "A" === o.tagName &&
+                    (o.blur(), (u = o).classList.add(g), o.classList.add(b)),
+                    o.parentNode.insertBefore(d, o.nextSibling),
+                    y();
+            })(),
+                N();
+        };
+
+        Array.prototype.forEach.call(
+            document.querySelectorAll("[data-lightbox]"),
+            function (t) {
+                t.addEventListener("click", function (e) {
+                    e.preventDefault(), new lightbox(t);
+                });
+            }
+        );
+
+    </script>
+    <script>
+        $(window).on('load', function () {
+            if ($(".navbar-vertical-content li.active").length) {
+                $('.navbar-vertical-content').animate({
+                    scrollTop: $(".navbar-vertical-content li.active").offset().top - 150
+                }, 10);
+            }
+        });
+
+        var $rows = $('#navbar-vertical-content .navbar-nav > li');
+        $('#search-sidebar-menu').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+    <audio id="myAudio">
+        <source src="searchForm/public/assets/admin/sound/notification.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        var audio = document.getElementById("myAudio");
+
+        function playAudio() {
+            audio.play();
+        }
+
+        function pauseAudio() {
+            audio.pause();
+        }
+    </script>
+    <script>
+        $('#check-order').on('click', function () {
+            location.href = 'searchForm/admin/order/list/all';
+        })
+
+        setInterval(function () {
+            $.get({
+                url: 'searchForm/admin/get-restaurant-data',
+                dataType: 'json',
+                success: function (response) {
+                    let data = response.data;
+                    if (data.new_order > 0) {
+                        playAudio();
+                        $('#popup-modal').appendTo("body").modal('show');
+                    }
+                },
+            });
+        }, 10000);
+
+        function route_alert(route, message) {
+            Swal.fire({
+                title: 'Are you sure ',
+                text: message,
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: 'default',
+                confirmButtonColor: '#01684b',
+                cancelButtonText: 'No',
+                confirmButtonText: 'Yes',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    location.href = route;
+                }
+            })
+        }
+
+        $('.form-alert').on('click', function () {
+            let id = $(this).data('id');
+            let message = $(this).data('message');
+            form_alert(id, message)
+        });
+
+        function form_alert(id, message) {
+            Swal.fire({
+                title: 'Are you sure ',
+                text: message,
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: 'default',
+                confirmButtonColor: '#01684b',
+                cancelButtonText: 'No',
+                confirmButtonText: 'Yes',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    $('#' + id).submit()
+                }
+            })
+        }
+
+        function call_demo() {
+            toastr.info('Disabled for demo version!')
+        }
+
+        $('.call-demo').click(function () {
+            if ('demo' === 'demo') {
+                call_demo();
+            }
+        });
+    </script>
+    <script>
+
+        $('.status-change-alert').on('click', function () {
+            let url = $(this).data('route');
+            let message = $(this).data('message');
+            status_change_alert(url, message, event)
+        });
+
+        function status_change_alert(url, message, e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure ',
+                text: message,
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: 'default',
+                confirmButtonColor: '#107980',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    location.href = url;
+                }
+            })
+        }
+    </script>
+    <script>
+        var initialImages = [];
+        $(window).on('load', function () {
+            $("form").find('img').each(function (index, value) {
+                initialImages.push(value.src);
+            })
+        })
+
+        $(document).ready(function () {
+            $('form').on('reset', function (e) {
+                $("form").find('img').each(function (index, value) {
+                    $(value).attr('src', initialImages[index]);
+                })
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            var owl = $('.single-item-slider');
+            owl.owlCarousel({
+                autoplay: false,
+                items: 1,
+                onInitialized: counter,
+                onTranslated: counter,
+                autoHeight: true,
+                dots: true,
+            });
+
+            function counter(event) {
+                var element = event.target;         // DOM element, in this example .owl-carousel
+                var items = event.item.count;     // Number of items
+                var item = event.item.index + 1;     // Position of the current item
+
+                if (item > items) {
+                    item = item - items
+                }
+                $('.slide-counter').html(+item + "/" + items)
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            replaceEmailsAndPhoneNumbersWithAsterisks(document.getElementById('demo'));
+
+            // Disable mailto links
+            document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                });
+            });
+            // Disable tel links
+            document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                });
+            });
+        });
+
+        function replaceEmailsAndPhoneNumbersWithAsterisks(element) {
+            if (element.nodeType === 3) { // Text node
+                // Use regular expressions to match email and phone number patterns
+                element.nodeValue = element.nodeValue
+                    .replace(/\b([A-Za-z0-9._%+-])[^@]*@([A-Za-z0-9.-]+)\.([A-Z|a-z]{2,})\b/g, function (match, firstLetter, domain, tld) {
+                        var remainingAsterisks = '*'.repeat(Math.min(10, match.length - 1));
+                        return firstLetter + remainingAsterisks + '@' + domain + '.' + tld;
+                    })
+                    .replace(/\b(?:\+\d{1,3}\s?)?\d{1,4}[-.\s]?\d{5,}\b/g, function (match) {
+                        if (match.length >= 8) {
+                            var firstChar = match.charAt(0) === '+' ? '+' : match.charAt(0);
+                            var remainingAsterisks = '*'.repeat(Math.min(10, match.length - (firstChar === '+' ? 2 : 1)));
+                            return firstChar + remainingAsterisks;
+                        } else {
+                            return match;  // Don't replace if the length is less than 10
+                        }
+                    });
+            } else if (element.nodeType === 1) { // Element node
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    replaceEmailsAndPhoneNumbersWithAsterisks(element.childNodes[i]);
+                }
+            }
+        }
+    </script>
+
+    <script>
+        if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+    </script>
+</body>
+
+</html>
