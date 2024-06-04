@@ -9,7 +9,6 @@ const createOrderFromCart = async (req, res) => {
     try {
         // Extract data from the request body
         const { 
-            CustomerUserId,
             coupon_discount_amount,
             coupon_discount_title,
             payment_status,
@@ -33,7 +32,7 @@ const createOrderFromCart = async (req, res) => {
         } = req.body;
 
         // Find the Cart associated with the user
-        const cart = await Cart.findOne({ customer: CustomerUserId }).populate('products.product');
+        const cart = await Cart.findOne({ customer: req.user.userId }).populate('products.product');
 
         if (!cart || cart.products.length === 0) {
             return res.status(404).json({ message: 'Cart is empty for this user', status: false });
@@ -73,7 +72,7 @@ const createOrderFromCart = async (req, res) => {
 
         // Create a new order document
         const newOrder = new Order({
-            customer_id: CustomerUserId,
+            customer_id: req.user.userId,
             order_id: orderId,
             customer: customerId,
             cart_data: cartData,
@@ -108,10 +107,10 @@ const createOrderFromCart = async (req, res) => {
         await cart.save();
 
         // Send a response with success message and order details
-        res.status(201).json({ message: 'Order created successfully', order: savedOrder });
+        res.status(200).json({ message: 'Order created successfully', success:true });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: 'Internal server error', success:false });
     }
 };
 
@@ -142,6 +141,36 @@ const allOrder = async (req, res) => {
 };
 
 const get_single_Order = async (req, res) => {
+    try {
+        const allOrders = await Order.findById(req.params.id).populate({
+            path: 'cart_data.product',
+            model: 'Product', // Assuming 'Product' is the model name for products
+            populate: [
+                {
+                    path: 'category_ids',
+                    model: 'ProductCategory' // Assuming 'ProductCategory' is the model name for categories
+                },
+                {
+                    path: 'Sub_Category_Name',
+                    model: 'ProductSubCategory' // Assuming 'ProductSubCategory' is the model name for sub-categories
+                }
+            ]
+        }).populate('customer_id').populate('delivery_man_id').populate('branch_id').populate('time_slot_id').sort({ _id: -1 });
+        const totalPrice = allOrders.cart_data.reduce((total, item) => {
+            const productPrice = item.product.price || 0;
+            const productDiscount = item.product.discount || 0;
+            const productTotal = (productPrice - productDiscount) * item.quantity;
+            return total + productTotal;
+        }, 0);
+        console.log(totalPrice,"totalPrice");
+        res.status(200).json({ message: 'Order Data Retrieved successfully!', orders: allOrders,length:allOrders.length,TotalPrice:totalPrice});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+const get_single_Order_track = async (req, res) => {
     try {
         const allOrders = await Order.findById(req.params.id).populate({
             path: 'cart_data.product',
@@ -251,4 +280,4 @@ const generateOrderId = () => {
     return uuid.v4();
 };
 
-module.exports = { createOrderFromCart ,allOrder,CustomerOrder,get_single_Order,Update_Order_status,Update_Order_payment_status};
+module.exports = { createOrderFromCart ,allOrder,CustomerOrder,get_single_Order,Update_Order_status,Update_Order_payment_status,get_single_Order_track};

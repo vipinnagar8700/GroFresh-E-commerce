@@ -13,7 +13,7 @@ const { createBanner, allProductBanner, singleBanner, updateBanner, deleteBanner
 const { configApi } = require('../controllers/adminController');
 const { addProductToWishlist, listWishlistProducts, removeProductFromWishlist, listWishlistProducts_all } = require('../controllers/WishlistController');
 const { addToCart, listCartProducts, deleteFromCart, decreaseProductQuantity } = require('../controllers/CartController');
-const { createOrderFromCart, allOrder, CustomerOrder, get_single_Order, Update_Order_status, Update_Order_payment_status } = require('../controllers/OrderController');
+const { createOrderFromCart, allOrder, CustomerOrder, get_single_Order, Update_Order_status, Update_Order_payment_status, get_single_Order_track } = require('../controllers/OrderController');
 const { addCoupon, getCoupons, getSingleCoupon, updateCoupon, deleteCoupon } = require('../controllers/CoupenController');
 const { AllReviews, addReview } = require('../controllers/ReviewSController');
 const { deleteFlashDealById, updateFlashDealById, getFlashDealById, getAllFlashDeals, createFlashDeal } = require('../controllers/FlashDealController');
@@ -113,9 +113,10 @@ router.get('/deleteFromCart/:id',authenticateToken,deleteFromCart)
 router.post('/decreaseProductQuantity',authenticateToken,decreaseProductQuantity)
 
 // Order
-router.post('/customer/order/place',createOrderFromCart)
+router.post('/customer/order/place',authenticateToken,createOrderFromCart)
 router.get('/allOrder',allOrder);
 router.get('/get_single_Order/:id',get_single_Order);
+router.get('/customer/order/track/:id',authenticateToken,get_single_Order_track);
 router.put('/Update_Order_status/:id',Update_Order_status);
 router.put('/Update_Order_payment_status/:id',Update_Order_payment_status);
 
