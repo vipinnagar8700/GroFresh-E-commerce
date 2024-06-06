@@ -48,8 +48,8 @@ var OrderSchema = new mongoose.Schema({
         default:null,
     },
     delivery_address_id:{
-        type:String,
-        default:null,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Address",
     },
     checked:{
         type:String,

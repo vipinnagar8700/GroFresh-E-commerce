@@ -43,6 +43,9 @@ app.get("/admin/pos/orders", (req, res) => {
 app.get("/admin/orders/details/:id", (req, res) => {
   res.render('Order/Order_details')
 });
+app.get("/admin/orders/generate-invoice/:id", (req, res) => {
+  res.render('Invoice/Generate_Order')
+});
 
 app.get("/admin/orders/list/all", (req, res) => {
   res.render('Order/All_order')

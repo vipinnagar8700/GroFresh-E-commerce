@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="csrf-token" content="fONHYeDahd6YvnsOUuLJLz8E1HxBMjccVopxicPG" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Invoice</title>
+    <link rel="icon" type="image/x-icon" href="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c75526b81b.png" />
+    <link rel="shortcut icon" href />
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/vendor.min.css" />
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/icon-set/style.css" />
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/owl.min.css" />
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/theme.minc619.css?v=1.0" />
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/style.css" />
+    <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/toastr.css" />
+    <link rel="stylesheet" href="https://grofresh-admin.6amtech.com/public/assets/admin/css/custom-helper.css" />
+</head>
+<body class="footer-offset" id="demo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-none" id="loading">
+                    <div class="loader-image">
+                        <img width="200" src="https://grofresh-admin.6amtech.com/public/assets/admin/img/loader.gif" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../Layout/Header') %>
+    <div id="headerFluid" class="d-none"></div>
+    <div id="headerDouble" class="d-none"></div>
+    <%- include('../Layout/Sidebar') %>
+    <main id="content" role="main" class="main pointer-event">
+        <div class="content container-fluid initial-38">
+            <div class="row justify-content-center" id="printableArea">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <input type="button" class="btn btn--primary non-printable text-white" data-type="printableArea" id="printableSection" value="Proceed  If thermal printer is ready." />
+                        <a href="/admin/orders/list/all" class="btn btn--danger non-printable text-white">Back</a>
+                    </div>
+                    <hr class="non-printable" />
+                </div>
+                <div class="initial-38-1">
+                    <div class="pt-3">
+                        <div class="pt-3">
+                            <img class="initial-38-2" src="https://grofresh-admin.6amtech.com/storage/app/public/restaurant/2023-11-21-655c755267e93.png" alt="Logo" />
+                        </div>
+                    </div>
+                    <div class="text-center pt-2 mb-3">
+                        <h2 class="initial-38-3">Dhaka</h2>
+                        <h5 class="text-break initial-38-4">Dhaka</h5>
+                        <h5 class="initial-38-4 initial-38-3">Phone : +8801700000000</h5>
+                    </div>
+                    <span class="initial-38-5">---------------------------------------------------------------------------------</span>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <h5>
+                                Order ID : <span id="order-id" class="font-light"></span>
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <h5>
+                                <span id="order-date" class="font-light"></span>
+                            </h5>
+                        </div>
+                        <div class="col-12">
+                            <h5>
+                                Customer Name : <span id="customer-name" class="font-light"></span>
+                            </h5>
+                            <h5>Phone : <span id="customer-phone" class="font-light"></span></h5>
+                            <h5 class="text-break">Address : <span id="customer-address" class="font-light"></span></h5>
+                        </div>
+                    </div>
+                    <h5 class="text-uppercase"></h5>
+                    <span class="initial-38-5">---------------------------------------------------------------------------------</span>
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th class="initial-38-6 border-top-0 border-bottom-0">QTY</th>
+                                <th class="initial-38-7 border-top-0 border-bottom-0">DESC</th>
+                                <th class="initial-38-7 border-top-0 border-bottom-0">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-items">
+                        </tbody>
+                    </table>
+                    <div class="px-3">
+                        <dl class="row text-right justify-content-center">
+                            <dt class="col-6">Items Price:</dt>
+                            <dd id="items-price" class="col-6"></dd>
+                            <dt class="col-6">Tax / VAT :</dt>
+                            <dd id="tax-vat" class="col-6"></dd>
+                            <dt class="col-6">Subtotal:</dt>
+                            <dd id="subtotal" class="col-6"></dd>
+                            <dt class="col-6">Coupon Discount:</dt>
+                            <dd id="coupon-discount" class="col-6"></dd>
+                            <dt class="col-6">Extra Discount:</dt>
+                            <dd id="extra-discount" class="col-6"></dd>
+                            <dt class="col-6">Delivery Fee:</dt>
+                            <dd id="delivery-fee" class="col-6">
+                                <hr />
+                            </dd>
+                            <dt class="col-6 font-20px">Total:</dt>
+                            <dd id="total" class="col-6 font-20px"></dd>
+                        </dl>
+                        <span class="initial-38-5">---------------------------------------------------------------------------------</span>
+                        <h5 class="text-center pt-1"><span class="d-block">"""THANK YOU"""</span></h5>
+                        <span class="initial-38-5">---------------------------------------------------------------------------------</span>
+                        <span class="d-block text-center">Copyright © 2023, groFresh</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row justify-content-between align-items-center">
+                <div class="col">
+                    <p class="font-size-sm mb-0">
+                        <span class="d-none d-sm-inline-block">Copyright © 2023, groFresh</span>
+                    </p>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex justify-content-end">
+                        <ul class="list-inline list-separator">
+                            <li class="list-inline-item">
+                                <a class="list-separator-link" href="/admin/business-settings/store/ecom-setup">Store Settings</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="list-separator-link" href="/admin/settings">Profile</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <div class="hs-unfold">
+                                    <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="/admin">
+                                        <i class="tio-home-outlined"></i>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="list-inline-item">
+                                <label class="badge badge-success text-capitalize">Software Version 7.4</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="popup-modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <h2 class="text-danger">Are You Sure You Want to Logout?</h2>
+                                    <p class="text-dark">You will be returned to the login screen</p>
+                                    <div class="pt-3">
+                                        <a class="btn btn-danger" href="https://grofresh-admin.6amtech.com/admin/auth/logout">Proceed</a>
+                                        <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center mt-3">
+                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/custom.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/chart.js/dist/Chart.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/chart.js.extensions/chartjs-extensions.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/daterangepicker/moment.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/daterangepicker/daterangepicker.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/vendor/tinymce/tinymce.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/theme.min.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/hs.chartjs.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/hs.daterangepicker.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/hs.tinymce-editor.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/hs.add-field.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/toastr.js"></script>
+        <script src="https://grofresh-admin.6amtech.com/public/assets/admin/js/bootstrap.min.js"></script>
+        <script>
+            function fetchOrderData() {
+                // Assuming the URL for the API is '/admin/orders/invoice/{order_id}'
+                const orderId = window.location.pathname.split('/').pop(); // Get order_id from URL
+                console.log(orderId,"orderId")
+                const apiUrl = `/api/v1/get_single_Order/${orderId}`;
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                      console.log(data,"dataOdrer")
+                        document.getElementById('order-id').innerText = data?.orders?._id;
+                        document.getElementById('order-date').innerText = new Date(data?.orders?.created_at).toLocaleDateString();
+                        const Name = data?.orders?.customer_id;
+            if (Name) {
+                document.getElementById('customer-name').innerText = `${Name?.f_name},${Name?.l_name}`;
+            }
+                        document.getElementById('customer-phone').innerText = data?.orders?.customer_id?.phone;
+                        const address = data?.orders?.delivery_address_id;
+                        console.log(address,"address")
+            if (address) {
+                document.getElementById('customer-address').innerText = `house - ${address?.house},floor - ${address?.floor}, road -${address?.road}, address - ${address?.address}`;
+            }
+
+                        let itemsHtml = '';
+                        data.items.forEach(item => {
+                            itemsHtml += `
+                                <tr>
+                                    <td>${item.quantity}</td>
+                                    <td>${item.description}</td>
+                                    <td>${item.price}</td>
+                                </tr>
+                            `;
+                        });
+                        document.getElementById('order-items').innerHTML = itemsHtml;
+
+                        document.getElementById('items-price').innerText = data.total_price;
+                        document.getElementById('tax-vat').innerText = data.tax;
+                        document.getElementById('subtotal').innerText = data.subtotal;
+                        document.getElementById('coupon-discount').innerText = data.coupon_discount;
+                        document.getElementById('extra-discount').innerText = data.extra_discount;
+                        document.getElementById('delivery-fee').innerText = data.delivery_fee;
+                        document.getElementById('total').innerText = data.total;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching order data:', error);
+                    });
+            }
+
+            // Call the function to fetch and display order data when the page loads
+            document.addEventListener('DOMContentLoaded', fetchOrderData);
+        </script>
+    </body>
+</html>

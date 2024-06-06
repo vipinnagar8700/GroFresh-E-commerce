@@ -107,7 +107,7 @@ const createOrderFromCart = async (req, res) => {
         await cart.save();
 
         // Send a response with success message and order details
-        res.status(200).json({ message: 'Order created successfully', success:true });
+        res.status(200).json({ message: 'Order created successfully', success:true ,order_id:savedOrder?._id});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error', success:false });
@@ -155,7 +155,7 @@ const get_single_Order = async (req, res) => {
                     model: 'ProductSubCategory' // Assuming 'ProductSubCategory' is the model name for sub-categories
                 }
             ]
-        }).populate('customer_id').populate('delivery_man_id').populate('branch_id').populate('time_slot_id').sort({ _id: -1 });
+        }).populate('customer_id').populate('delivery_man_id').populate('branch_id').populate('time_slot_id').populate('delivery_address_id').sort({ _id: -1 });
         const totalPrice = allOrders.cart_data.reduce((total, item) => {
             const productPrice = item.product.price || 0;
             const productDiscount = item.product.discount || 0;
