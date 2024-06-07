@@ -85,7 +85,7 @@ const AllProduct = asyncHandler(async (req, res) => {
           path: 'customer_id', // Assuming 'customer_id' is the reference field for the customer
           model: 'Customer' // Assuming 'Customer' is the name of the customer model
         }
-      }).sort({ _id: -1 });;
+      }).sort({ _id: -1 });
 
     const length = ProductItem.length;
     res.json({ products: ProductItem, total_size: length, status: true, limit: 10, offset: null });
@@ -178,7 +178,22 @@ const AllDailyNeedProduct = asyncHandler(async (req, res) => {
 // Get a single product by ID
 const singleProduct = asyncHandler(async (req, res) => {
   try {
-    const ProductItem = await Product.findById(req.params.id).populate('category_ids').populate('Sub_Category_Name');
+    const ProductItem = await Product.findById(req.params.id).populate('category_ids').populate('Sub_Category_Name').populate({
+      path: 'active_reviews',
+      model: 'ProductReview', // Assuming 'ProductReview' is the name of the review model
+      populate: {
+        path: 'customer_id', // Assuming 'customer_id' is the reference field for the customer
+        model: 'Customer' // Assuming 'Customer' is the name of the customer model
+      }
+    })
+    .populate({
+      path: 'rating',
+      model: 'ProductReview', // Assuming 'ProductReview' is the name of the review model
+      populate: {
+        path: 'customer_id', // Assuming 'customer_id' is the reference field for the customer
+        model: 'Customer' // Assuming 'Customer' is the name of the customer model
+      }
+    }).sort({ _id: -1 });;
     if (!ProductItem) {
       return res.status(404).json({ message: 'ProductItem not found' });
     }
