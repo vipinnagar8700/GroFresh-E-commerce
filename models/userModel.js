@@ -23,8 +23,14 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     referral_code: {
-      type: Boolean,
-      default: false,
+      type: String,
+      unique: true,
+      default: null,
+    },
+    referredBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
     },
     address: String,
     city: String,

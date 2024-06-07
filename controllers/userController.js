@@ -9,13 +9,26 @@ const asyncHandler = require("express-async-handler");
 const { generateRefreshToken } = require("../config/refreshToken");
 const nodemailer = require('nodemailer');
 require("dotenv/config");
+const crypto = require('crypto');
+const ReferralCode = require('../models/referalCodeModel');
 
+const generateUniqueReferralCode = async () => {
+  let uniqueReferralCode;
+  let codeExists = true;
+
+  while (codeExists) {
+    uniqueReferralCode = crypto.randomBytes(6).toString('hex');
+    const existingCode = await ReferralCode.findOne({ code: uniqueReferralCode });
+    codeExists = !!existingCode;
+  }
+
+  return uniqueReferralCode;
+};
 
 // Register
 const register = asyncHandler(async (req, res) => {
-  const { f_name, l_name, email, phone, role, password, Branch_id } = req.body;
+  const { f_name, l_name, email, phone, role, password, Branch_id, referral_code } = req.body;
 
-  // Check if email is provided
   if (!email) {
     return res.status(400).json({
       message: "Email is a required field.",
@@ -23,7 +36,6 @@ const register = asyncHandler(async (req, res) => {
     });
   }
 
-  // Check if phone is provided
   if (!phone) {
     return res.status(400).json({
       message: "Phone is a required field.",
@@ -31,7 +43,6 @@ const register = asyncHandler(async (req, res) => {
     });
   }
 
-  // Check if password is provided
   if (!password) {
     return res.status(400).json({
       message: "Password is a required field.",
@@ -39,84 +50,95 @@ const register = asyncHandler(async (req, res) => {
     });
   }
 
-  // Check if a user with the given email or phone already exists
   const existingUser = await User.findOne({
     $or: [{ email }, { phone }],
   });
 
-  if (!existingUser) {
-    // User does not exist, so create a new user
-    const newUser = await User.create({
-      f_name,
-      l_name,
-      email,
-      phone,
-      role,
-      password,
-      Branch_id
-    });
-
-    // Add role-specific data based on the role
-    let roleData;
-
-    if (role === "DeliveryMan") {
-      roleData = await DeliveryMan.create({
-        user_id: newUser._id,
-        f_name: newUser.f_name,
-        l_name: newUser.l_name,
-        password: newUser.password,
-        phone: newUser.phone,
-        email: newUser.email,
-        role: newUser.role,
-        Branch_id: newUser.Branch,
-      });
-    } else if (role === "Customer") {
-      roleData = await Customer.create({
-        user_id: newUser._id,
-        f_name: newUser.f_name,
-        l_name: newUser.l_name,
-        password: newUser.password,
-        phone: newUser.phone,
-        email: newUser.email,
-        role: newUser.role,
-      });
-    } else if (role === "Branch") {
-      roleData = await Branch.create({
-        user_id: newUser._id,
-        f_name: newUser.f_name,
-        l_name: newUser.l_name,
-        password: newUser.password,
-        phone: newUser.phone,
-        email: newUser.email,
-        role: newUser.role,
-      });
-    } else if (role === "Agent") {
-      roleData = await Agent.create({
-        user_id: newUser._id,
-        name: newUser.f_name + " " + newUser.l_name,
-        password: newUser.password,
-        phone: newUser.phone,
-        email: newUser.email,
-        role: newUser.role,
-      });
-    }
-
-    res.status(201).json({
-      message: "Agent  created successfully",
-      success: true,
-    });
-  } else {
-    // User with the same email or phone already exists
-    const message =
-      existingUser.email === email
-        ? "Email is already registered."
-        : "Mobile number is already registered.";
-    res.status(409).json({
+  if (existingUser) {
+    const message = existingUser.email === email
+      ? "Email is already registered."
+      : "Mobile number is already registered.";
+    return res.status(409).json({
       message,
       success: false,
     });
   }
+  const uniqueReferralCode = await generateUniqueReferralCode();
+
+  const newUser = await User.create({
+    f_name,
+    l_name,
+    email,
+    phone,
+    role,
+    password,
+    Branch_id,
+    referral_code: uniqueReferralCode,
+  });
+
+  if (referral_code) {
+    const referrer = await User.findOne({ referral_code });
+    if (referrer) {
+      newUser.referredBy = referrer._id;
+      // Apply any referral benefits here for both the referrer and the new user
+    } else {
+      return res.status(400).json({
+        message: "Invalid referral code.",
+        success: false,
+      });
+    }
+  }
+
+  newUser.referral_code = uniqueReferralCode;
+  await newUser.save();
+
+  await ReferralCode.create({
+    code: uniqueReferralCode,
+    user: newUser._id
+  });
+
+  let roleData;
+
+  if (role === "DeliveryMan") {
+    roleData = await DeliveryMan.create({
+      user_id: newUser._id,
+      f_name: newUser.f_name,
+      l_name: newUser.l_name,
+      password: newUser.password,
+      phone: newUser.phone,
+      email: newUser.email,
+      role: newUser.role,
+      Branch_id: newUser.Branch,
+    });
+  } else if (role === "Customer") {
+    roleData = await Customer.create({
+      user_id: newUser._id,
+      f_name: newUser.f_name,
+      l_name: newUser.l_name,
+      password: newUser.password,
+      phone: newUser.phone,
+      email: newUser.email,
+      role: newUser.role,
+    });
+  } else if (role === "Branch") {
+    roleData = await Branch.create({
+      user_id: newUser._id,
+      f_name: newUser.f_name,
+      l_name: newUser.l_name,
+      password: newUser.password,
+      phone: newUser.phone,
+      email: newUser.email,
+      role: newUser.role,
+    });
+  }
+
+  res.status(201).json({
+    message: "User created successfully",
+    success: true,
+    referral_code: uniqueReferralCode,
+  });
 });
+
 
 
 
@@ -186,21 +208,11 @@ const Userme = async (req, res) => {
     }
 
     // Check if the user's role is "Agent"
-    if (user.role === 'Agent') {
-      // If user is an agent, query the Agent model to get the agent's details
-      const agent = await Agent.findOne({ user_id: userId }); // Assuming there's a field named "user" in the Agent model that stores the user's ID
-      if (!agent) {
-        return res.status(404).json({ message: 'Agent not found' });
-      }
-
-      // Return the agent's data
-      return res.json({ agent });
-    }
-
+    
     // If user is not an agent, return the user data
-    res.json({ user });
+    res.status(200).json({ data:user ,message:"User Personal Data Retrieved!",success:true});
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message,success:false });
   }
 };
 

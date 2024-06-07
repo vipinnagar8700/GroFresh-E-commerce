@@ -20,6 +20,7 @@ const { deleteFlashDealById, updateFlashDealById, getFlashDealById, getAllFlashD
 const { deleteDeliveryTimeSlotById, updateDeliveryTimeSlotById, getDeliveryTimeSlotById, getAllDeliveryTimeSlots, createDeliveryTimeSlot } = require('../controllers/DeliveryTimeSlotController');
 const { AllAgents, createUserByAgent, getAllUsersByAgent } = require('../controllers/AgentController');
 const { addAddress, getAddressByUserId, updateAddress, deleteAddress } = require('../controllers/addressController');
+const { getReferralCodeByUserId } = require('../controllers/ReferalCodeController');
 
 const storage = multer.diskStorage({
     destination: './public/images', // Specify the destination folder
@@ -156,4 +157,6 @@ router.get('/customer/address/update/:addressId',authenticateToken,getDeliveryTi
 router.put('/customer/address/update/:addressId', authenticateToken,updateAddress);
 router.delete('/customer/address/delete/:addressId',authenticateToken, deleteAddress);
 
+// Referal Code
+router.get('/getReferralCodeByUserId',authenticateToken,getReferralCodeByUserId)
 module.exports = router;
