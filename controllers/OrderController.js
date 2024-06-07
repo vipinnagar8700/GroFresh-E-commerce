@@ -4,6 +4,7 @@ const Order = require('../models/OrderModel');
 const uuid = require('uuid');
 const product = require('../models/product');
 
+
 // Controller function to create an order from the Cart of a single user
 const createOrderFromCart = async (req, res) => {
     try {
@@ -113,8 +114,6 @@ const createOrderFromCart = async (req, res) => {
         res.status(500).json({ message: 'Internal server error', success:false });
     }
 };
-
-
 
 const allOrder = async (req, res) => {
     try {

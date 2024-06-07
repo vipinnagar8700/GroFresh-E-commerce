@@ -40,9 +40,11 @@ app.get("/admin/verify-offline-payment/denied", (req, res) => {
 app.get("/admin/pos/orders", (req, res) => {
   res.render('posOrder')
 });
+
 app.get("/admin/orders/details/:id", (req, res) => {
   res.render('Order/Order_details')
 });
+
 app.get("/admin/orders/generate-invoice/:id", (req, res) => {
   res.render('Invoice/Generate_Order')
 });

@@ -129,7 +129,7 @@ router.patch('/updateCoupon/:id', updateCoupon);
 router.delete('/deleteCoupon/:id', deleteCoupon);
 
 // Reviews
-router.post('/addReview',addReview)
+router.post('/products/reviews/submit',authenticateToken,addReview)
 router.get('/AllReviews',AllReviews);
 
 // FlashDeal

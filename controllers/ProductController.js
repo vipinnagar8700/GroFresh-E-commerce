@@ -167,7 +167,7 @@ const AllDailyNeedProduct = asyncHandler(async (req, res) => {
     const ProductItem = await Product.find({ daily_needs: 1 })
       .populate('category_ids')
       .populate('Sub_Category_Name')
-      .populate('attributes').sort({ _id: -1 });;
+      .populate('attributes').sort({ _id: -1 });
     const length = ProductItem.length;
     res.json({ products: ProductItem, total_size: length, status: true, limit: 10, offset: null });
   } catch (err) {
