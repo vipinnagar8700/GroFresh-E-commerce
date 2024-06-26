@@ -97,13 +97,14 @@ const AllProduct = asyncHandler(async (req, res) => {
 // Filter Product Api
 const ProductFilter = asyncHandler(async (req, res) => {
   try {
-    // Extract the category name from the request query
-    const categoryName = req.query.categoryName;
+    // Extract the category name and product name from the request query
+    const productName = req.query.name;
 
-    // Construct the filter based on the category name
+    // Construct the filter based on the category name and product name
     const filter = {};
-    if (categoryName) {
-      filter.Category_name = categoryName;
+   
+    if (productName) {
+      filter.name = { $regex: new RegExp(productName, 'i') }; // Case-insensitive search
     }
 
     // Find products based on the filter and populate related fields
@@ -118,6 +119,7 @@ const ProductFilter = asyncHandler(async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
 
 // Get Featured all products
 const AllFeaturedProduct = asyncHandler(async (req, res) => {
@@ -147,11 +149,26 @@ const AllCategoryClilds = asyncHandler(async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
 const AllSubCategoryClilds = asyncHandler(async (req, res) => {
   console.log(req.params.id, "id");
   try {
     // Assuming category_ids is an array field in the Product model
     const ProductItems = await Product.find({ Sub_Category_Name: req.params.id, is_featured: 1 })
+      .populate('category_ids')
+      .populate('Sub_Category_Name')
+      .populate('attributes').sort({ _id: -1 });;
+    const length = ProductItems.length;
+    res.json({ data: ProductItems, length: length, status: true });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+const AllSubCategoryProducts = asyncHandler(async (req, res) => {
+  console.log(req.params.id, "id");
+  try {
+    // Assuming category_ids is an array field in the Product model
+    const ProductItems = await Product.find({ category_ids: req.params.id, is_featured: 1 })
       .populate('category_ids')
       .populate('Sub_Category_Name')
       .populate('attributes').sort({ _id: -1 });;
@@ -253,5 +270,5 @@ module.exports = {
   AllFeaturedProduct,
   AllDailyNeedProduct,
   ProductFilter,
-  AllCategoryClilds,AllSubCategoryClilds
+  AllCategoryClilds,AllSubCategoryClilds,AllSubCategoryProducts
 };
